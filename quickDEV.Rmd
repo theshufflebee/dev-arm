@@ -1,0 +1,160 @@
+---
+title: "Quick DEV Tests"
+output:
+  pdf_document: 
+    toc: true
+    fig_caption: yes
+---
+\newpage
+
+```{r library_setup, results=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+rm(list=ls())
+require(tinytex) #LaTeX
+require(ggplot2) #plots
+require(haven) #load data
+require(dplyr) #data management
+require(lubridate) #data dates management
+require(zoo) #for lagging
+require(jtools) #tables
+require(huxtable) #tables
+require(lmtest) #reg tests
+require(data.table) #for data filtering
+require(sandwich) #regression errors
+require(readxl) #for reading excel data
+require(tidyr) #data
+require(tidyverse) #data
+require(did) #DiD (support staggered treatment)
+require(panelView) #for panel data treatment visibility
+require(modelsummary) #for nice DiD tables
+require(fixest) #TWFE regression
+require(staggered)
+
+getwd()
+setwd("...") 
+set.seed(12399999)
+set.seed(23352359)
+
+```
+
+# Data Load
+```{r data}
+
+load("data/dev_data.Rdata")
+load("data/dev_did_data.Rdata")
+load("data/dev_didrich_data.Rdata")
+
+panelview(data = did_dataset,
+          formula = income ~ drought,           
+          index = c("district", "year"),
+          xlab = "Year",
+          ylab = "District",
+          display.all = FALSE,
+          gridOff = TRUE,
+          by.timing = TRUE,
+          pre.post = FALSE)
+
+```
+
+
+\newpage
+
+# Staggered DiD
+
+# Poorest
+```{r sdid, eval=T, message=FALSE, warning=FALSE, include=T}
+
+x = "exp"
+x = "fdcons"
+x = "poverty"
+x = "income"
+#x = "WaterSupply"
+
+#model poor
+cs_model <- att_gt(
+  yname = x,
+  tname = "year",
+  idname = "district",
+  gname = "first_treat_year",
+  data = did_dataset,
+  control_group = "notyettreated" )
+
+#event study effects
+event_study <- aggte(cs_model, type = "dynamic", na.rm = F)
+ggdid(event_study)
+modelsummary(event_study, stars = TRUE, output = "kableExtra")
+
+#overal effects
+overall_effect <- aggte(cs_model, type = "simple", na.rm = F)
+summary(overall_effect, stars = TRUE)
+
+```
+
+```{r 2ndp}
+
+# Change 0 to Infinity for never-treated
+did_dataset_inf <- did_dataset %>%
+  mutate(
+    first_treat_year = if_else(first_treat_year == 0, Inf, first_treat_year))
+
+# And try again
+staggered_model <- staggered_cs(
+  df = did_dataset_inf, 
+  i = "district",
+  t = "year",
+  g = "first_treat_year",
+  y = x,
+  estimand = "eventstudy",
+  eventTime = -9:5)
+
+staggered_model$ymin_ptwise <- with(staggered_model, estimate - 1.96 * se)
+staggered_model$ymax_ptwise <- with(staggered_model, estimate + 1.96 * se)
+
+ggplot(staggered_model, aes(x = eventTime, y = estimate)) +
+  geom_pointrange(aes(ymin = ymin_ptwise, ymax = ymax_ptwise)) +
+  geom_hline(yintercept = 0) +
+  xlab("Event Time") + ylab("Estimate")
+
+#modelsummary(staggered_model, stars = TRUE, output = "kableExtra")
+
+```
+
+
+# Richest
+```{r rich}
+
+#rich
+cs_model <- att_gt(
+  yname = x,
+  tname = "year",
+  idname = "district",
+  gname = "first_treat_year",
+  data = did_dataset_r,
+  control_group = "notyettreated" )
+
+#event study effects
+event_study <- aggte(cs_model, type = "dynamic", na.rm = F)
+ggdid(event_study)
+modelsummary(event_study, stars = TRUE, output = "kableExtra")
+
+#overal effects
+overall_effect <- aggte(cs_model, type = "simple", na.rm = F)
+summary(overall_effect, stars = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
