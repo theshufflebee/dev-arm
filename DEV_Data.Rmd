@@ -73,6 +73,57 @@ en groupes de "traités" (drought) et "non-traités", etc.
 6) Si t'es vrmnt motivé et que tu veux un petit cadeau dans les toilettes, trouvez 
 des autres données lieés a l'agriculture en Armenie au niveau regional et ensuite les ajouter aux 4 dataset qu'on creeer dans ce doc.
 
+- poverty (0 = non, 1 = yes)
+
+
+
+settlement
+- 2004 à 2017 : 0 yerevan, 1 urban, 2 rural
+- 2018 : 1 yerevan, 2 urban, 3 rural 
+- 2019 : 1 urban, 2 rural
+- 2020 : 1 yerevan, 2 urban, 3 rural 
+- 2021 : 1 urban , 2 rural
+- 2022 à 2023 : -999999999 missing, 1 urban, 2 rural
+
+  a part Yerevan qui la capital y a aucune raison qu'un district entier soit complétement considéré comme       
+  rural ou urbain
+  j'ai été check (uniquement avec data de 2012) et y a pas un district qui n'est pas à la fois rural et        
+  urbain 
+  Pour Yerevan, j'ai regarder 2019 et 2022 (qui sont uniquement rural et urbain)
+  je n'ai trouvé aucune observation ou une personne vivait a Yerevan et rural (uniquement urbain)
+
+
+Agri income 
+2004: y1_3drm.10
+2005 : y1_3drm.10
+2006 : y1_3drm.10
+2007 : y1_3drm.10
+2008 : y1_3drm.10
+2009 : y1_3drm.10
+2010 : y1_3drm.10
+2011 : y1_3drm.10
+2012 : y1_3drm.10
+2013 : y1_3drm.10
+2014 : y1_3drm.10
+2015 : y1_3drm.13   (y1_3drm.10 is unemp) 
+2016 : y1_3drm.3     (y1_3drm.10 is income child)
+2017 : y1_3drm.3      (y1_3drm.10 is income child)
+2018 : y1_3drm.3      (y1_3drm.10 is income child)
+2019 : y1_3amd.3.00   (y1_3drm.10 don't exist)
+2020 : y1_3amd.3.00   (y1_3drm.10 don't exist)
+2021 : y1_3amd.3.00   (y1_3drm.10 don't exist)
+2022 :y1_3amd.3.00    (y1_3drm.10 don't exist)
+2023 :                (y1_3drm.10 don't exist)
+- WOW : wow wow wow wow
+- je croyais que income prod était missing en 2020, 2022, 2023, parce que y avait pas de variable dans la liste. 
+mais en fait MDR pour 2020, 2022 il s'y trouve (enfin je crois mais ça a l'air) mais c'est pas noté dans la ptn de liste, pour 2023 j'ai pas trouvé
+
+
+la variable poverty est hyper bizarre, certains sont considérés pauvres alors qu'il touche 80k et d'autre touche 35k et le sont pas. Et c'est pas mon code ça s'observe clairement dans les excels
+
+
+
+
 
 # Data
 
@@ -84,7 +135,7 @@ droughtdata = read.csv("household_data/district_yearly_drought_treatment_long.cs
 
 # Load Household Survey Data 
 household_data <- list()
-years_to_load <- 2010:2023
+years_to_load <- 2004:2023
 for (year in years_to_load) {
   if (year <= 2014) {
     file_extension <- ".xls"
@@ -129,8 +180,25 @@ name_map <- list(
   exp = c("expend", "EXPEND"),
   income = c("totincome", "TOTINCOME", "TOTINCOM"),
   fdcons = c("fdcons", "FDCONS"),
-  fdpurch = c("fdpurch", "FDPURCH"),
-  agric_income = c("y1_3amd.3.00", "y1_3drm.10", "y1_3drm.13")) #RYAN CETTE LIGNE EST FAUX
+  fdpurch = c("fdpurch", "FDPURCH")) 
+
+# There is an overlap of the variable name for agriculural income
+# In some dataset, the variable is called y1_3drm.10, but on other it is called 
+# differently. But on some y1_3drm.10 exists and is related to another variable.
+# We thus need to change the name of those variable
+for (year in names(household_data)) {
+  year_num <- as.integer(year)
+  if (year_num >= 2015 & year_num <= 2018) {
+    if (year_num == 2015) {
+      household_data[[year]] <- household_data[[year]] %>%
+        rename_with(~"agric_income_temp", .cols = matches("y1_3drm.13"))
+    } else if (year_num %in% c(2016, 2017, 2018)) {
+      household_data[[year]] <- household_data[[year]] %>%
+        rename_with(~"agric_income_temp", .cols = matches("y1_3drm.3"))}
+    household_data[[year]] <- household_data[[year]] %>%
+      rename_with(~"income_child_ignore", .cols = matches("y1_3drm.10"))}}
+
+name_map$agric_income <- c("y1_3amd.3.00", "y1_3drm.10", "agric_income_temp")
 
 # Fix the different names and set common ones established above
 cleaned_data_list <- list()
@@ -193,6 +261,31 @@ hh_dataset <- hh_dataset %>%
     district == "Vayots Dzor" ~ "Vayots dzor",
     district == "other urban" ~ "Yerevan",
     TRUE ~ NA_character_ ))
+
+# Change poverty level for a dummy variable
+hh_dataset <- hh_dataset %>%
+  mutate(poverty = case_when(
+    poverty == 1  ~ 0,
+    poverty == 2  ~ 1,
+    poverty == 3  ~ 1,
+    TRUE ~ NA_real_))
+
+# Change settlement values for a dummy variable (urbanziation)
+hh_dataset <- hh_dataset %>%
+  mutate(urban = case_when(
+    year <= 2017 & urban == 0 ~ 1,
+    year <= 2017 & urban == 1 ~ 1,
+    year <= 2017 & urban == 2 ~ 0,
+    year %in% c(2018,2020) & urban == 1 ~ 1,
+    year %in% c(2018,2020) & urban == 2 ~ 1,
+    year %in% c(2018,2020) & urban == 3 ~ 0,
+    year %in% c(2019,2021) & urban == 1 ~ 1,
+    year %in% c(2019,2021) & urban == 2 ~ 0,
+    year %in% c(2019,2021) & urban == 1 ~ 1,
+    year >= 2022 & urban == 1 ~ 1,
+    year >= 2022 & urban == 2 ~ 0,
+    year >= 2022 & urban == -999999999 ~ NA_real_,
+    TRUE ~ NA_real_ ))
 
 ```
 
@@ -276,6 +369,24 @@ ggplot(dataset, aes(x = year, y = income)) +
   facet_wrap(~ district) + 
   labs(
     title = "Income Over Time by District",
+    x = "Year",
+    y = "Average Income") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+```{r district desc ev agri, message=FALSE, warning=FALSE}
+
+# Graph 1: Poverty trend over time, faceted by district
+ggplot(dataset, aes(x = year, y = agric_income)) +
+  geom_line(aes(group = district), color = "blue") + # Group by district to connect dots
+  geom_point(color = "blue") +
+  
+  # Creates a chart for each district
+  facet_wrap(~ district) + 
+  labs(
+    title = "Agricultural Income Over Time by District",
     x = "Year",
     y = "Average Income") +
   theme_minimal() +
