@@ -183,9 +183,9 @@ name_map <- list(
   fdpurch = c("fdpurch", "FDPURCH")) 
 
 # There is an overlap of the variable name for agriculural income
-# In some dataset, the variable is called y1_3drm.10, but on other it is called 
-# differently. But on some y1_3drm.10 exists and is related to another variable.
-# We thus need to change the name of those variable
+# In some years, the variable is called y1_3drm.10, but in others it has a  
+# different name. And in some, y1_3drm.10 exists but describes another variable.
+# We thus need to change the name of those variables to select precisely agric
 for (year in names(household_data)) {
   year_num <- as.integer(year)
   if (year_num >= 2015 & year_num <= 2018) {
