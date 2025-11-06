@@ -360,7 +360,7 @@ any(is.na(dataset$agric_income))
 ## By District
 ```{r district desc ev, message=FALSE, warning=FALSE}
 
-# Graph 1: Poverty trend over time, faceted by district
+# Income trend over time, faceted by district
 ggplot(dataset, aes(x = year, y = income)) +
   geom_line(aes(group = district), color = "blue") + # Group by district to connect dots
   geom_point(color = "blue") +
@@ -378,7 +378,7 @@ ggplot(dataset, aes(x = year, y = income)) +
 
 ```{r district desc ev agri, message=FALSE, warning=FALSE}
 
-# Graph 1: Poverty trend over time, faceted by district
+# Agriculture Income trend over time, faceted by district
 ggplot(dataset, aes(x = year, y = agric_income)) +
   geom_line(aes(group = district), color = "blue") + # Group by district to connect dots
   geom_point(color = "blue") +
