@@ -287,6 +287,8 @@ hh_dataset <- hh_dataset %>%
     year >= 2022 & urban == -999999999 ~ NA_real_,
     TRUE ~ NA_real_ ))
 
+agri = read_xlsx("agri.xlsx")
+
 ```
 
 ## Merging and Aggregating
@@ -409,7 +411,9 @@ dataset_prepped_q <- dataset_quartiles %>%
 # A1. Aggregate the data: Find the mean income for each year and quartile
 plot1_data_q <- dataset_prepped_q %>%
   group_by(year, income_quartile) %>%
-  summarize(avg_income = mean(income, na.rm = TRUE), .groups = 'drop')
+  summarize(avg_income = mean(income, na.rm = TRUE),
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop') 
+
 
 # A2. Create the plot q
 ggplot(plot1_data_q, aes(x = year, y = avg_income, color = income_quartile, group = income_quartile)) +
@@ -431,7 +435,9 @@ ggplot(plot1_data_q, aes(x = year, y = avg_income, color = income_quartile, grou
 # B1. Aggregate data: Mean income by year, quartile, AND drought status
 plot2_data_q <- dataset_prepped_q %>%
   group_by(year, income_quartile, drought_status) %>%  
-  summarize(avg_income = mean(income, na.rm = TRUE), .groups = 'drop')
+  summarize(avg_income = mean(income, na.rm = TRUE),
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop')
+
 
 # B2. Create the faceted plot q
 ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group = drought_status)) +
@@ -477,6 +483,68 @@ ggplot(dataset_prepped_q, aes(x = drought_status, y = income, fill = drought_sta
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 10, hjust = 1),
         strip.text = element_text(face = "bold"))
+
+```
+
+
+```{r district desc ev w/ quartiles w/ agri, message=FALSE, warning=FALSE}
+# A2. Create the plot q
+ggplot(plot1_data_q, aes(x = year, y = avg_agr_income, color = income_quartile, group = income_quartile)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  
+  # --- Aesthetics & Labels ---
+  scale_y_continuous(labels = scales::comma) + # Formats y-axis labels (e.g., 50,000)
+  scale_color_brewer(palette = "RdYlBu", direction = -1) + 
+  labs(
+    title = "Average Agricultural Income by Income Quartile Over Time",
+    subtitle = "Averaged across all districts",
+    x = "Year",
+    y = "Average Annual Income",
+    color = "Income Quartile") +
+  theme_minimal() + theme(legend.position = "bottom")
+
+  
+#plot C: boxplots
+ggplot(dataset_prepped_q, aes(x = drought_status, y = agric_income, fill = drought_status)) +
+  geom_boxplot(alpha = 0.8, outlier.shape = NA) + # 'outlier.shape = NA' hides outliers for now
+  geom_jitter(width = 0.1, alpha = 0.1, size = 0.5) + 
+  
+  # --- Faceting ---
+  facet_wrap(~ income_quartile, scales = "free_y") +
+  
+  # --- Aesthetics & Labels ---
+  scale_y_continuous(labels = scales::comma) +
+  scale_fill_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
+  labs(
+    title = "Distribution of District-Level Agricultural Income by Drought Status",
+    subtitle = "Each point represents a district-year-quartile observation",
+    x = "Drought Status",
+    y = "Average Annual Income (by District)",
+    fill = "Drought Status") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 10, hjust = 1),
+        strip.text = element_text(face = "bold"))
+```
+
+```{r district urbanization, message=FALSE, warning=FALSE}
+
+dataset_prepp_urb = dataset_quartiles %>%
+  group_by(district, national_quartile) %>%
+  summarize(mean_urban = mean(urban, na.rm = TRUE), .groups = 'drop')
+
+ggplot(dataset_prepp_urb, aes(x = factor(national_quartile), y = mean_urban)) +
+  geom_col(fill = "steelblue") +
+  facet_wrap(~district) +
+  labs(
+    title = "Proportion of urbanization by quartile and by district",
+    x = "Quartile",
+    y = "Mean Urban Proportion",
+    caption = "1 = urban, 0 = rural"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(labels = scales::percent)
 
 ```
 
