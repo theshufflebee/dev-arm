@@ -203,6 +203,22 @@ for (year in names(household_data)) {
 
 name_map$agric_income <- c("y1_3amd.3.00", "y1_3drm.10", "agric_income_temp")
 
+
+# Same for income frome other benefit
+#for (year in names(household_data)) {
+  year_num <- as.integer(year)
+  if (year_num >= 2015 & year_num <= 2018) {
+    if (year_num == 2015) {
+      household_data[[year]] <- household_data[[year]] %>%
+        rename_with(~"agric_income_temp", .cols = matches("y1_3drm.13"))
+    } else if (year_num %in% c(2016, 2017, 2018)) {
+      household_data[[year]] <- household_data[[year]] %>%
+        rename_with(~"agric_income_temp", .cols = matches("y1_3drm.3"))}
+    household_data[[year]] <- household_data[[year]] %>%
+      rename_with(~"income_child_ignore", .cols = matches("y1_3drm.10"))}}
+
+#name_map$agric_income <- c("y1_3amd.3.00", "y1_3drm.10", "agric_income_temp")
+
 # Fix the different names and set common ones established above
 cleaned_data_list <- list()
 final_columns <- names(name_map)
