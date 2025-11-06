@@ -183,9 +183,9 @@ name_map <- list(
   fdpurch = c("fdpurch", "FDPURCH")) 
 
 # There is an overlap of the variable name for agriculural income
-# In some dataset, the variable is called y1_3drm.10, but on other it is called 
-# differently. But on some y1_3drm.10 exists and is related to another variable.
-# We thus need to change the name of those variable
+# In some years, the variable is called y1_3drm.10, but in others it has a  
+# different name. And in some, y1_3drm.10 exists but describes another variable.
+# We thus need to change the name of those variables to select precisely agric
 for (year in names(household_data)) {
   year_num <- as.integer(year)
   if (year_num >= 2015 & year_num <= 2018) {
@@ -270,7 +270,7 @@ hh_dataset <- hh_dataset %>%
     poverty == 3  ~ 1,
     TRUE ~ NA_real_))
 
-# Change settlement values for a dummy variable (urbanziation)
+# Change settlement values for a dummy variable (urbanization)
 hh_dataset <- hh_dataset %>%
   mutate(urban = case_when(
     year <= 2017 & urban == 0 ~ 1,
@@ -368,7 +368,7 @@ any(is.na(dataset$agric_income))
 ## By District
 ```{r district desc ev, message=FALSE, warning=FALSE}
 
-# Graph 1: Poverty trend over time, faceted by district
+# Income trend over time, faceted by district
 ggplot(dataset, aes(x = year, y = income)) +
   geom_line(aes(group = district), color = "blue") + # Group by district to connect dots
   geom_point(color = "blue") +
@@ -386,7 +386,7 @@ ggplot(dataset, aes(x = year, y = income)) +
 
 ```{r district desc ev agri, message=FALSE, warning=FALSE}
 
-# Graph 1: Poverty trend over time, faceted by district
+# Agriculture Income trend over time, faceted by district
 ggplot(dataset, aes(x = year, y = agric_income)) +
   geom_line(aes(group = district), color = "blue") + # Group by district to connect dots
   geom_point(color = "blue") +
