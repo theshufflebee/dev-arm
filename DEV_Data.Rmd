@@ -203,22 +203,6 @@ for (year in names(household_data)) {
 
 name_map$agric_income <- c("y1_3amd.3.00", "y1_3drm.10", "agric_income_temp")
 
-
-# Same for income frome other benefit
-#for (year in names(household_data)) {
-  year_num <- as.integer(year)
-  if (year_num >= 2015 & year_num <= 2018) {
-    if (year_num == 2015) {
-      household_data[[year]] <- household_data[[year]] %>%
-        rename_with(~"agric_income_temp", .cols = matches("y1_3drm.13"))
-    } else if (year_num %in% c(2016, 2017, 2018)) {
-      household_data[[year]] <- household_data[[year]] %>%
-        rename_with(~"agric_income_temp", .cols = matches("y1_3drm.3"))}
-    household_data[[year]] <- household_data[[year]] %>%
-      rename_with(~"income_child_ignore", .cols = matches("y1_3drm.10"))}}
-
-#name_map$agric_income <- c("y1_3amd.3.00", "y1_3drm.10", "agric_income_temp")
-
 # Fix the different names and set common ones established above
 cleaned_data_list <- list()
 final_columns <- names(name_map)
@@ -331,7 +315,7 @@ for (i in 2:ncol(data_only)) {
     district = districts_row[i-1],
     year = data_only[[1]],
     variable = clean_colnames[i],
-    value = data_only[[i]],
+    value = as.numeric(data_only[[i]]),
     stringsAsFactors = FALSE
   )
   stacked_data <- rbind(stacked_data, temp_df)
@@ -359,6 +343,10 @@ agric_data <- agric_data %>%
     district == "Syunik Marz"  ~ "Syunik",
     district == "Vayots Dzor Marz" ~ "Vayots dzor",
     district == "Tavush Marz" ~ "Tavush")) 
+
+#Withdraw some variables
+agric_data = agric_data %>%
+  select(-c(12:17))
 
 # Replace ".." and "-" observations by NA
 agric_data[agric_data == ".."] <- NA
@@ -476,6 +464,46 @@ ggplot(dataset, aes(x = year, y = agric_income)) +
     y = "Average Income") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+```{r district desc ev w/ deciles, message=FALSE, warning=FALSE}
+
+# take variables list
+vars_agri <- c("Gross  agricultural  output, total", "plant growing", "animal husbandry",
+           "Sown areas under grains and leguminous plants", "Sown areas under potatoes",
+           "Sown areas under vegetables", "Sown areas under water-melons",
+           "Planting areas of fruits and berries", "Planting areas of grape",
+           "Gross harvest of grains and leguminous plants", "Gross harvest of  potatoes",
+           "Gross harvest of vegetables", "Gross harvest of water-melons",
+           "Gross harvest of fruits and berries", "Gross harvest of grape",
+           "Realized livestock and poultry for slaughter (live weight)",
+           "Production of milk", "Production of eggs", "Production of wool (physical weight)")
+
+# Compute, for each years, the mean of all agriculture variables between region 
+#that experience drought vs no drought
+agri_plot <- dataset %>%
+  group_by(year, drought) %>%
+  summarise(across(all_of(vars_agri), ~ mean(.x, na.rm = TRUE), .names = "{.col}"),
+            .groups = "drop") %>%
+  pivot_longer(-c(year, drought), names_to = "variable", values_to = "mean_value")
+
+ggplot(agri_plot, aes(x = year, y = mean_value,
+                      color = factor(drought), group = factor(drought))) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.2) +
+  scale_color_manual(values = c("0" = "#0072B2", "1" = "#D55E00"),
+                     labels = c("No Drought", "Drought")) +
+  facet_wrap(~ variable, scales = "free_y") +
+  labs(x = "Year", y = "Mean Value", color = "Drought Status",
+       title = "Impact of Drought on Agricultural Indicators") +
+  theme_minimal() +
+  theme(legend.position = "top",
+    axis.text.x = element_text(size = 5),
+    axis.text.y = element_text(size = 5),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    strip.text = element_text(size = 4, face = "bold"))
+
 
 ```
 
@@ -697,6 +725,9 @@ ggplot(plot2_data_d, aes(x = year, y = avg_income, color = drought_status, group
         strip.text = element_text(face = "bold") )
 
 ```
+
+
+
 
 
 
