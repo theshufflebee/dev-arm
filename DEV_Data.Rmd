@@ -287,7 +287,13 @@ hh_dataset <- hh_dataset %>%
     year >= 2022 & urban == -999999999 ~ NA_real_,
     TRUE ~ NA_real_ ))
 
-agri = read_xlsx("agri.xlsx")
+agri_data = read_xlsx("agri.xlsx")
+
+agri_data = agri_data %>%
+  slice(-c(1,2,3) %>%
+    mutate()
+  
+
 
 ```
 
