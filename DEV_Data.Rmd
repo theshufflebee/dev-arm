@@ -133,6 +133,9 @@ la variable poverty est hyper bizarre, certains sont considérés pauvres alors 
 # Load Drought Data
 droughtdata = read.csv("household_data/district_yearly_drought_treatment_long.csv")
 
+# Load Agriculture Raw Dataset
+raw_agri_data = as.data.frame(read_xlsx("agriculture data/agri.xlsx"))
+
 # Load Household Survey Data 
 household_data <- list()
 years_to_load <- 2004:2023
@@ -286,14 +289,64 @@ hh_dataset <- hh_dataset %>%
     year >= 2022 & urban == 2 ~ 0,
     year >= 2022 & urban == -999999999 ~ NA_real_,
     TRUE ~ NA_real_ ))
+```
 
-agri_data = read_xlsx("agri.xlsx")
+```{r agric data, message=FALSE, warning=FALSE}
 
-agri_data = agri_data %>%
-  slice(-c(1,2,3) %>%
-    mutate()
-  
+# Harmonize the dataset by linking year, district and agricultural variables
+colnames(raw_agri_data) <- raw_agri_data[3, ]  
+districts_row <- as.character(raw_agri_data[2, ])
 
+# Associate agricultural variables with their districts (with a forward fill)
+districts_filled <- fill(data.frame(district = districts_row), district, .direction = "down")$district
+raw_agri_data[2, ] <- districts_filled
+raw_agri_data <- raw_agri_data[-c(1, 3, 22:40), ] # Cut empty row
+
+# Extract district names
+districts_row <- as.character(raw_agri_data[1, -1])  
+data_only <- raw_agri_data[-1, ]
+clean_colnames <- gsub("\\.\\d+$", "", colnames(data_only)) # harmonize variables names
+
+# Create a new dataset for row binding the observation in an appropriate way
+stacked_data <- data.frame()
+
+for (i in 2:ncol(data_only)) {
+  temp_df <- data.frame(
+    district = districts_row[i-1],
+    year = data_only[[1]],
+    variable = clean_colnames[i],
+    value = data_only[[i]],
+    stringsAsFactors = FALSE
+  )
+  stacked_data <- rbind(stacked_data, temp_df)
+}
+
+# Pivot in order to put variables as a columns 
+agric_data <- stacked_data %>%
+  pivot_wider(
+    names_from = variable,
+    values_from = value
+  ) %>%
+  arrange(district, year)
+
+# Harmonize district names with other dataset
+agric_data <- agric_data %>%
+  mutate(district = case_when(
+    district == "Yerevan City"  ~ "Yerevan",
+    district == "Aragatsotn Marz"  ~ "Aragatsotn",
+    district == "Ararat Marz"  ~ "Ararat",
+    district == "Armavir Marz"  ~ "Armavir",
+    district == "Gegharkunik Marz"  ~ "Gegharkunik",
+    district == "Lori Marz"  ~ "Lor",
+    district == "Kotayk Marz"  ~ "Kotayk",
+    district == "Shirak Marz"  ~ "Shirak",
+    district == "Syunik Marz"  ~ "Syunik",
+    district == "Vayots Dzor Marz" ~ "Vayots dzor",
+    district == "Tavush Marz" ~ "Tavush")) 
+
+# Replace ".." and "-" observations by NA
+agric_data[agric_data == ".."] <- NA
+agric_data[agric_data == "-"] <- NA
 
 ```
 
@@ -329,7 +382,6 @@ dataset_quartiles <- hh_dataset %>%
               exp = mean(exp), fdcons = mean(fdcons), fdpurch = mean(fdpurch),
               agric_income = mean(agric_income, na.rm=T), urban = mean(urban), n_households = n())
  
-
 # Add drought data and final touches
 dataset <- left_join(dataset, droughtdata, by = c("year", "district"))
 colnames(dataset)[which(names(dataset) == "yearly_flag")] <- "drought"
@@ -343,9 +395,18 @@ colnames(dataset_quartiles)[which(names(dataset_quartiles) == "yearly_flag")] <-
 hh_dataset <- left_join(hh_dataset, droughtdata, by = c("year", "district"))
 colnames(hh_dataset)[which(names(hh_dataset) == "yearly_flag")] <- "drought"
 
-rm(cleaned_data_list, household_data, name_map, yearly_data, droughtdata)
+# Add agriculture data
+agric_data$year = as.integer(agric_data$year)
+dataset = left_join(dataset, agric_data, by = c("year", "district"))
 
-#temp 2010 fix (is NA in Jonas' dataset)
+dataset_deciles = left_join(dataset_deciles, agric_data, by = c("year", "district"))
+
+dataset_quartiles = left_join(dataset_quartiles, agric_data, by = c("year", "district"))
+
+# Clean useless dataset
+rm(cleaned_data_list, household_data, name_map, yearly_data, droughtdata, raw_agri_data, stacked_data, temp_df, data_only, agric_data)
+
+#Temp 2010 fix (is NA in Jonas' dataset)
 dataset$drought[is.na(dataset$drought)] <- 0
 dataset_deciles$drought[is.na(dataset_deciles$drought)] <- 0
 dataset_quartiles$drought[is.na(dataset_quartiles$drought)] <- 0
