@@ -328,7 +328,7 @@ dataset_quartiles <- hh_dataset %>%
     summarise(income = mean(income), poverty = mean(poverty),
               exp = mean(exp), fdcons = mean(fdcons), fdpurch = mean(fdpurch),
               agric_income = mean(agric_income, na.rm=T), urban = mean(urban), n_households = n())
-
+ 
 
 # Add drought data and final touches
 dataset <- left_join(dataset, droughtdata, by = c("year", "district"))
