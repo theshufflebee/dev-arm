@@ -600,24 +600,24 @@ ggplot(dataset_prepped_q, aes(x = drought_status, y = income, fill = drought_sta
 
 ```{r district desc ev w/ quartiles w/ agri, message=FALSE, warning=FALSE}
 # A2. Create the plot q
-ggplot(plot1_data_q, aes(x = year, y = avg_agr_income, color = income_quartile, group = income_quartile)) +
+ggplot(plot1_data_q, aes(x = year, y = avg_agr_income/avg_income, color = income_quartile, group = income_quartile)) +
   geom_line(linewidth = 1.2, alpha = 0.8) +
   geom_point(size = 2) +
-  
   # --- Aesthetics & Labels ---
   scale_y_continuous(labels = scales::comma) + # Formats y-axis labels (e.g., 50,000)
   scale_color_brewer(palette = "RdYlBu", direction = -1) + 
   labs(
-    title = "Average Agricultural Income by Income Quartile Over Time",
-    subtitle = "Averaged across all districts",
+    title = "Average Agricultural Income Over Average Income by Income Quartile Over Time",
     x = "Year",
     y = "Average Annual Income",
     color = "Income Quartile") +
-  theme_minimal() + theme(legend.position = "bottom")
+  theme_minimal() + 
+  theme(legend.position = "bottom",
+        plot.title = element_text(size = 11, face = "bold", hjust = 0.5))
 
   
 #plot C: boxplots
-ggplot(dataset_prepped_q, aes(x = drought_status, y = agric_income, fill = drought_status)) +
+ggplot(dataset_prepped_q, aes(x = drought_status, y = agric_income/income, fill = drought_status)) +
   geom_boxplot(alpha = 0.8, outlier.shape = NA) + # 'outlier.shape = NA' hides outliers for now
   geom_jitter(width = 0.1, alpha = 0.1, size = 0.5) + 
   
@@ -628,15 +628,16 @@ ggplot(dataset_prepped_q, aes(x = drought_status, y = agric_income, fill = droug
   scale_y_continuous(labels = scales::comma) +
   scale_fill_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
   labs(
-    title = "Distribution of District-Level Agricultural Income by Drought Status",
+    title = "Distribution of District-Level Agricultural Income Over Income by Drought Status",
     subtitle = "Each point represents a district-year-quartile observation",
     x = "Drought Status",
-    y = "Average Annual Income (by District)",
+    y = "Average Agriculture Income over Income (by District)",
     fill = "Drought Status") +
   theme_minimal() +
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 10, hjust = 1),
-        strip.text = element_text(face = "bold"))
+        strip.text = element_text(face = "bold"),
+        plot.title = element_text(size = 11, face = "bold", hjust = 0.5))
 ```
 
 ```{r district urbanization, message=FALSE, warning=FALSE}
