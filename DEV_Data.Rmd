@@ -576,8 +576,7 @@ ggplot(plot1_data_q, aes(x = year, y = avg_income, color = income_quartile, grou
 plot2_data_q <- dataset_prepped_q %>%
   group_by(year, income_quartile, drought_status) %>%  
   summarize(avg_income = mean(income, na.rm = TRUE),
-            avg_agr_income = mean(agric_income, na.rm = TRUE),
-            mean_prod = mean(`Gross  agricultural  output, total`, na.rm = TRUE), .groups = 'drop')
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop')
 
 
 # B2. Create the faceted plot q
@@ -753,8 +752,7 @@ ggplot(plot1_data_d, aes(x = year, y = avg_income, color = income_decile, group 
 plot2_data_d <- dataset_prepped_d %>%
   group_by(year, income_decile, drought_status) %>%
   summarize(avg_income = mean(income, na.rm = TRUE),
-            avg_agr_income = mean(agric_income, na.rm = TRUE),
-            mean_prod = mean(`Gross  agricultural  output, total`, na.rm = TRUE), .groups = 'drop')
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop')
 
 # B2. Create plot 2 with deciles
 ggplot(plot2_data_d, aes(x = year, y = avg_income, color = drought_status, group = drought_status)) +
