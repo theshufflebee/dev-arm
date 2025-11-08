@@ -420,6 +420,9 @@ any(is.na(dataset$agric_income))
 # Find which rows have the NAs, if any found above
 #dataset[is.na(dataset$fdcons), ]
 
+# Save
+save(dataset, file = "final_data.Rdata")
+
 ```
 
 
