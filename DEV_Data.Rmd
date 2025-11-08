@@ -133,6 +133,13 @@ la variable poverty est hyper bizarre, certains sont considérés pauvres alors 
 # Load Drought Data
 droughtdata = read.csv("household_data/district_yearly_drought_treatment_long.csv")
 
+#temp , remove
+#droughtdata <- droughtdata %>%
+#  mutate(dummy_drought_consecutive = case_when(
+#      district_name %in% c("Gegharkunik", "Shirak", "Syunik") ~ 0,
+#      year >= 2017 ~ 1,
+#      TRUE ~ dummy_drought_consecutive))
+
 # Load Agriculture Raw Dataset
 raw_agri_data = as.data.frame(read_xlsx("agriculture data/agri.xlsx"))
 
