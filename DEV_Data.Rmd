@@ -777,7 +777,7 @@ ggplot(plot2_data_d, aes(x = year, y = avg_income, color = drought_status, group
 
 ```
 
-```{r district desc ev w/ quartiles w/ agri, message=FALSE, warning=FALSE}
+```{r district desc ev w/ deciles w/ agri, message=FALSE, warning=FALSE}
 # A2. Create the plot d
 ggplot(plot1_data_d, aes(x = year, y = avg_agr_income/avg_income, color = income_decile, group = income_decile)) +
   geom_line(linewidth = 1.2, alpha = 0.8) +
