@@ -289,6 +289,9 @@ hh_dataset <- hh_dataset %>%
     year >= 2022 & urban == 2 ~ 0,
     year >= 2022 & urban == -999999999 ~ NA_real_,
     TRUE ~ NA_real_ ))
+
+# Replace Yerevan NA with 0
+filter(dataset, district == "Yerevan" & year == "2016")$agric_income = 0
 ```
 
 ```{r agric data, message=FALSE, warning=FALSE}
@@ -352,6 +355,7 @@ agric_data = agric_data %>%
 # Replace ".." and "-" observations by NA
 agric_data[agric_data == ".."] <- NA
 agric_data[agric_data == "-"] <- NA
+
 
 ```
 
