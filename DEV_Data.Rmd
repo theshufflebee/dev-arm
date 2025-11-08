@@ -290,8 +290,6 @@ hh_dataset <- hh_dataset %>%
     year >= 2022 & urban == -999999999 ~ NA_real_,
     TRUE ~ NA_real_ ))
 
-# Replace Yerevan NA with 0
-filter(dataset, district == "Yerevan" & year == "2016")$agric_income = 0
 ```
 
 ```{r agric data, message=FALSE, warning=FALSE}
@@ -417,6 +415,8 @@ dataset_deciles$drought[is.na(dataset_deciles$drought)] <- 0
 dataset_quartiles$drought[is.na(dataset_quartiles$drought)] <- 0
 hh_dataset$drought[is.na(hh_dataset$drought)] <- 0
 
+# Replace Yerevan NA with 0
+dataset <- dataset %>% mutate(agric_income = case_when(district == "Yerevan" & year == "2016" & is.na(agric_income) ~ 0, TRUE ~ agric_income))
 
 # One by one, for each column, check if there are NA  
 any(is.na(dataset$agric_income))
