@@ -433,6 +433,7 @@ any(is.na(dataset$agric_income))
 
 # Save
 save(dataset, file = "final_data.Rdata")
+save(dataset_deciles, file = "final_data_deciles.Rdata")
 
 ```
 
