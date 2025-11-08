@@ -404,10 +404,6 @@ colnames(hh_dataset)[which(names(hh_dataset) == "yearly_flag")] <- "drought"
 agric_data$year = as.integer(agric_data$year)
 dataset = left_join(dataset, agric_data, by = c("year", "district"))
 
-dataset_deciles = left_join(dataset_deciles, agric_data, by = c("year", "district"))
-
-dataset_quartiles = left_join(dataset_quartiles, agric_data, by = c("year", "district"))
-
 # Clean useless dataset
 rm(cleaned_data_list, household_data, name_map, yearly_data, droughtdata, raw_agri_data, stacked_data, temp_df, data_only, agric_data)
 
@@ -432,7 +428,7 @@ any(is.na(dataset$agric_income))
 # Descriptive Evidence
 
 ## By District
-```{r district desc ev, message=FALSE, warning=FALSE}
+```{r district desc ev income, message=FALSE, warning=FALSE}
 
 # Income trend over time, faceted by district
 ggplot(dataset, aes(x = year, y = income)) +
@@ -450,7 +446,7 @@ ggplot(dataset, aes(x = year, y = income)) +
 
 ```
 
-```{r district desc ev agri, message=FALSE, warning=FALSE}
+```{r district desc ev agric prod, message=FALSE, warning=FALSE}
 
 # Agriculture Income trend over time, faceted by district
 ggplot(dataset, aes(x = year, y = agric_income)) +
@@ -467,8 +463,34 @@ ggplot(dataset, aes(x = year, y = agric_income)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
+```{r district desc ev income drought, message=FALSE, warning=FALSE}
 
-```{r district desc ev w/ deciles, message=FALSE, warning=FALSE}
+
+# Compute, for each years, the mean of income between districts
+#  that experience drought vs no drought
+
+inc_plot <- dataset %>%
+  group_by(year, drought) %>%
+  summarise(income = mean(income, na.rm = TRUE), n_district = n()) 
+
+ggplot(inc_plot, aes(x = year, y = income,
+                      color = factor(drought), group = factor(drought))) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.2) +
+  scale_color_manual(values = c("0" = "#0072B2", "1" = "#D55E00"),
+                     labels = c("No Drought", "Drought")) +
+  labs(x = "Year", y = "Mean Income", color = "Drought Status",
+       title = "Impact of Drought on Income") +
+  theme_minimal() +
+  theme(legend.position = "top",
+    axis.text.x = element_text(size = 5),
+    axis.text.y = element_text(size = 5),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    strip.text = element_text(size = 4, face = "bold"))
+
+```
+
+```{r district desc ev agric prod drought, message=FALSE, warning=FALSE}
 
 # take variables list
 vars_agri <- c("Gross  agricultural  output, total", "plant growing", "animal husbandry",
@@ -658,30 +680,7 @@ ggplot(dataset_prepped_q, aes(x = drought_status, y = agric_income/income, fill 
         strip.text = element_text(face = "bold"),
         plot.title = element_text(size = 11, face = "bold", hjust = 0.5))
 ```
-```{r desc ev drought on agri prod by quartile, message=FALSE, warning=FALSE}
 
-# D2. 
-ggplot(plot2_data_q, aes(x = year, y = mean_prod, color = drought_status, group = drought_status)) +
-  geom_line(linewidth = 1.1, alpha = 0.9) +
-  
-  # Create 4 separate plots, one for each 'income_quartile'
-  facet_wrap(~ income_quartile, scales = "free_y") +
-  
-  # --- Aesthetics & Labels ---
-  scale_y_continuous(labels = scales::comma) +
-  scale_color_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
-  labs(
-    title = "Impact of Drought Events on Agriculture Production, by Income Quartile",
-    subtitle = "Average Production trends faceted by income group",
-    x = "Year",
-    y = "Average Annual Production",
-    color = "Drought Status") +
-  theme_bw() + # A clean theme
-  theme(
-    legend.position = "top",
-    strip.background = element_rect(fill = "grey90"), # Style the facet labels
-    strip.text = element_text(face = "bold") )
-```
 
 ```{r district urbanization, message=FALSE, warning=FALSE}
 # 
@@ -811,32 +810,7 @@ ggplot(plot2_data_d, aes(x = year, y = avg_agr_income/avg_income, color = drough
 
 ```
 
-```{r desc ev drought on agri prod by decile, message=FALSE, warning=FALSE}
 
-# D2. Create the faceted plot q
-ggplot(plot2_data_d, aes(x = year, y = mean_prod, color = drought_status, group = drought_status)) +
-  geom_line(linewidth = 1.1, alpha = 0.9) +
-  
-  # Create 4 separate plots, one for each 'income_decile'
-  facet_wrap(~ income_decile, scales = "free_y") +
-  
-  # --- Aesthetics & Labels ---
-  scale_y_continuous(labels = scales::comma) +
-  scale_color_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
-  labs(
-    title = "Impact of Drought Events on Agriculture Production, by Income Decile",
-    subtitle = "Average Production trends faceted by income group",
-    x = "Year",
-    y = "Average Annual Production",
-    color = "Drought Status") +
-  theme_bw() + # A clean theme
-  theme(
-    legend.position = "top",
-    strip.background = element_rect(fill = "grey90"), # Style the facet labels
-    strip.text = element_text(face = "bold") )
-
-
-```
 
 
 
