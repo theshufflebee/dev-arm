@@ -43,6 +43,8 @@ load("final_data.Rdata")
 load("final_data_deciles.Rdata")
 droughtdata = read.csv("drought_data_output/armenia_yearly_spei_mean.csv")
 colnames(droughtdata)[which(names(droughtdata) == "district_name")] <- "district"
+droughtdata = read.csv("drought_data_output/spei3_yearly_master.csv")
+colnames(droughtdata)[which(names(droughtdata) == "avg_spei3")] <- "spei"
 dataset <- left_join(dataset, droughtdata, by = c("year", "district"))
 
 colnames(dataset)[colnames(dataset) == "Gross  agricultural  output, total"] <- 'agric_output'
@@ -249,7 +251,7 @@ summary(overall_effect, stars = TRUE)
 
 ```{r twfedata, message=FALSE, warning=FALSE}
 
-dataset$mean_spei = dataset$mean_spei * (-1)
+#dataset$mean_spei = dataset$mean_spei * (-1)
 
 #building lags without confusion from multiple household obs per year
 dataset_lags <- dataset %>%
