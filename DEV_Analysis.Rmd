@@ -28,12 +28,10 @@ require(did) #DiD (support staggered treatment)
 require(panelView) #for panel data treatment visibility
 require(modelsummary) #for nice DiD tables
 require(fixest) #TWFE regression
-require(staggered)
 
 getwd()
 setwd("...") 
-set.seed(12399999)
-set.seed(23352359)
+set.seed(123)
 
 ```
 
