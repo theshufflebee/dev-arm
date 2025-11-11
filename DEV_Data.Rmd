@@ -400,6 +400,68 @@ dataset <- left_join(dataset, rainfalldata, by = c("year", "district"))
 
 ```
 
+## Treatment Lags
+```{r lags}
+
+#building lags
+dataset <- dataset %>%
+    arrange(district, year) %>%
+    group_by(district) %>%
+  mutate(
+    drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
+    drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    spei_lag1 = lag(spei, n = 1, default = 0),
+    spei_lag2 = lag(spei, n = 2, default = 0),
+    share_lag1 = lag(share, n = 1, default = 0),
+    share_lag2 = lag(share, n = 2, default = 0),
+    agric_stress_lag1 = lag(agric_stress, n = 1, default = 0),
+    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0) ) %>%
+    ungroup()
+
+dataset_deciles <- dataset_deciles %>%
+    arrange(district, year) %>%
+    group_by(district) %>%
+  mutate(
+    drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
+    drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    spei_lag1 = lag(spei, n = 1, default = 0),
+    spei_lag2 = lag(spei, n = 2, default = 0),
+    share_lag1 = lag(share, n = 1, default = 0),
+    share_lag2 = lag(share, n = 2, default = 0),
+    agric_stress_lag1 = lag(agric_stress, n = 1, default = 0),
+    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0) ) %>%
+    ungroup()
+
+dataset_quartiles <- dataset_quartiles %>%
+    arrange(district, year) %>%
+    group_by(district) %>%
+  mutate(
+    drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
+    drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    spei_lag1 = lag(spei, n = 1, default = 0),
+    spei_lag2 = lag(spei, n = 2, default = 0),
+    share_lag1 = lag(share, n = 1, default = 0),
+    share_lag2 = lag(share, n = 2, default = 0),
+    agric_stress_lag1 = lag(agric_stress, n = 1, default = 0),
+    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0) ) %>%
+    ungroup()
+
+hh_dataset <- hh_dataset %>%
+    arrange(district, year) %>%
+    group_by(district) %>%
+  mutate(
+    drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
+    drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    spei_lag1 = lag(spei, n = 1, default = 0),
+    spei_lag2 = lag(spei, n = 2, default = 0),
+    share_lag1 = lag(share, n = 1, default = 0),
+    share_lag2 = lag(share, n = 2, default = 0),
+    agric_stress_lag1 = lag(agric_stress, n = 1, default = 0),
+    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0) ) %>%
+    ungroup()
+
+```
+
 ```{r check & save}
 
 # One by one, for each column, check if there are NA  

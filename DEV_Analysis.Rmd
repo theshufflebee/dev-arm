@@ -50,6 +50,8 @@ load("final_data_household.Rdata")
 \newpage
 
 # Descriptive Evidence
+
+## Graph 1
 ```{r district desc ev, message=FALSE, warning=FALSE}
 
 # Prepare data
@@ -77,82 +79,168 @@ ggsave(filename = "tesgt.png")
 
 ```
 
+## Graph with Drought Dummy
+```{r district desc ev agric drought, message=FALSE, warning=FALSE}
+
+
+# Compute, for each years, the mean of agricultural output between districts
+#  that experience drought vs no drought
+agric_plot <- dataset %>%
+  group_by(year, drought_dummy) %>%
+  summarise(mean_agric = mean(agric_output, na.rm = TRUE), n_district = n()) 
+
+ggplot(agric_plot, aes(x = year, y = mean_agric,
+                      color = factor(drought_dummy), group = factor(drought_dummy))) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.2) +
+  scale_color_manual(values = c("0" = "#0072B2", "1" = "#D55E00"),
+                     labels = c("No Drought", "Drought")) +
+  labs(x = "Year", y = "Mean Agricultural Output", color = "Drought Status",
+       title = "Impact of Drought on Agricultural Output") +
+  theme_minimal() +
+  theme(legend.position = "top",
+    axis.text.x = element_text(size = 5),
+    axis.text.y = element_text(size = 5),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    strip.text = element_text(size = 4, face = "bold"))
+
+```
+
+## With Quartiles
+```{r district desc ev w/ quartiles, message=FALSE, warning=FALSE}
+
+# Data Prep
+dataset_prepped_q <- dataset_quartiles %>%
+  mutate(drought_status = factor(drought_dummy, 
+                            levels = c(0, 1), 
+                            labels = c("No Drought Event", "Drought Event")),
+         income_quartile = factor(national_quartile, 
+                            levels = c(1, 2, 3, 4), 
+                            labels = c("Q1 (Poorest)", "Q2", "Q3", "Q4 (Richest)")))
+
+# A1. Aggregate the data: Find the mean income for each year and quartile
+plot1_data_q <- dataset_prepped_q %>%
+  group_by(year, income_quartile) %>%
+  summarize(avg_income = mean(income, na.rm = TRUE),
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop') 
+
+
+# A2. Create the plot q
+ggplot(plot1_data_q, aes(x = year, y = avg_income, color = income_quartile, group = income_quartile)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  
+  # --- Aesthetics & Labels ---
+  scale_y_continuous(labels = scales::comma) + # Formats y-axis labels (e.g., 50,000)
+  scale_color_brewer(palette = "RdYlBu", direction = -1) + 
+  labs(
+    title = "Average Income by Income Quartile Over Time",
+    subtitle = "Averaged across all districts",
+    x = "Year",
+    y = "Average Annual Income",
+    color = "Income Quartile") +
+  theme_minimal() + theme(legend.position = "bottom")
+
+
+# B1. Aggregate data: Mean income by year, quartile, AND drought status
+plot2_data_q <- dataset_prepped_q %>%
+  group_by(year, income_quartile, drought_status) %>%  
+  summarize(avg_income = mean(income, na.rm = TRUE),
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop')
+
+
+# B2. Create the faceted plot q
+ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group = drought_status)) +
+  geom_line(linewidth = 1.1, alpha = 0.9) +
+  
+  # Create 4 separate plots, one for each 'income_quartile'
+  facet_wrap(~ income_quartile, scales = "free_y") +
+  
+  # --- Aesthetics & Labels ---
+  scale_y_continuous(labels = scales::comma) +
+  scale_color_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
+  labs(
+    title = "Impact of Drought Events on Income, by Income Quartile",
+    subtitle = "Average income trends faceted by income group",
+    x = "Year",
+    y = "Average Annual Income",
+    color = "Drought Status") +
+  theme_bw() + # A clean theme
+  theme(
+    legend.position = "top",
+    strip.background = element_rect(fill = "grey90"), # Style the facet labels
+    strip.text = element_text(face = "bold") )
+
+
+#plot C: boxplots
+ggplot(dataset_prepped_q, aes(x = drought_status, y = income, fill = drought_status)) +
+  geom_boxplot(alpha = 0.8, outlier.shape = NA) + # 'outlier.shape = NA' hides outliers for now
+  geom_jitter(width = 0.1, alpha = 0.1, size = 0.5) + 
+  
+  # --- Faceting ---
+  facet_wrap(~ income_quartile, scales = "free_y") +
+  
+  # --- Aesthetics & Labels ---
+  scale_y_continuous(labels = scales::comma) +
+  scale_fill_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
+  labs(
+    title = "Distribution of District-Level Income by Drought Status",
+    subtitle = "Each point represents a district-year-quartile observation",
+    x = "Drought Status",
+    y = "Average Annual Income (by District)",
+    fill = "Drought Status") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 10, hjust = 1),
+        strip.text = element_text(face = "bold"))
+
+```
+
 \newpage
 
 
-# TWFE
+# TWFE Regressions
 
-## Data
-```{r non-linearity, eval=FALSE, include=FALSE}
-
-dataset <- dataset %>%
-  mutate(
-    # 1 if in drought, 0 otherwise
-    drought_dummy = ifelse(agric_stress > 5, 1, 0),
-
-    # 1 if in severe drought, 0 otherwise
-    severe_drought_dummy = ifelse(agric_stress > 15, 1, 0) ) 
-
-# Run the model using these dummies
-coeftest(feols(agric_output ~ severe_drought_dummy | district + year, 
-                       data = dataset,
-                       cluster = ~district) )
-
-```
-
-```{r twfedata lags, message=FALSE, warning=FALSE}
-
-#building lags without confusion from multiple household obs per year
-dataset_lags <- dataset %>%
-    arrange(district, year) %>%
-    group_by(district) %>%
-  mutate(
-    spei_lag1 = lag(spei, n = 1, default = 0),
-    spei_lag2 = lag(spei, n = 2, default = 0),
-    share_lag1 = lag(share, n = 1, default = 0),
-    share_lag2 = lag(share, n = 2, default = 0),
-    agric_stress_lag1 = lag(agric_stress, n = 1, default = 0),
-    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0) ) %>%
-    ungroup()
-
-dataset_deciles_lags <- dataset_deciles %>%
-    arrange(district, year) %>%
-    group_by(district) %>%
-  mutate(
-    spei_lag1 = lag(spei, n = 1, default = 0),
-    spei_lag2 = lag(spei, n = 2, default = 0),
-    share_lag1 = lag(share, n = 1, default = 0),
-    share_lag2 = lag(share, n = 2, default = 0),
-    agric_stress_lag1 = lag(agric_stress, n = 1, default = 0),
-    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0) ) %>%
-    ungroup()
-
-```
-
+## Data Subset Selection
 ```{r tfwedata selection, message=FALSE, warning=FALSE}
 
-control = dataset_lags
-#dataset_lags = subset(control, urban < 0.5)
-#dataset_lags = subset(dataset_deciles_lags, national_decile == 1)
-#dataset_lags = subset(control, poverty > 0.3)
-#dataset_lags = subset(control, year > 2015)
+# Base case
+twfe_data = dataset
+
+# Excluding Yerevan
+#twfe_data = subset(dataset, district != "Yerevan")
+
+# Selecting majority-rural districts
+#twfe_data = subset(dataset, urban < 0.5)
+
+# Selecting the poorest income decile
+#twfe_data = subset(dataset_deciles, national_decile == 1)
+
+# Selecting the poorest income quartile
+#twfe_data = subset(dataset_quartiles, national_quartile == 1)
+
+# Selecting poorer regions
+#twfe_data = subset(control, poverty > 0.3)
+
+# Selecting a certain timeframe
+#twfe_data = subset(control, year > 2015)
 
 ```
 
-## Regression SPEI
+## Regression on SPEI
 ```{r TWFE regression spei, message=FALSE, warning=FALSE}
 
 # Income TWFE
 TWFE <- feols(income ~ spei | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(income ~ spei + spei_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(income ~ spei + spei_lag1 + spei_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -161,15 +249,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Agricultural Income TWFE
 TWFE <- feols(agric_income ~ spei | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(agric_income ~ spei + spei_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(agric_income ~ spei + spei_lag1 + spei_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -179,15 +267,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 # Agricultural Output TWFE
 
 TWFE <- feols(agric_output ~ spei | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(agric_output ~ spei + spei_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(agric_output ~ spei + spei_lag1 + spei_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -196,15 +284,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Crops Output TWFE
 TWFE <- feols(crops_output ~ spei | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(crops_output ~ spei + spei_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(crops_output ~ spei + spei_lag1 + spei_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -213,20 +301,20 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 ```
 
-## Regression Share
+## Regression on Share (percentage of SPEI observations below -1)
 ```{r TWFE regression share, message=FALSE, warning=FALSE}
 
 # Income TWFE
 TWFE <- feols(income ~ share | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(income ~ share + share_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(income ~ share + share_lag1 + share_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -235,15 +323,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Agricultural Income TWFE
 TWFE <- feols(agric_income ~ share | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(agric_income ~ share + share_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(agric_income ~ share + share_lag1 + share_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -252,15 +340,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Agricultural Output TWFE
 TWFE <- feols(agric_output ~ share | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(agric_output ~ share + share_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(agric_output ~ share + share_lag1 + share_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -270,15 +358,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Crops Output TWFE
 TWFE <- feols(crops_output ~ share | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(crops_output ~ share + share_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(crops_output ~ share + share_lag1 + share_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -291,15 +379,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Income TWFE
 TWFE <- feols(income ~ agric_stress | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(income ~ agric_stress + agric_stress_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(income ~ agric_stress + agric_stress_lag1 + agric_stress_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -308,15 +396,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Agricultural Income TWFE
 TWFE <- feols(agric_income ~ agric_stress | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(agric_income ~ agric_stress + agric_stress_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(agric_income ~ agric_stress + agric_stress_lag1 + agric_stress_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -326,15 +414,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 # Agricultural Output TWFE
 
 TWFE <- feols(agric_output ~ agric_stress | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(agric_output ~ agric_stress + agric_stress_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(agric_output ~ agric_stress + agric_stress_lag1 + agric_stress_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
@@ -344,15 +432,15 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 # Crops Output TWFE
 TWFE <- feols(crops_output ~ agric_stress | district + year, 
-               data = dataset_lags,
+               data = twfe_data,
                cluster = ~ district)
 
 TWFE_1lag <- feols(crops_output ~ agric_stress + agric_stress_lag1 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 TWFE_2lag <- feols(crops_output ~ agric_stress + agric_stress_lag1 + agric_stress_lag2 | district + year, 
-                       data = dataset_lags,
+                       data = twfe_data,
                        cluster = ~ district)
 
 etable(list("Model 1: TWFE with 0 Lags" = TWFE,
