@@ -1,0 +1,294 @@
+---
+title: "Quick DEV Tests"
+output:
+  pdf_document: 
+    toc: true
+    fig_caption: yes
+---
+\newpage
+
+```{r library_setup, results=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+rm(list=ls())
+require(tinytex) #LaTeX
+require(ggplot2) #plots
+require(haven) #load data
+require(dplyr) #data management
+require(lubridate) #data dates management
+require(zoo) #for lagging
+require(jtools) #tables
+require(huxtable) #tables
+require(lmtest) #reg tests
+require(data.table) #for data filtering
+require(sandwich) #regression errors
+require(readxl) #for reading excel data
+require(tidyr) #data
+require(tidyverse) #data
+require(did) #DiD (support staggered treatment)
+require(panelView) #for panel data treatment visibility
+require(modelsummary) #for nice DiD tables
+require(fixest) #TWFE regression
+require(staggered)
+
+getwd()
+setwd("...") 
+set.seed(12399999)
+set.seed(23352359)
+
+```
+
+# Data Load
+```{r data}
+
+load("final_data.Rdata")
+load("final_data_deciles.Rdata")
+droughtdata = read.csv("drought_data_output/armenia_yearly_spei_mean.csv")
+colnames(droughtdata)[which(names(droughtdata) == "district_name")] <- "district"
+droughtdata = read.csv("drought_data_output/spei3_yearly_master.csv")
+colnames(droughtdata)[which(names(droughtdata) == "avg_spei3")] <- "spei"
+dataset <- left_join(dataset, droughtdata, by = c("year", "district"))
+
+colnames(dataset)[colnames(dataset) == "Gross  agricultural  output, total"] <- 'agric_output'
+#dataset = subset(dataset, year >= 2010)
+
+panelview(data = dataset,
+          formula = agric_income ~ drought,           
+          index = c("district", "year"),
+          xlab = "Year",
+          ylab = "District",
+          display.all = FALSE,
+          gridOff = TRUE,
+          by.timing = TRUE,
+          pre.post = FALSE)
+
+#for did package, must create var with first year of treatment
+did_dataset_names <- dataset %>%
+  group_by(district) %>%
+  mutate(first_treat_year = min(case_when(drought == 1 ~ year, TRUE ~ Inf))) %>%
+  ungroup() %>%
+  mutate(first_treat_year = if_else(is.infinite(first_treat_year), 0, first_treat_year))
+
+
+#for did package, id name must be numeric
+did_dataset <- did_dataset_names %>%
+  mutate(district = case_when(
+    district == "Yerevan"  ~ 1,
+    district == "Aragatsotn"  ~ 2,
+    district == "Ararat"  ~ 3,
+    district == "Armavir"  ~ 4,
+    district == "Gegharkunik"  ~ 5,
+    district == "Lor"  ~ 6,
+    district == "Kotayk"  ~ 7,
+    district == "Shirak"  ~ 8,
+    district == "Syunik"  ~ 9,
+    district == "Vayots dzor" ~ 10,
+    district == "Tavush" ~ 11))
+
+
+```
+```{r p}
+#poor
+did_dataset_pnames = subset(dataset_deciles, national_decile == min(dataset_deciles$national_decile))
+
+#for did package, must create var with first year of treatment
+did_dataset_pnames <- did_dataset_pnames %>%
+  group_by(district) %>%
+  mutate(first_treat_year = min(case_when(drought == 1 ~ year, TRUE ~ Inf))) %>%
+  ungroup() %>%
+  mutate(first_treat_year = if_else(is.infinite(first_treat_year), 0, first_treat_year))
+
+did_dataset_p <- did_dataset_pnames %>%
+  mutate(district = case_when(
+    district == "Yerevan"  ~ 1,
+    district == "Aragatsotn"  ~ 2,
+    district == "Ararat"  ~ 3,
+    district == "Armavir"  ~ 4,
+    district == "Gegharkunik"  ~ 5,
+    district == "Lor"  ~ 6,
+    district == "Kotayk"  ~ 7,
+    district == "Shirak"  ~ 8,
+    district == "Syunik"  ~ 9,
+    district == "Vayots dzor" ~ 10,
+    district == "Tavush" ~ 11))
+
+```
+
+
+
+\newpage
+
+# Descriptive
+```{r district desc ev w/ deciles, message=FALSE, warning=FALSE}
+
+dataset_prepped_d <- dataset_deciles %>%
+  mutate(
+    drought_status = factor(drought, 
+                            levels = c(0, 1), 
+                            labels = c("No Drought Event", "Drought Event")),
+    income_decile = factor(national_decile, 
+                             levels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 
+                             labels = 
+                             c("d1","d2","d3","d4","d5","d6","d7","d8","d9","d10")))
+
+# A1. Aggregate the data: Find the mean income for each year and by decile
+plot1_data_d <- dataset_prepped_d %>%
+  group_by(year, income_decile) %>%
+  summarize(avg_income = sd(income, na.rm = TRUE),
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop')
+
+
+# A2. Create the plot d
+ggplot(plot1_data_d, aes(x = year, y = avg_income, color = income_decile, group = income_decile)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  
+  # --- Aesthetics & Labels ---
+  scale_y_continuous(labels = scales::comma) + # Formats y-axis labels (e.g., 50,000)
+  scale_color_brewer(palette = "RdYlBu", direction = -1) + 
+  labs(
+    title = "Average Income by Income Decile Over Time",
+    subtitle = "Averaged across all districts",
+    x = "Year",
+    y = "Average Annual Income",
+    color = "Income Decile"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+# B1. Aggregate data: Mean income, agriculture income and production by year, decile, AND drought status
+plot2_data_d <- dataset_prepped_d %>%
+  group_by(year, income_decile, drought_status) %>%
+  summarize(avg_income = mean(income, na.rm = TRUE),
+            avg_agr_income = mean(agric_income, na.rm = TRUE), .groups = 'drop')
+
+# B2. Create plot 2 with deciles
+ggplot(plot2_data_d, aes(x = year, y = avg_income, color = drought_status, group = drought_status)) +
+  geom_line(linewidth = 1.1, alpha = 0.9) +
+  
+  # Create 10 separate plots, one for each 'income_decile'
+  facet_wrap(~ income_decile, scales = "free_y") +
+  
+  # --- Aesthetics & Labels ---
+  scale_y_continuous(labels = scales::comma) +
+  scale_color_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
+  labs(
+    title = "Impact of Drought Events on Income, by Income Quartile",
+    subtitle = "Average income trends faceted by income group",
+    x = "Year",
+    y = "Average Annual Income",
+    color = "Drought Status") +
+  theme_bw() + # A clean theme
+  theme(legend.position = "top",
+        strip.background = element_rect(fill = "grey90"), 
+        strip.text = element_text(face = "bold") )
+
+```
+
+```{r district desc ev agric output drought, message=FALSE, warning=FALSE}
+
+
+# Compute, for each years, the mean of agricultural output between districts
+#  that experience drought vs no drought
+
+plot <- dataset %>%
+  group_by(year, drought) %>%
+  summarise(agric_output = mean(agric_output, na.rm = TRUE), n_district = n()) 
+
+ggplot(plot, aes(x = year, y = agric_output,
+                      color = factor(drought), group = factor(drought))) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.2) +
+  scale_color_manual(values = c("0" = "#0072B2", "1" = "#D55E00"),
+                     labels = c("No Drought", "Drought")) +
+  labs(x = "Year", y = "Mean Income", color = "Drought Status",
+       title = "Impact of Drought on Income") +
+  theme_minimal() +
+  theme(legend.position = "top",
+    axis.text.x = element_text(size = 5),
+    axis.text.y = element_text(size = 5),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    strip.text = element_text(size = 4, face = "bold"))
+
+```
+
+\newpage
+
+# Staggered DiD
+
+## Agric Income
+```{r sdid, eval=T, message=FALSE, warning=FALSE, include=T}
+
+x = "exp"
+x = "fdcons"
+x = "poverty"
+x = "income"
+#x = "agric_income"
+#x = "agric_output"
+
+#model poor
+cs_model <- att_gt(
+  yname = x,
+  tname = "year",
+  idname = "district",
+  gname = "first_treat_year",
+  data = did_dataset_p,
+  control_group = "notyettreated" )
+
+#event study effects
+event_study <- aggte(cs_model, type = "dynamic", na.rm = F)
+ggdid(event_study)
+modelsummary(event_study, stars = TRUE, output = "kableExtra")
+
+#overal effects
+overall_effect <- aggte(cs_model, type = "simple", na.rm = F)
+summary(overall_effect, stars = TRUE)
+
+```
+
+
+
+# Tests
+
+```{r twfedata, message=FALSE, warning=FALSE}
+
+#dataset$mean_spei = dataset$mean_spei * (-1)
+
+#building lags without confusion from multiple household obs per year
+dataset_lags <- dataset %>%
+    arrange(district, year) %>%
+    group_by(district) %>%
+  mutate(
+    drought_lag1 = lag(mean_spei, n = 1, default = 0),
+    drought_lag2 = lag(mean_spei, n = 2, default = 0)  ) %>%
+    ungroup()
+#dataset_lags = dataset_lags[-3]
+
+```
+
+```{r TWFE regression, message=FALSE, warning=FALSE}
+
+#simple TWFE
+TWFE <- feols(agric_output ~ mean_spei | district + year, 
+               data = dataset,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(agric_output ~ mean_spei + drought_lag1 | district + year, 
+                       data = dataset_lags,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(agric_output ~ mean_spei + drought_lag1 + drought_lag2 | district + year, 
+                       data = dataset_lags,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+```
+
+
+
+
+
+
+
