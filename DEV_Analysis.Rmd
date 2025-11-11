@@ -171,29 +171,6 @@ ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group
     strip.background = element_rect(fill = "grey90"), # Style the facet labels
     strip.text = element_text(face = "bold") )
 
-
-#plot C: boxplots
-ggplot(dataset_prepped_q, aes(x = drought_status, y = income, fill = drought_status)) +
-  geom_boxplot(alpha = 0.8, outlier.shape = NA) + # 'outlier.shape = NA' hides outliers for now
-  geom_jitter(width = 0.1, alpha = 0.1, size = 0.5) + 
-  
-  # --- Faceting ---
-  facet_wrap(~ income_quartile, scales = "free_y") +
-  
-  # --- Aesthetics & Labels ---
-  scale_y_continuous(labels = scales::comma) +
-  scale_fill_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
-  labs(
-    title = "Distribution of District-Level Income by Drought Status",
-    subtitle = "Each point represents a district-year-quartile observation",
-    x = "Drought Status",
-    y = "Average Annual Income (by District)",
-    fill = "Drought Status") +
-  theme_minimal() +
-  theme(legend.position = "none", 
-        axis.text.x = element_text(angle = 10, hjust = 1),
-        strip.text = element_text(face = "bold"))
-
 ```
 
 \newpage
@@ -374,7 +351,7 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
             "Model 3: TWFE with 2 Lags" = TWFE_2lag))
 
 ```
-## Regression Agricultural Stress
+## Regression on Agricultural Stress
 ```{r TWFE regression spei, message=FALSE, warning=FALSE}
 
 # Income TWFE
@@ -440,6 +417,83 @@ TWFE_1lag <- feols(crops_output ~ agric_stress + agric_stress_lag1 | district + 
                        cluster = ~ district)
 
 TWFE_2lag <- feols(crops_output ~ agric_stress + agric_stress_lag1 + agric_stress_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+```
+
+
+
+## Regression on (Severe) Drought Dummy
+```{r TWFE regression spei, message=FALSE, warning=FALSE}
+
+# Income TWFE
+TWFE <- feols(income ~ drought_dummy | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(income ~ drought_dummy + drought_dummy_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(income ~ drought_dummy + drought_dummy_lag1 + drought_dummy_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+# Agricultural Income TWFE
+TWFE <- feols(agric_income ~ drought_dummy | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(agric_income ~ drought_dummy + drought_dummy_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(agric_income ~ drought_dummy + drought_dummy_lag1 + drought_dummy_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+# Agricultural Output TWFE
+
+TWFE <- feols(agric_output ~ drought_dummy | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(agric_output ~ drought_dummy + drought_dummy_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(agric_output ~ drought_dummy + drought_dummy_lag1 + drought_dummy_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+
+# Crops Output TWFE
+TWFE <- feols(crops_output ~ drought_dummy | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(crops_output ~ drought_dummy + drought_dummy_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(crops_output ~ drought_dummy + drought_dummy_lag1 + drought_dummy_lag2 | district + year, 
                        data = twfe_data,
                        cluster = ~ district)
 
