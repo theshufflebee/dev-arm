@@ -39,9 +39,11 @@ set.seed((123))
 ## Loading Drought Data
 ```{r drought load, message=FALSE, warning=FALSE}
 
-# Load SPEI index data
+# Load SPEI index data and drought dummies
 droughtdata1 = read.csv("drought_data_output/spei3_yearly_master.csv")
 colnames(droughtdata1)[which(names(droughtdata1) == "avg_spei3")] <- "spei"
+colnames(droughtdata1)[which(names(droughtdata1) == "consec_drought")] <- "drought_dummy"
+colnames(droughtdata1)[which(names(droughtdata1) == "total_droughts")] <- "drought_dummy2"
 
 # Load VIH stress data
 droughtdata2 = read.csv("drought_data_output/agri_stress_long.csv")
@@ -49,13 +51,7 @@ colnames(droughtdata2)[which(names(droughtdata2) == "PROVINCE")] <- "district"
 colnames(droughtdata2)[which(names(droughtdata2) == "YEAR")] <-"year"
 colnames(droughtdata2)[which(names(droughtdata2) == "DATA")] <- "agric_stress"
 
-# Load drought dummy data
-droughtdata3 = read.csv("drought_data_output/district_yearly_drought_treatment_long.csv")
-colnames(droughtdata3)[which(names(droughtdata3) == "district_name")] <- "district"
-colnames(droughtdata3)[which(names(droughtdata3) == "dummy_drought_consecutive")] <- "drought_dummy"
-
 droughtdata = left_join(droughtdata1, droughtdata2, by=c("year","district"))
-droughtdata = left_join(droughtdata, droughtdata3, by=c("year","district"))
 
 # Load raw agriculture data
 raw_agri_data = as.data.frame(read_xlsx("agriculture data/agri.xlsx"))
