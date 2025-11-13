@@ -409,6 +409,8 @@ dataset <- dataset %>%
   mutate(
     drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
     drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    drought_dummy2_lag1 = lag(drought_dummy2, n = 1, default = 0),
+    drought_dummy2_lag2 = lag(drought_dummy2, n = 2, default = 0),
     spei_lag1 = lag(spei, n = 1, default = 0),
     spei_lag2 = lag(spei, n = 2, default = 0),
     share_lag1 = lag(share, n = 1, default = 0),
@@ -423,6 +425,8 @@ dataset_deciles <- dataset_deciles %>%
   mutate(
     drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
     drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    drought_dummy2_lag1 = lag(drought_dummy2, n = 1, default = 0),
+    drought_dummy2_lag2 = lag(drought_dummy2, n = 2, default = 0),
     spei_lag1 = lag(spei, n = 1, default = 0),
     spei_lag2 = lag(spei, n = 2, default = 0),
     share_lag1 = lag(share, n = 1, default = 0),
@@ -437,6 +441,8 @@ dataset_quartiles <- dataset_quartiles %>%
   mutate(
     drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
     drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    drought_dummy2_lag1 = lag(drought_dummy2, n = 1, default = 0),
+    drought_dummy2_lag2 = lag(drought_dummy2, n = 2, default = 0),
     spei_lag1 = lag(spei, n = 1, default = 0),
     spei_lag2 = lag(spei, n = 2, default = 0),
     share_lag1 = lag(share, n = 1, default = 0),
@@ -451,6 +457,8 @@ hh_dataset <- hh_dataset %>%
   mutate(
     drought_dummy_lag1 = lag(drought_dummy, n = 1, default = 0),
     drought_dummy_lag2 = lag(drought_dummy, n = 2, default = 0),
+    drought_dummy2_lag1 = lag(drought_dummy2, n = 1, default = 0),
+    drought_dummy2_lag2 = lag(drought_dummy2, n = 2, default = 0),
     spei_lag1 = lag(spei, n = 1, default = 0),
     spei_lag2 = lag(spei, n = 2, default = 0),
     share_lag1 = lag(share, n = 1, default = 0),
