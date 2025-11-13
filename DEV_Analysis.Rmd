@@ -500,3 +500,84 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
             "Model 3: TWFE with 2 Lags" = TWFE_2lag))
 
 ```
+
+
+## Regression on (Severe) Drought Dummy 2
+```{r TWFE regression spei, message=FALSE, warning=FALSE}
+
+# Income TWFE
+TWFE <- feols(income ~ drought_dummy2 | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(income ~ drought_dummy2 + drought_dummy2_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(income ~ drought_dummy2 + drought_dummy2_lag1 + drought_dummy2_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+# Agricultural Income TWFE
+TWFE <- feols(agric_income ~ drought_dummy2 | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(agric_income ~ drought_dummy2 + drought_dummy2_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(agric_income ~ drought_dummy2 + drought_dummy2_lag1 + drought_dummy2_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+# Agricultural Output TWFE
+
+TWFE <- feols(agric_output ~ drought_dummy2 | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(agric_output ~ drought_dummy2 + drought_dummy2_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(agric_output ~ drought_dummy2 + drought_dummy2_lag1 + drought_dummy2_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+
+# Crops Output TWFE
+TWFE <- feols(crops_output ~ drought_dummy2 | district + year, 
+               data = twfe_data,
+               cluster = ~ district)
+
+TWFE_1lag <- feols(crops_output ~ drought_dummy2 + drought_dummy2_lag1 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+TWFE_2lag <- feols(crops_output ~ drought_dummy2 + drought_dummy2_lag1 + drought_dummy2_lag2 | district + year, 
+                       data = twfe_data,
+                       cluster = ~ district)
+
+etable(list("Model 1: TWFE with 0 Lags" = TWFE,
+            "Model 2: TWFE with 1 Lag"  = TWFE_1lag,
+            "Model 3: TWFE with 2 Lags" = TWFE_2lag))
+
+```
+
+
+
+
+
