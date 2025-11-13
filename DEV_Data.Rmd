@@ -338,6 +338,9 @@ colnames(dataset)[colnames(dataset) == "Gross  agricultural  output, total"] <- 
 # Add all crop-related agricultural output variables
 dataset$crops_output = dataset$`Gross harvest of  potatoes` + dataset$`Gross harvest of fruits and berries` + dataset$`Gross harvest of grains and leguminous plants`+ dataset$`Gross harvest of vegetables`
 
+# Add all crop-related agricultural "agricultural land" variables
+dataset$crops_land = dataset$`Sown areas under potatoes` + dataset$`Sown areas under grains and leguminous plants`+ dataset$`Sown areas under vegetables`
+
 ```
 
 ## Additional data

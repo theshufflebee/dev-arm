@@ -56,7 +56,7 @@ load("final_data_household.Rdata")
 plot_data <- dataset %>%
   pivot_longer(
     cols = c(income, agric_income, agric_output, crops_output, poverty, 
-             spei, share, agric_stress, Total_Rainfall, WaterSupply), 
+             spei, share, agric_stress, Total_Rainfall, crops_land), 
     names_to = "metric",    
     values_to = "value" )
 
@@ -500,6 +500,38 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
             "Model 3: TWFE with 2 Lags" = TWFE_2lag))
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
