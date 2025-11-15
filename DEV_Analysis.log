@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.15)  15 NOV 2025 14:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.15)  15 NOV 2025 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -635,35 +635,41 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 <DEV_Analysis_files/figure-latex/district desc ev-1.pdf, id=47, 469.755pt x 325.215pt>
 File: DEV_Analysis_files/figure-latex/district desc ev-1.pdf Graphic file (type pdf)
 <use DEV_Analysis_files/figure-latex/district desc ev-1.pdf>
-Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev-1.pdf  used on input line 205.
+Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev-1.pdf  used on input line 208.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [3
 
- <./DEV_Analysis_files/figure-latex/district desc ev-1.pdf>]
-<DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf, id=57, 469.755pt x 325.215pt>
+]
+<DEV_Analysis_files/figure-latex/district desc ev-2.pdf, id=52, 469.755pt x 325.215pt>
+File: DEV_Analysis_files/figure-latex/district desc ev-2.pdf Graphic file (type pdf)
+<use DEV_Analysis_files/figure-latex/district desc ev-2.pdf>
+Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev-2.pdf  used on input line 226.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+[4 <./DEV_Analysis_files/figure-latex/district desc ev-1.pdf>]
+<DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf, id=62, 469.755pt x 325.215pt>
 File: DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf Graphic file (type pdf)
 <use DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf>
-Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf  used on input line 240.
+Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf  used on input line 255.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[4]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 259.
+[5 <./DEV_Analysis_files/figure-latex/district desc ev-2.pdf>]
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 274.
 (c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5{c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf>]
-<DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf, id=73, 469.755pt x 325.215pt>
+) [6{c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./DEV_Analysis_files/figure-latex/district desc ev agric drought-1.pdf>]
+<DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf, id=83, 469.755pt x 325.215pt>
 File: DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf Graphic file (type pdf)
 <use DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf>
-Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf  used on input line 280.
+Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf  used on input line 295.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[6 <./DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf>]
-<DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf, id=87, 469.755pt x 325.215pt>
+[7 <./DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-1.pdf>]
+<DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf, id=98, 469.755pt x 325.215pt>
 File: DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf Graphic file (type pdf)
 <use DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf>
-Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf  used on input line 315.
+Package pdftex.def Info: DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf  used on input line 330.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[7 <./DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf>] [8
+[8 <./DEV_Analysis_files/figure-latex/district desc ev w/ quartiles-2.pdf>] [9
 
-] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] (./DEV_Analysis.aux)
+] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] (./DEV_Analysis.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
@@ -673,18 +679,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17601 strings out of 469519
- 328441 string characters out of 5468255
+ 17609 strings out of 469519
+ 328898 string characters out of 5468255
  797396 words of memory out of 5000000
- 45922 multiletter control sequences out of 15000+600000
+ 45929 multiletter control sequences out of 15000+600000
  675443 words of font info for 85 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,13n,79p,812b,1072s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/fries/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on DEV_Analysis.pdf (25 pages, 398159 bytes).
+Output written on DEV_Analysis.pdf (26 pages, 404994 bytes).
 PDF statistics:
- 315 PDF objects out of 1000 (max. 8388607)
- 261 compressed objects within 3 object streams
- 80 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 325 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -55,15 +55,18 @@ cat("\\clearpage")
 ```{r district desc ev, message=FALSE, warning=FALSE}
 
 # Prepare data
-plot_data <- dataset %>%
-  pivot_longer(
-    cols = c(income, agric_income, agric_output, crops_output, poverty, 
-             spei, share, agric_stress, Total_Rainfall, crops_land), 
+plot_data1 <- dataset %>%
+  pivot_longer(cols = c(income, agric_income, agric_output, crops_output, poverty), 
     names_to = "metric",    
     values_to = "value" )
 
-# Plot it
-ggplot(plot_data, aes(x = year, y = value, color = metric)) +
+plot_data2 <- dataset %>%
+  pivot_longer(cols = c(spei, share, agric_stress, Total_Rainfall, crops_land), 
+    names_to = "metric",    
+    values_to = "value" )
+
+# Plot 
+ggplot(plot_data1, aes(x = year, y = value, color = metric)) +
   geom_line(aes(group = metric)) + 
   geom_point(size = 0.5) +
   facet_grid(metric ~ district, scales = "free_y") + 
@@ -75,7 +78,17 @@ ggplot(plot_data, aes(x = year, y = value, color = metric)) +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggsave(filename = "tesgt.png")
+ggplot(plot_data2, aes(x = year, y = value, color = metric)) +
+  geom_line(aes(group = metric)) + 
+  geom_point(size = 0.5) +
+  facet_grid(metric ~ district, scales = "free_y") + 
+  labs(
+    title = "x and SPEI Over Time by District",
+    x = "Year",
+    y = "Value (Scales Vary by Row)") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
