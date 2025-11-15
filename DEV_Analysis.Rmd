@@ -199,6 +199,24 @@ cat("\\clearpage")
 # Base case
 twfe_data = dataset
 
+# Taking logs for all dependent variables
+twfe_data$income = log(twfe_data$income)
+twfe_data$agric_income = log(twfe_data$agric_income)
+twfe_data$agric_output = log(twfe_data$agric_output)
+twfe_data$crops_output = log(twfe_data$crops_output)
+
+twfe_data$grains_harvest = log(twfe_data$grains_harvest)
+twfe_data$vegetables_harvest = log(twfe_data$vegetables_harvest)
+twfe_data$fruits_harvest = log(twfe_data$fruits_harvest)
+twfe_data$potatoes_harvest = log(twfe_data$potatoes_harvest)
+
+twfe_data$output_per_field_grains = log(twfe_data$output_per_field_grains)
+twfe_data$output_per_field_vegetables = log(twfe_data$output_per_field_vegetables)
+twfe_data$output_per_field_fruits = log(twfe_data$output_per_field_fruits)
+#twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
+
+
+
 # Excluding Yerevan
 #twfe_data = subset(dataset, district != "Yerevan")
 
@@ -218,6 +236,111 @@ twfe_data = dataset
 #twfe_data = subset(control, year > 2015)
 
 ```
+
+## Test loop
+```{r loop, message=FALSE, warning=FALSE}
+
+# Define dependent & independent variables and model names
+dependent_vars <- c("income", "agric_income", "agric_output", "crops_output",
+                    "grains_harvest", "vegetables_harvest", "fruits_harvest",
+                    "potatoes_harvest", "output_per_field_grains", 
+                    "output_per_field_vegetables", "output_per_field_fruits")
+iv_formulas <- c( "spei", "spei + spei_lag1","spei + spei_lag1 + spei_lag2",
+                  "share", "share_lag1", "share_lag2",
+                  "agric_stress", "agric_stress_lag1", "agric_stress_lag2")
+model_names <- c( "Model 1: TWFE with 0 Lags",
+                  "Model 2: TWFE with 1 Lag",
+                  "Model 3: TWFE with 2 Lags")
+
+# Loop over each variable
+for (dv in dependent_vars) {
+      models_list <- list()
+  models_list[[1]] <- feols(
+    as.formula(sprintf("%s ~ %s | district + year", dv, iv_formulas[1])),
+    data = twfe_data,
+    cluster = ~ district)
+  
+  models_list[[2]] <- feols(
+    as.formula(sprintf("%s ~ %s | district + year", dv, iv_formulas[2])),
+    data = twfe_data,
+    cluster = ~ district)
+  
+  models_list[[3]] <- feols(
+    as.formula(sprintf("%s ~ %s | district + year", dv, iv_formulas[3])),
+    data = twfe_data,
+    cluster = ~ district)
+  
+  # Name models and print
+  names(models_list) <- model_names
+  cat(paste0("\n\n", "---", "\n\n")) # Adds a separator
+  cat(paste0("## Regression Table for: ", dv, "\n\n"))
+  print(etable(models_list)) }
+
+```
+```{r t2}
+
+# 1. Define dependent variables
+dependent_vars <- c("income", "agric_income", "agric_output", "crops_output",
+                    "grains_harvest", "vegetables_harvest", "fruits_harvest",
+                    "potatoes_harvest", "output_per_field_grains", 
+                    "output_per_field_vegetables", "output_per_field_fruits")
+
+# 2. Define independent variables as a list of groups
+iv_groups <- list(
+  "SPEI" = c(
+    "spei",
+    "spei + spei_lag1",
+    "spei + spei_lag1 + spei_lag2"),
+  "Share" = c(
+    "share",
+    "share_lag1",
+    "share_lag2"),
+  "AgricStress" = c(
+    "agric_stress",
+    "agric_stress_lag1",
+    "agric_stress_lag2") )
+
+# 3. Define names
+model_names <- c(
+  "Model 1: 0 Lags",
+  "Model 2: 1 Lag",
+  "Model 3: 2 Lags")
+
+# 4. Loop for each dependent variable for each group of independent variables
+for (dv in dependent_vars) {
+  cat(paste0("\n\n", "========================================", "\n"))
+  cat(paste0("## Analyzing Dependent Variable: ", dv, "\n"))
+  cat(paste0("========================================", "\n"))
+  for (group_name in names(iv_groups)) {
+    
+    models_list <- list() 
+    current_iv_formulas <- iv_groups[[group_name]] 
+    
+    # This loop runs 3 times (for 0, 1, and 2 lags)
+    for (i in 1:length(current_iv_formulas)) {
+            fml_string <- sprintf("%s ~ %s | district + year", 
+                            dv, 
+                            current_iv_formulas[i])
+      models_list[[i]] <- feols(
+        as.formula(fml_string),
+        data = twfe_data,
+        cluster = ~ district) }
+      names(models_list) <- model_names
+    
+    # Create table automatically
+    table_title <- paste0("DV: '", dv, "'  |  IVs: '", group_name, " Lags'")
+    cat(paste0("\n\n", "---", "\n\n")) # Add a horizontal separator
+    print(etable(
+      models_list,
+      title = table_title,      
+      fixef_sizes = TRUE,     
+      fitstat = c("n", "r2"), 
+      notes = c(
+        "All models include District and Year fixed effects.",
+        "Standard errors clustered at the District level."))) } }
+
+```
+
 
 ## Regression on SPEI
 ```{r TWFE regression spei, message=FALSE, warning=FALSE}
@@ -292,6 +415,8 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
             "Model 3: TWFE with 2 Lags" = TWFE_2lag))
 
 ```
+
+
 
 ## Regression on Share (percentage of SPEI observations below -1)
 ```{r TWFE regression share, message=FALSE, warning=FALSE}
