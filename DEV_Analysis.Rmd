@@ -293,12 +293,12 @@ iv_groups <- list(
     "spei + spei_lag1 + spei_lag2"),
   "Share" = c(
     "share",
-    "share_lag1",
-    "share_lag2"),
+    "share + share_lag1",
+    "share + share_lag1 + share_lag2"),
   "AgricStress" = c(
     "agric_stress",
-    "agric_stress_lag1",
-    "agric_stress_lag2") )
+    "agric_stress + agric_stress_lag1",
+    "agric_stress + agric_stress_lag1 + agric_stress_lag2") )
 
 # 3. Define names
 model_names <- c(
