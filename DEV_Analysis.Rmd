@@ -45,7 +45,9 @@ load("final_data_household.Rdata")
 
 ```
 
-\newpage
+```{r, echo=FALSE, results='asis'}
+cat("\\clearpage")
+```
 
 # Descriptive Evidence
 
@@ -171,7 +173,9 @@ ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group
 
 ```
 
-\newpage
+```{r, echo=FALSE, results='asis'}
+cat("\\clearpage")
+```
 
 
 # TWFE Regressions
