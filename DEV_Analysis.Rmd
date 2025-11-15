@@ -349,8 +349,9 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
             "Model 3: TWFE with 2 Lags" = TWFE_2lag))
 
 ```
+
 ## Regression on Agricultural Stress
-```{r TWFE regression spei, message=FALSE, warning=FALSE}
+```{r TWFE regression stress, message=FALSE, warning=FALSE}
 
 # Income TWFE
 TWFE <- feols(income ~ agric_stress | district + year, 
@@ -427,7 +428,7 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 
 ## Regression on (Severe) Drought Dummy
-```{r TWFE regression spei, message=FALSE, warning=FALSE}
+```{r TWFE regression dummy, message=FALSE, warning=FALSE}
 
 # Income TWFE
 TWFE <- feols(income ~ drought_dummy | district + year, 
@@ -503,7 +504,7 @@ etable(list("Model 1: TWFE with 0 Lags" = TWFE,
 
 
 ## Regression on (Severe) Drought Dummy 2
-```{r TWFE regression spei, message=FALSE, warning=FALSE}
+```{r TWFE regression dummy2, message=FALSE, warning=FALSE}
 
 # Income TWFE
 TWFE <- feols(income ~ drought_dummy2 | district + year, 
