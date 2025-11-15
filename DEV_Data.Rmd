@@ -330,12 +330,25 @@ dataset <- dataset %>% mutate(agric_income = case_when(district == "Yerevan" & y
 
 # Change long names
 colnames(dataset)[colnames(dataset) == "Gross  agricultural  output, total"] <- 'agric_output'
+colnames(dataset)[colnames(dataset) == "Gross harvest of grains and leguminous plants"] <- 'grains_harvest'
+colnames(dataset)[colnames(dataset) == "Gross harvest of  potatoes"] <- 'potatoes_harvest'
+colnames(dataset)[colnames(dataset) == "Gross harvest of fruits and berries"] <- 'fruits_harvest'
+colnames(dataset)[colnames(dataset) == "Gross harvest of water-melons"] <- 'watermelon_harvest'
+colnames(dataset)[colnames(dataset) == "Gross harvest of grape"] <- 'grape_harvest'
+colnames(dataset)[colnames(dataset) == "Gross harvest of vegetables"] <- 'vegetable_harvest'
+colnames(dataset)[colnames(dataset) == "Sown areas under vegetables"] <- 'vegetables_area'
+colnames(dataset)[colnames(dataset) == "Sown areas under potatoes"] <- 'potatoes_area'
+colnames(dataset)[colnames(dataset) == "Sown areas under water-melons"] <- 'watermelon_area'
+colnames(dataset)[colnames(dataset) == "Sown areas under grains and leguminous plants"] <- 'grains_area'
+colnames(dataset)[colnames(dataset) == "Planting areas of fruits and berries"] <- 'fruits_area'
+colnames(dataset)[colnames(dataset) == "Planting areas of grapes"] <- 'grapes_area'
+
 
 # Add all crop-related agricultural output variables
-dataset$crops_output = dataset$`Gross harvest of  potatoes` + dataset$`Gross harvest of fruits and berries` + dataset$`Gross harvest of grains and leguminous plants`+ dataset$`Gross harvest of vegetables`
+dataset$crops_output = dataset$potatoes_harvest + dataset$fruits_harvest + dataset$grains_harvest + dataset$vegetable_harvest
 
 # Add all crop-related agricultural "agricultural land" variables
-dataset$crops_land = dataset$`Sown areas under potatoes` + dataset$`Sown areas under grains and leguminous plants`+ dataset$`Sown areas under vegetables`
+dataset$crops_land = dataset$potatoes_area + dataset$grains_area + dataset$vegetables_area
 
 ```
 
