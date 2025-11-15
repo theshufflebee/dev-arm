@@ -334,21 +334,41 @@ colnames(dataset)[colnames(dataset) == "Gross harvest of grains and leguminous p
 colnames(dataset)[colnames(dataset) == "Gross harvest of  potatoes"] <- 'potatoes_harvest'
 colnames(dataset)[colnames(dataset) == "Gross harvest of fruits and berries"] <- 'fruits_harvest'
 colnames(dataset)[colnames(dataset) == "Gross harvest of water-melons"] <- 'watermelon_harvest'
-colnames(dataset)[colnames(dataset) == "Gross harvest of grape"] <- 'grape_harvest'
-colnames(dataset)[colnames(dataset) == "Gross harvest of vegetables"] <- 'vegetable_harvest'
+colnames(dataset)[colnames(dataset) == "Gross harvest of grape"] <- 'grapes_harvest'
+colnames(dataset)[colnames(dataset) == "Gross harvest of vegetables"] <- 'vegetables_harvest'
 colnames(dataset)[colnames(dataset) == "Sown areas under vegetables"] <- 'vegetables_area'
 colnames(dataset)[colnames(dataset) == "Sown areas under potatoes"] <- 'potatoes_area'
 colnames(dataset)[colnames(dataset) == "Sown areas under water-melons"] <- 'watermelon_area'
 colnames(dataset)[colnames(dataset) == "Sown areas under grains and leguminous plants"] <- 'grains_area'
 colnames(dataset)[colnames(dataset) == "Planting areas of fruits and berries"] <- 'fruits_area'
-colnames(dataset)[colnames(dataset) == "Planting areas of grapes"] <- 'grapes_area'
+colnames(dataset)[colnames(dataset) == "Planting areas of grape"] <- 'grapes_area'
 
 
 # Add all crop-related agricultural output variables
-dataset$crops_output = dataset$potatoes_harvest + dataset$fruits_harvest + dataset$grains_harvest + dataset$vegetable_harvest
+dataset$crops_output = dataset$potatoes_harvest + dataset$fruits_harvest + dataset$grains_harvest + dataset$vegetables_harvest
 
 # Add all crop-related agricultural "agricultural land" variables
 dataset$crops_land = dataset$potatoes_area + dataset$grains_area + dataset$vegetables_area
+
+
+# Get harvest per area 
+
+# 1. Crop mapping: harvest column -> area column
+crops <- list(
+  melon = c("watermelon_harvest", "watermelon_area"),
+  grape = c("grapes_harvest", "grapes_area"),
+  vegetables = c("vegetables_harvest", "vegetables_area"),
+  fruits = c("fruits_harvest", "fruits_area"),
+  grains = c("grains_harvest", "grains_area"))
+
+# 2. Create output per field
+for(crop in names(crops)){
+  harvest_col <- crops[[crop]][1]
+  area_col <- crops[[crop]][2]
+  dataset <- dataset %>%
+    mutate(
+      !!paste0("output_per_field_", crop) := ifelse(.data[[area_col]] > 0,
+                1000 * .data[[harvest_col]] / .data[[area_col]], NA)) }
 
 ```
 
