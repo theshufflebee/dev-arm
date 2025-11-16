@@ -227,16 +227,16 @@ cat("\\clearpage")
 dependent_in_logs <- TRUE
 
 # Select TRUE to exclude "Yerevan" district from analysis
-exclude_yerevan <- F
+exclude_yerevan <- FALSE
 
 # Select TRUE to focus on, on average, more rural districts
-more_rural <- F
+more_rural <- FALSE
 
 # Select TRUE to focus on, on average, districts with more poverty
-more_poverty <- F
+more_poverty <- FALSE
 
 # Select TRUE to have up to 10 lags for all independent variables 
-more_lags <- TRUE
+more_lags <- FALSE
 
 ```
 
@@ -288,36 +288,44 @@ if (more_poverty) {
 ## Regression Loop
 ```{r reg_loop, message=FALSE,warning=FALSE,results='asis', echo=TRUE}
 
-# 2. Define independent variables as a list of groups
+# Define independent variables as a list of groups
 if (more_lags) {
   iv_groups <- list(
     "SPEI" = c(
       "spei",
       "spei + spei_lag1",
       "spei + spei_lag1 + spei_lag2",
-      "spei + spei_lag1 + spei_lag2" + "spei_lag3",
-      "spei + spei_lag1 + spei_lag2" + "spei_lag3" + "spei_lag4",
-      "spei + spei_lag1 + spei_lag2" + "spei_lag3" + "spei_lag4" + "spei_lag5",
-      "spei + spei_lag1 + spei_lag2" + "spei_lag3" + "spei_lag4" + "spei_lag5" + "spei_lag6"),
+      "spei + spei_lag1 + spei_lag2 + spei_lag3",
+      "spei + spei_lag1 + spei_lag2 + spei_lag3 + spei_lag4",
+      "spei + spei_lag1 + spei_lag2 + spei_lag3 + spei_lag4 + spei_lag5",
+      "spei + spei_lag1 + spei_lag2 + spei_lag3 + spei_lag4 + spei_lag5 + spei_lag6"),
     "Share" = c(
       "share",
       "share + share_lag1",
       "share + share_lag1 + share_lag2",
-      "share + share_lag1 + share_lag2" + "share_lag3",
-      "share + share_lag1 + share_lag2" + "share_lag3" + "share_lag4",
-      "share + share_lag1 + share_lag2" + "share_lag3" + "share_lag4" + "share_lag5",
-      "share + share_lag1 + share_lag2" + "share_lag3" + "share_lag4" + "share_lag5" + "share_lag6"),
+      "share + share_lag1 + share_lag2 + share_lag3",
+      "share + share_lag1 + share_lag2 + share_lag3 + share_lag4",
+      "share + share_lag1 + share_lag2 + share_lag3 + share_lag4 + share_lag5",
+      "share + share_lag1 + share_lag2 + share_lag3 + share_lag4 + share_lag5 + share_lag6"),
     "AgricStress" = c(
       "agric_stress",
       "agric_stress + agric_stress_lag1",
       "agric_stress + agric_stress_lag1 + agric_stress_lag2",
-      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3",
-      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3" +
-        "agric_stress_lag4",
-      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3" +
-        "agric_stress_lag4" + "agric_stress_lag5",
-      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3" +
-        "agric_stress_lag4" + "agric_stress_lag5" + "agric_stress_lag6") ) 
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2 + agric_stress_lag3",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2 + agric_stress_lag3 +
+        agric_stress_lag4",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2 + agric_stress_lag3 +
+        agric_stress_lag4 + agric_stress_lag5",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2 + agric_stress_lag3 +
+        agric_stress_lag4 + agric_stress_lag5 + agric_stress_lag6") ) 
+  model_names <- c(
+  "Model 1: 0 Lags",
+  "Model 2: 1 Lag",
+  "Model 3: 2 Lags",
+  "Model 4: 3 Lags",
+  "Model 5: 4 Lags",
+  "Model 6: 5 Lags",
+  "Model 7: 6 Lags")
 } else {
   iv_groups <- list(
     "SPEI" = c(
@@ -331,13 +339,13 @@ if (more_lags) {
     "AgricStress" = c(
       "agric_stress",
       "agric_stress + agric_stress_lag1",
-      "agric_stress + agric_stress_lag1 + agric_stress_lag2") ) }
-
-# 3. Define names
-model_names <- c(
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2") ) 
+  model_names <- c(
   "Model 1: 0 Lags",
   "Model 2: 1 Lag",
-  "Model 3: 2 Lags")
+  "Model 3: 2 Lags") }
+
+
 
 # 4. Loop for each dependent variable for each group of independent variables
 for (dv in dependent_vars) {
