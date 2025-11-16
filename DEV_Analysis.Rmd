@@ -220,7 +220,7 @@ twfe_data$potatoes_harvest = log(twfe_data$potatoes_harvest)
 twfe_data$output_per_field_grains = log(twfe_data$output_per_field_grains)
 twfe_data$output_per_field_vegetables = log(twfe_data$output_per_field_vegetables)
 twfe_data$output_per_field_fruits = log(twfe_data$output_per_field_fruits)
-#twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
+twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
 
 
 
