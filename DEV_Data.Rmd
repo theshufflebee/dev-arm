@@ -360,7 +360,8 @@ crops <- list(
   grape = c("grapes_harvest", "grapes_area"),
   vegetables = c("vegetables_harvest", "vegetables_area"),
   fruits = c("fruits_harvest", "fruits_area"),
-  grains = c("grains_harvest", "grains_area"))
+  grains = c("grains_harvest", "grains_area"),
+  potatoes = c("potatoes_harvest", "potatoes_area"))
 
 # 2. Create output per field
 for(crop in names(crops)){
