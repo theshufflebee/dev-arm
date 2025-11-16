@@ -34,7 +34,7 @@ require(panelView) #for panel data treatment visibility
 require(modelsummary) #for nice DiD tables
 require(fixest) #TWFE regression
 
-latex_format = FALSE
+latex_format = F
 
 getwd()
 setwd("...") 
@@ -200,9 +200,10 @@ cat("\\clearpage")
 
 # TWFE Regressions
 
-## Data Subset Selection
+## Data
 
-Variables Units
+### Variables Units
+
 * Armenian Dram (currency):
   + Income
   + Agriculture income
@@ -219,32 +220,58 @@ Variables Units
   + Fruits output per field
   + Potatoes output per field
 
-```{r tfwedata selection, message=FALSE, warning=FALSE}
+### Data Choice Selection
+```{r tfwedata selection, message=FALSE, warning=FALSE, echo=TRUE}
+
+# Select TRUE for having dependent variables in logs
+dependent_in_logs <- TRUE
+
+# Select TRUE to exclude "Yerevan" district from analysis
+exclude_yerevan <- FALSE
+
+# Select TRUE to focus on, on average, more rural districts
+more_rural <- FALSE
+
+# Select TRUE to focus on, on average, districts with more poverty
+more_poverty <- FALSE
+
+```
+
+```{r selection implementation, warning=FALSE, message=FALSE, echo=TRUE}
 
 # Base case
 twfe_data = dataset
 
-# Taking logs for all dependent variables
-twfe_data$income = log(twfe_data$income)
-twfe_data$agric_income = log(twfe_data$agric_income)
-twfe_data$agric_output = log(twfe_data$agric_output)
-twfe_data$fdcons = log(twfe_data$fdcons)
+# Dependent variables
+dependent_vars <- c("income", "agric_income", "agric_output", "fdcons",
+                    "grains_harvest", "vegetables_harvest", "fruits_harvest",
+                    "potatoes_harvest", "output_per_field_grains", 
+                    "output_per_field_vegetables", "output_per_field_fruits",
+                    "output_per_field_potatoes")
 
-twfe_data$grains_harvest = log(twfe_data$grains_harvest)
-twfe_data$vegetables_harvest = log(twfe_data$vegetables_harvest)
-twfe_data$fruits_harvest = log(twfe_data$fruits_harvest)
-twfe_data$potatoes_harvest = log(twfe_data$potatoes_harvest)
+# Logs implementation
+if (dependent_in_logs) {
+  for (col in dependent_vars) {
+    twfe_data[[col]] <- log(twfe_data[[col]]) }
+  print("Dependent variables are in logs.") } 
 
-twfe_data$output_per_field_grains = log(twfe_data$output_per_field_grains)
-twfe_data$output_per_field_vegetables = log(twfe_data$output_per_field_vegetables)
-twfe_data$output_per_field_fruits = log(twfe_data$output_per_field_fruits)
-twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
+# Excluding Yerevan implementation
+if (exclude_yerevan) {
+  twfe_data = subset(dataset, district != "Yerevan") 
+  print("Excluding Yerevan district from sample.") }
 
-# Excluding Yerevan
-#twfe_data = subset(dataset, district != "Yerevan")
+# Selecting majority-rural districts implementation
+if (more_rural) {
+  twfe_data = subset(dataset, urban < 0.5) 
+  print("Focusing on districts with higher rural population, on average.")}
 
-# Selecting majority-rural districts
-#twfe_data = subset(dataset, urban < 0.5)
+# Selecting poorer regions implementation
+if (more_poverty) {
+  twfe_data = subset(control, poverty > 0.3) 
+  print("Focusing on districts with higher rates of poverty, on average.") }
+
+# Selecting a certain timeframe
+#twfe_data = subset(control, year > 2015)
 
 # Selecting the poorest income decile
 #twfe_data = subset(dataset_deciles, national_decile == 1)
@@ -252,23 +279,11 @@ twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
 # Selecting the poorest income quartile
 #twfe_data = subset(dataset_quartiles, national_quartile == 1)
 
-# Selecting poorer regions
-#twfe_data = subset(control, poverty > 0.3)
-
-# Selecting a certain timeframe
-#twfe_data = subset(control, year > 2015)
-
 ```
 
-## Regression Loop
-```{r reg_loop, message=FALSE,warning=FALSE,results='asis'}
 
-# 1. Define dependent variables
-dependent_vars <- c("income", "agric_income", "agric_output", "fdcons",
-                    "grains_harvest", "vegetables_harvest", "fruits_harvest",
-                    "potatoes_harvest", "output_per_field_grains", 
-                    "output_per_field_vegetables", "output_per_field_fruits",
-                    "output_per_field_potatoes")
+## Regression Loop
+```{r reg_loop, message=FALSE,warning=FALSE,results='asis', echo=TRUE}
 
 # 2. Define independent variables as a list of groups
 iv_groups <- list(
