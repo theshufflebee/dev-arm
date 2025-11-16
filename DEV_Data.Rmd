@@ -344,6 +344,13 @@ colnames(dataset)[colnames(dataset) == "Sown areas under grains and leguminous p
 colnames(dataset)[colnames(dataset) == "Planting areas of fruits and berries"] <- 'fruits_area'
 colnames(dataset)[colnames(dataset) == "Planting areas of grape"] <- 'grapes_area'
 
+# Adjust unit (before: 1 = 1000 tons -> after: 1 = 1 ton)
+dataset$potatoes_harvest = dataset$potatoes_harvest * 1000
+dataset$fruits_harvest = dataset$fruits_harvest * 1000
+dataset$grains_harvest = dataset$grains_harvest * 1000
+dataset$vegetables_harvest = dataset$vegetables_harvest * 1000
+dataset$watermelon_harvest = dataset$watermelon_harvest * 1000
+dataset$grapes_harvest = dataset$grapes_harvest * 1000
 
 # Add all crop-related agricultural output variables
 dataset$crops_output = dataset$potatoes_harvest + dataset$fruits_harvest + dataset$grains_harvest + dataset$vegetables_harvest
@@ -370,7 +377,7 @@ for(crop in names(crops)){
   dataset <- dataset %>%
     mutate(
       !!paste0("output_per_field_", crop) := ifelse(.data[[area_col]] > 0,
-                1000 * .data[[harvest_col]] / .data[[area_col]], NA)) }
+                .data[[harvest_col]] / .data[[area_col]], NA)) }
 
 ```
 
