@@ -201,6 +201,24 @@ cat("\\clearpage")
 # TWFE Regressions
 
 ## Data Subset Selection
+
+Variables Units
+* Armenian Dram (currency):
+  + Income
+  + Agriculture income
+  + Agriculture output
+  + Food consumption
+* Tons (1000kg)
+  + Grains harvest
+  + Vegetables harvest
+  + Fruits harvest
+  + Potatoes harvest
+* Tons per hectare (1000kg / 10000km2)
+  + Grains output per field
+  + Vegetables output per field
+  + Fruits output per field
+  + Potatoes output per field
+
 ```{r tfwedata selection, message=FALSE, warning=FALSE}
 
 # Base case
@@ -210,7 +228,7 @@ twfe_data = dataset
 twfe_data$income = log(twfe_data$income)
 twfe_data$agric_income = log(twfe_data$agric_income)
 twfe_data$agric_output = log(twfe_data$agric_output)
-twfe_data$crops_output = log(twfe_data$crops_output)
+twfe_data$fdcons = log(twfe_data$fdcons)
 
 twfe_data$grains_harvest = log(twfe_data$grains_harvest)
 twfe_data$vegetables_harvest = log(twfe_data$vegetables_harvest)
@@ -246,7 +264,7 @@ twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
 ```{r reg_loop, message=FALSE,warning=FALSE,results='asis'}
 
 # 1. Define dependent variables
-dependent_vars <- c("income", "agric_income", "agric_output", "crops_output",
+dependent_vars <- c("income", "agric_income", "agric_output", "fdcons",
                     "grains_harvest", "vegetables_harvest", "fruits_harvest",
                     "potatoes_harvest", "output_per_field_grains", 
                     "output_per_field_vegetables", "output_per_field_fruits",
@@ -301,7 +319,7 @@ for (dv in dependent_vars) {
       # title argument removed
       fixef_sizes = TRUE,    
       fitstat = c("n", "r2"), 
-      tex = TRUE)) } }
+      tex = latex_format)) } }
 
 ```
 
