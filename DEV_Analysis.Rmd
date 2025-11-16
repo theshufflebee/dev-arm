@@ -29,12 +29,11 @@ require(sandwich) #regression errors
 require(readxl) #for reading excel data
 require(tidyr) #data
 require(tidyverse) #data
-require(did) #DiD (support staggered treatment)
-require(panelView) #for panel data treatment visibility
-require(modelsummary) #for nice DiD tables
 require(fixest) #TWFE regression
+require(purrr) #for looping plots
+options(scipen=999)
 
-latex_format = F
+latex_format = T
 
 getwd()
 setwd("...") 
@@ -58,50 +57,80 @@ cat("\\clearpage")
 
 # Descriptive Evidence
 
-## Graph 1
-```{r district desc ev, message=FALSE, warning=FALSE}
+## Summary Statistics
+```{r summarystats, message=FALSE,warning=FALSE}
 
-# Prepare data
-plot_data1 <- dataset %>%
-  pivot_longer(cols = c(income, agric_income, agric_output, crops_output, poverty), 
-    names_to = "metric",    
-    values_to = "value" )
+summary_stats_data <- dataset %>%
+  pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
+                       urban, spei, share, agric_stress, 
+                       output_per_field_fruits, output_per_field_grains), 
+               names_to = "Variable", 
+               values_to = "value")
 
-plot_data2 <- dataset %>%
-  pivot_longer(cols = c(spei, share, agric_stress, Total_Rainfall, crops_land), 
-    names_to = "metric",    
-    values_to = "value" )
+summary_stats_metric <- summary_stats_data %>%
+  group_by(Variable) %>%  
+  summarize(Mean = mean(value, na.rm = TRUE),
+            SD = sd(value, na.rm = TRUE),
+            Median = median(value, na.rm = TRUE),
+            Min = min(value, na.rm = TRUE),
+            Max = max(value, na.rm = TRUE)) %>%
+  ungroup()
 
-# Plot 
-ggplot(plot_data1, aes(x = year, y = value, color = metric)) +
-  geom_line(aes(group = metric)) + 
-  geom_point(size = 0.5) +
-  facet_grid(metric ~ district, scales = "free_y") + 
-  labs(
-    title = "x and SPEI Over Time by District",
-    x = "Year",
-    y = "Value (Scales Vary by Row)") +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1))
-
-ggplot(plot_data2, aes(x = year, y = value, color = metric)) +
-  geom_line(aes(group = metric)) + 
-  geom_point(size = 0.5) +
-  facet_grid(metric ~ district, scales = "free_y") + 
-  labs(
-    title = "x and SPEI Over Time by District",
-    x = "Year",
-    y = "Value (Scales Vary by Row)") +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1))
+if (latex_format) { format <- "latex"} else { format <- "html" }
+summary_stats_metric %>%
+  kableExtra::kable(format = format, digits = 2, caption = "Summary Statistics") %>%
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"),
+    full_width = FALSE  )
 
 ```
 
-## Graph with Drought Dummy
+
+## Raw Data Graphs
+```{r district desc ev, message=FALSE, warning=FALSE}
+
+plot_data <- dataset %>%
+  pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
+                        spei, share, agric_stress, Total_Rainfall, 
+                        output_per_field_fruits,output_per_field_grains), 
+    names_to = "metric",    
+    values_to = "value" )
+
+all_metrics <- unique(plot_data$metric)
+
+plot_list_by_metric <- map(all_metrics, function(met) {
+  
+  plot_data <- plot_data %>%
+    filter(metric == met)
+  p <- ggplot(plot_data, aes(x = year, y = value)) +
+    geom_line() +
+    geom_point(size = 0.5) +
+    facet_wrap(~ district, scales = "free_y", ncol = 3) + 
+    labs(title = paste("Evolution of:", met),x = "Year",y = "Value") +
+    theme_light() + 
+    theme(plot.title = element_text(face = "bold", size = 16, hjust = 0.5), 
+          plot.subtitle = element_text(size = 12, hjust = 0.5), 
+          plot.caption = element_text(color = "grey50", face = "italic"),
+          strip.text = element_text(face = "bold", color = "black", hjust = 0), 
+          strip.background = element_rect(fill = "grey90", color = NA), 
+          axis.title = element_text(size = 11), 
+          axis.text.x = element_text(angle = 45, hjust = 1, size = 9), 
+          axis.text.y = element_text(size = 9),
+          panel.grid.minor = element_blank() )
+    print(p)
+  #ggsave(filename = paste0("plot_", met, ".png"), plot = p, width = 12, height = 10)
+  return(p) } )
+
+```
+
+
+
+## Graphs with Drought Dummy
 ```{r district desc ev agric drought, message=FALSE, warning=FALSE}
 
+# Note: This graph should be interpreted with caution as the number of districts
+#        is very low, meaning that any kind of visible relationship is very 
+#         likely due to confounding effects and between-district variation
 
 # Compute, for each years, the mean of agricultural output between districts
 #  that experience drought vs no drought
@@ -126,7 +155,7 @@ ggplot(agric_plot, aes(x = year, y = mean_agric,
 
 ```
 
-## With Quartiles
+## Graphs with Drought Dummy and Quartiles
 ```{r district desc ev w/ quartiles, message=FALSE, warning=FALSE}
 
 # Data Prep
@@ -149,16 +178,13 @@ plot1_data_q <- dataset_prepped_q %>%
 ggplot(plot1_data_q, aes(x = year, y = avg_income, color = income_quartile, group = income_quartile)) +
   geom_line(linewidth = 1.2, alpha = 0.8) +
   geom_point(size = 2) +
-  
-  # --- Aesthetics & Labels ---
-  scale_y_continuous(labels = scales::comma) + # Formats y-axis labels (e.g., 50,000)
+  scale_y_continuous(labels = scales::comma) + 
   scale_color_brewer(palette = "RdYlBu", direction = -1) + 
-  labs(
-    title = "Average Income by Income Quartile Over Time",
-    subtitle = "Averaged across all districts",
-    x = "Year",
-    y = "Average Annual Income",
-    color = "Income Quartile") +
+  labs(title = "Average Income by Income Quartile Over Time",
+        subtitle = "Averaged across all districts",
+        x = "Year",
+        y = "Average Annual Income",
+        color = "Income Quartile") +
   theme_minimal() + theme(legend.position = "bottom")
 
 
@@ -175,8 +201,6 @@ ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group
   
   # Create 4 separate plots, one for each 'income_quartile'
   facet_wrap(~ income_quartile, scales = "free_y") +
-  
-  # --- Aesthetics & Labels ---
   scale_y_continuous(labels = scales::comma) +
   scale_color_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
   labs(
@@ -185,10 +209,9 @@ ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group
     x = "Year",
     y = "Average Annual Income",
     color = "Drought Status") +
-  theme_bw() + # A clean theme
-  theme(
-    legend.position = "top",
-    strip.background = element_rect(fill = "grey90"), # Style the facet labels
+  theme_bw() + 
+  theme(legend.position = "top",
+    strip.background = element_rect(fill = "grey90"), 
     strip.text = element_text(face = "bold") )
 
 ```
@@ -347,7 +370,7 @@ if (more_lags) {
 
 
 
-# 4. Loop for each dependent variable for each group of independent variables
+# Loop for each dependent variable for each group of independent variables
 for (dv in dependent_vars) {
   
   # Create a latex version of the dv name 
@@ -356,7 +379,6 @@ for (dv in dependent_vars) {
 
   for (group_name in names(iv_groups)) {
     cat(paste0("\n\n\\subsubsection{Regressed on: ", group_name, "}\n\n"))
-    
     models_list <- list() 
     current_iv_formulas <- iv_groups[[group_name]] 
     
@@ -369,10 +391,8 @@ for (dv in dependent_vars) {
         data = twfe_data,
         cluster = ~ district) }
       names(models_list) <- model_names
-    
     print(etable(
       models_list,
-      # title argument removed
       fixef_sizes = TRUE,    
       fitstat = c("n", "r2"), 
       tex = latex_format)) } }
