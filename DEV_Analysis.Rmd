@@ -227,13 +227,13 @@ cat("\\clearpage")
 dependent_in_logs <- TRUE
 
 # Select TRUE to exclude "Yerevan" district from analysis
-exclude_yerevan <- FALSE
+exclude_yerevan <- F
 
 # Select TRUE to focus on, on average, more rural districts
-more_rural <- FALSE
+more_rural <- F
 
 # Select TRUE to focus on, on average, districts with more poverty
-more_poverty <- FALSE
+more_poverty <- F
 
 ```
 
@@ -257,21 +257,21 @@ if (dependent_in_logs) {
 
 # Excluding Yerevan implementation
 if (exclude_yerevan) {
-  twfe_data = subset(dataset, district != "Yerevan") 
+  twfe_data = subset(twfe_data, district != "Yerevan") 
   print("Excluding Yerevan district from sample.") }
 
 # Selecting majority-rural districts implementation
 if (more_rural) {
-  twfe_data = subset(dataset, urban < 0.5) 
+  twfe_data = subset(twfe_data, urban < 0.5) 
   print("Focusing on districts with higher rural population, on average.")}
 
 # Selecting poorer regions implementation
 if (more_poverty) {
-  twfe_data = subset(control, poverty > 0.3) 
+  twfe_data = subset(twfe_data, poverty > 0.3) 
   print("Focusing on districts with higher rates of poverty, on average.") }
 
 # Selecting a certain timeframe
-#twfe_data = subset(control, year > 2015)
+#twfe_data = subset(twfe_data, year > 2015)
 
 # Selecting the poorest income decile
 #twfe_data = subset(dataset_deciles, national_decile == 1)
