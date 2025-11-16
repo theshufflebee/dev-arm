@@ -34,7 +34,7 @@ require(panelView) #for panel data treatment visibility
 require(modelsummary) #for nice DiD tables
 require(fixest) #TWFE regression
 
-latex_format = TRUE
+latex_format = FALSE
 
 getwd()
 setwd("...") 

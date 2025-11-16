@@ -42,6 +42,7 @@ set.seed((123))
 # Load SPEI index data and drought dummies
 droughtdata1 = read.csv("drought_data_output/spei3_yearly_master.csv")
 colnames(droughtdata1)[which(names(droughtdata1) == "avg_spei3")] <- "spei"
+droughtdata1$spei = droughtdata1$spei * (-1)
 colnames(droughtdata1)[which(names(droughtdata1) == "consec_drought")] <- "drought_dummy"
 colnames(droughtdata1)[which(names(droughtdata1) == "total_droughts")] <- "drought_dummy2"
 
@@ -322,7 +323,7 @@ hh_dataset <- left_join(hh_dataset, droughtdata, by = c("year", "district"))
 agric_data$year = as.integer(agric_data$year)
 dataset = left_join(dataset, agric_data, by = c("year", "district"))
 
-# Clean useless dataset
+# Clean useless datasets
 rm(cleaned_data_list, household_data, name_map, yearly_data, droughtdata, raw_agri_data, stacked_data, temp_df, data_only, agric_data)
 
 # Replace Yerevan NA with 0
