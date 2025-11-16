@@ -222,8 +222,6 @@ twfe_data$output_per_field_vegetables = log(twfe_data$output_per_field_vegetable
 twfe_data$output_per_field_fruits = log(twfe_data$output_per_field_fruits)
 twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
 
-
-
 # Excluding Yerevan
 #twfe_data = subset(dataset, district != "Yerevan")
 
@@ -251,7 +249,8 @@ twfe_data$output_per_field_potatoes = log(twfe_data$output_per_field_potatoes)
 dependent_vars <- c("income", "agric_income", "agric_output", "crops_output",
                     "grains_harvest", "vegetables_harvest", "fruits_harvest",
                     "potatoes_harvest", "output_per_field_grains", 
-                    "output_per_field_vegetables", "output_per_field_fruits")
+                    "output_per_field_vegetables", "output_per_field_fruits",
+                    "output_per_field_potatoes")
 
 # 2. Define independent variables as a list of groups
 iv_groups <- list(
