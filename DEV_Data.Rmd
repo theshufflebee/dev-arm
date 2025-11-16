@@ -458,7 +458,27 @@ dataset <- dataset %>%
     share_lag1 = lag(share, n = 1, default = 0),
     share_lag2 = lag(share, n = 2, default = 0),
     agric_stress_lag1 = lag(agric_stress, n = 1, default = 0),
-    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0) ) %>%
+    agric_stress_lag2 = lag(agric_stress, n = 2, default = 0),
+    drought_dummy_lag3 = lag(drought_dummy, n = 3, default = 0),
+    drought_dummy_lag4 = lag(drought_dummy, n = 4, default = 0),
+    drought_dummy2_lag3 = lag(drought_dummy2, n = 3, default = 0),
+    drought_dummy2_lag4 = lag(drought_dummy2, n = 4, default = 0),
+    spei_lag3 = lag(spei, n = 3, default = 0),
+    spei_lag4 = lag(spei, n = 4, default = 0),
+    share_lag3 = lag(share, n = 3, default = 0),
+    share_lag4 = lag(share, n = 4, default = 0),
+    agric_stress_lag3 = lag(agric_stress, n = 3, default = 0),
+    agric_stress_lag4 = lag(agric_stress, n = 4, default = 0),
+    drought_dummy_lag5 = lag(drought_dummy, n = 5, default = 0),
+    drought_dummy_lag6 = lag(drought_dummy, n = 6, default = 0),
+    drought_dummy2_lag5 = lag(drought_dummy2, n = 5, default = 0),
+    drought_dummy2_lag6 = lag(drought_dummy2, n = 6, default = 0),
+    spei_lag5 = lag(spei, n = 5, default = 0),
+    spei_lag6 = lag(spei, n = 6, default = 0),
+    share_lag5 = lag(share, n = 5, default = 0),
+    share_lag6 = lag(share, n = 6, default = 0),
+    agric_stress_lag5 = lag(agric_stress, n = 5, default = 0),
+    agric_stress_lag6 = lag(agric_stress, n = 6, default = 0)) %>%
     ungroup()
 
 dataset_deciles <- dataset_deciles %>%

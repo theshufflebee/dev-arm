@@ -235,6 +235,9 @@ more_rural <- F
 # Select TRUE to focus on, on average, districts with more poverty
 more_poverty <- F
 
+# Select TRUE to have up to 10 lags for all independent variables 
+more_lags <- TRUE
+
 ```
 
 ```{r selection implementation, warning=FALSE, message=FALSE, echo=TRUE}
@@ -286,19 +289,49 @@ if (more_poverty) {
 ```{r reg_loop, message=FALSE,warning=FALSE,results='asis', echo=TRUE}
 
 # 2. Define independent variables as a list of groups
-iv_groups <- list(
-  "SPEI" = c(
-    "spei",
-    "spei + spei_lag1",
-    "spei + spei_lag1 + spei_lag2"),
-  "Share" = c(
-    "share",
-    "share + share_lag1",
-    "share + share_lag1 + share_lag2"),
-  "AgricStress" = c(
-    "agric_stress",
-    "agric_stress + agric_stress_lag1",
-    "agric_stress + agric_stress_lag1 + agric_stress_lag2") )
+if (more_lags) {
+  iv_groups <- list(
+    "SPEI" = c(
+      "spei",
+      "spei + spei_lag1",
+      "spei + spei_lag1 + spei_lag2",
+      "spei + spei_lag1 + spei_lag2" + "spei_lag3",
+      "spei + spei_lag1 + spei_lag2" + "spei_lag3" + "spei_lag4",
+      "spei + spei_lag1 + spei_lag2" + "spei_lag3" + "spei_lag4" + "spei_lag5",
+      "spei + spei_lag1 + spei_lag2" + "spei_lag3" + "spei_lag4" + "spei_lag5" + "spei_lag6"),
+    "Share" = c(
+      "share",
+      "share + share_lag1",
+      "share + share_lag1 + share_lag2",
+      "share + share_lag1 + share_lag2" + "share_lag3",
+      "share + share_lag1 + share_lag2" + "share_lag3" + "share_lag4",
+      "share + share_lag1 + share_lag2" + "share_lag3" + "share_lag4" + "share_lag5",
+      "share + share_lag1 + share_lag2" + "share_lag3" + "share_lag4" + "share_lag5" + "share_lag6"),
+    "AgricStress" = c(
+      "agric_stress",
+      "agric_stress + agric_stress_lag1",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3" +
+        "agric_stress_lag4",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3" +
+        "agric_stress_lag4" + "agric_stress_lag5",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2" + "agric_stress_lag3" +
+        "agric_stress_lag4" + "agric_stress_lag5" + "agric_stress_lag6") ) 
+} else {
+  iv_groups <- list(
+    "SPEI" = c(
+      "spei",
+      "spei + spei_lag1",
+      "spei + spei_lag1 + spei_lag2"),
+    "Share" = c(
+      "share",
+      "share + share_lag1",
+      "share + share_lag1 + share_lag2"),
+    "AgricStress" = c(
+      "agric_stress",
+      "agric_stress + agric_stress_lag1",
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2") ) }
 
 # 3. Define names
 model_names <- c(
