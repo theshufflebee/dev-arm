@@ -1,0 +1,127 @@
+---
+title: "fishing"
+output: html_document
+---
+
+\newpage
+
+```{r library_setup, results=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+rm(list=ls())
+require(tinytex) #LaTeX
+require(ggplot2) #plots
+require(haven) #load data
+require(dplyr) #data management
+require(lubridate) #data dates management
+require(zoo) #for lagging
+require(jtools) #tables
+require(huxtable) #tables
+require(lmtest) #reg tests
+require(data.table) #for data filtering
+require(sandwich) #regression errors
+require(readxl) #for reading excel data
+require(tidyr) #data
+require(tidyverse) #data
+require(did) #DiD (support staggered treatment)
+require(panelView) #for panel data treatment visibility
+
+getwd()
+setwd("...") 
+set.seed((123))
+
+```
+
+
+
+# Data
+
+## Loading Drought Data
+```{r drought load, message=FALSE, warning=FALSE}
+
+library(janitor)  # for clean_names()
+
+# Load SPEI index data
+fishing_data = read.csv("fishing_data/2014_census_fishing_agri.csv", skip = 1)
+colnames(fishing_data) <- c("merz", "agri_no_legal", "fishing_no_legal", "agri_legal", "fishing_legal")
+
+water_use_data= read.csv("fishing_data/water_use.csv", skip = 1)
+
+fresh_water_abstraction= read.csv("fishing_data/fresh_water_abstraction.csv", skip = 1)
+
+irrigation <- read.csv("fishing_data/sources_of_irrigation.csv", skip = 1, stringsAsFactors = FALSE) %>%
+  clean_names()  # converts to snake_case, removes spaces/special chars
+
+df_long <- irrigation %>%
+  pivot_longer(
+    cols = republic_of_armenia_total:yerevan,   # adjust column range if needed
+    names_to = "marz",
+    values_to = "value"
+  )
+
+# 3. Create a new column combining legal status and irrigation source
+df_long <- df_long %>%
+  mutate(column_name = paste(legal_status, sources_of_irrigation, sep = "_"))
+
+# 4. Pivot wider so each marz is a row, columns = legal_status × irrigation source
+df_wide <- df_long %>%
+  select(marz, column_name, value) %>%
+  pivot_wider(
+    names_from = column_name,
+    values_from = value
+  ) %>%
+  arrange(marz)
+
+marz_rename <- c(
+  "republic_of_armenia_total" = "Republic of Armenia, total",
+  "aragatsotn" = "Aragatsotn",
+  "ararat" = "Ararat",
+  "armavir" = "Armavir",
+  "gegharkunik" = "Gegharkunik",
+  "lori" = "Lori",
+  "kotayk" = "Kotayk",
+  "shirak" = "Shirak",
+  "syunik" = "Syunik",
+  "vayots_dzor" = "Vayots dzor",
+  "tavush" = "Tavush",
+  "yerevan" = "Yerevan"
+)
+
+# Apply renaming to the 'marz' column in your pivoted dataframe
+df_wide <- df_wide %>%
+  mutate(merz = marz_rename[marz]) %>%
+  select(-marz)  # optional: remove old column
+
+merged_df <- df_wide %>%
+  left_join(fishing_data, by = "merz")  # keeps all rows from df1
+
+
+
+
+load("final_data.Rdata")
+
+# Load raw agriculture data
+raw_agri_data = as.data.frame(read_xlsx("agriculture data/agri.xlsx"))
+
+```
+
+
+
+```{r}
+# Create variables for regression
+reg_df <- merged_df %>%
+  mutate(
+    river_water_use = as.numeric(`Holdings without legal status_river, stream, lake`) + as.numeric(`Holdings with legal status_river, stream, lake`),
+    fishing_activity = as.numeric(fishing_no_legal) + as.numeric(fishing_legal),
+    farming_activity = as.numeric(agri_no_legal) + as.numeric(agri_legal),
+    irrigation_water_use = as.numeric(`Holdings without legal status_general irrigation network`) + as.numeric(`Holdings with legal status_general irrigation network`),
+    total_water = river_water_use + irrigation_water_use
+  ) %>%
+  filter(!is.na(river_water_use) & !is.na(fishing_activity))
+
+# Run linear regression
+model <- lm(total_water ~ fishing_activity + farming_activity, data = reg_df)
+
+# Summary of results
+summary(model)
+```
+
+
