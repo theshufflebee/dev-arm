@@ -72,7 +72,8 @@ variable represents the average level in a particular year in a particular distr
   + poverty: Rate of households in poverty
   + urban: Rate of households living in an urban area
   + share: 
-  + agric_stress:
+  + agric_stress: Percentage of arable areas with a VHI (Vegetable Health Index) 
+                  value below 35\%
   + spei: SPEI index something
 * Dummies:
   + drought_dummy1: 
