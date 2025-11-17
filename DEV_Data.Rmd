@@ -352,12 +352,14 @@ dataset$vegetables_harvest = dataset$vegetables_harvest * 1000
 dataset$watermelon_harvest = dataset$watermelon_harvest * 1000
 dataset$grapes_harvest = dataset$grapes_harvest * 1000
 
+# Adjust agric_stress unit (is in %)
+dataset$agric_stress = dataset$agric_stress / 100
+
 # Add all crop-related agricultural output variables
 dataset$crops_output = dataset$potatoes_harvest + dataset$fruits_harvest + dataset$grains_harvest + dataset$vegetables_harvest
 
 # Add all crop-related agricultural "agricultural land" variables
 dataset$crops_land = dataset$potatoes_area + dataset$grains_area + dataset$vegetables_area
-
 
 # Get harvest per area 
 
