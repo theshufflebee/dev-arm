@@ -33,7 +33,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = T
+latex_format = FALSE
 
 getwd()
 setwd("...") 
@@ -361,7 +361,33 @@ if (more_poverty) {
 ```
 
 
-## Regression Loop
+## Regression
+
+### Equation
+All our regressions resemble the following equations, where $Y_{dt}$ represents
+the chosen outcome variable for district $d$ at time $t$, $\lambda_d$ represents
+the district-specific fixed effect, $\gamma_t$ represents the time-specific 
+fixed effect, $X_{dt}$ is the chosen explanatory variable, $\beta$ is the effect
+of said variable on the outcome, and $\epsilon_{dt}$ is the error.
+$$
+\begin{aligned}
+  Y_{dt} &= \alpha + \lambda_d + \gamma_t + \beta X_{dt} + \epsilon_{dt}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+  Y_{dt} &= \alpha + \lambda_d + \gamma_t + \beta_1 X_{dt} + \beta_2 X_{d,t-1} + \epsilon_{dt}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+  Y_{dt} &= \alpha + \lambda_d + \gamma_t + \beta_1 X_{dt} + \beta_2 X_{d,t-1} 
+  + \beta_3 X_{d,t-2}  + \epsilon_{dt}
+\end{aligned}
+$$
+
+
+### Estimation Loop
 ```{r reg_loop, message=FALSE,warning=FALSE,results='asis', echo=TRUE}
 
 # Define independent variables as a list of groups
