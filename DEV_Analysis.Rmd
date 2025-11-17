@@ -296,7 +296,7 @@ cat("\\clearpage")
   + Fruits output per field
   + Potatoes output per field
 
-## Data Choice Selection
+### Data Choice Selection
 ```{r tfwedata selection, message=FALSE, warning=FALSE, echo=TRUE}
 
 # Select TRUE for having dependent variables in logs
