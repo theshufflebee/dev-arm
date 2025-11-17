@@ -1,5 +1,5 @@
 ---
-title: "Armenia Drought Analysis"
+title: "Development Economics: Project Analysis"
 output: 
   pdf_document:
     toc: true
@@ -33,7 +33,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = FALSE
+latex_format = T
 
 getwd()
 setwd("...") 
@@ -41,7 +41,9 @@ set.seed(123)
 
 ```
 
-# Data Load
+# Data 
+
+## Loading 
 ```{r data}
 
 load("final_data.Rdata")
@@ -50,6 +52,51 @@ load("final_data_deciles.Rdata")
 load("final_data_household.Rdata")
 
 ```
+
+## Explanation
+
+We have district-level panel data for the 11 districts (Merz) of Armenia from the
+years 2004 to 2023. It consists of variables from aggregated household surveys,
+variables on detailed agricultural output and drought-related variables. Every
+variable represents the average level in a particular year in a particular district.
+
+### Variable Names \& Units
+* In Armenian Dram (currency):
+  + income: Household income
+  + agric_income: Household agriculture income
+  + fdcons: Household food consumption
+  + fdpurch: Household food purchases
+  + exp: Household expenditures 
+  + agric_output: Agriculture output \textcolor{red}{real?}
+* In Percentage:
+  + poverty: Rate of households in poverty
+  + urban: Rate of households living in an urban area
+  + share: 
+  + agric_stress:
+  + spei: SPEI index something
+* Dummies:
+  + drought_dummy1: 
+  + drought_dummy2: 
+* Tons (1000kg)
+  + grains_harvest: Tons of grains and leguminous plants harvested
+  + vegetables_harvest: Tons of vegetables harvested
+  + fruits_harvest: Tons of fruits and berries harvested
+  + potatoes_harvest: Tons of potatoes harvested
+  + watermelon_harvest: Tons of watermelons harvested
+  + grapes_harvest: Tons of grapes harvested
+* Hectare (10000km2)
+  + grains_area: Hectares used for harvesting grains and leguminous plants
+  + vegetables_area: Hectares used for harvesting vegetables
+  + fruits_area: Hectares used for harvesting fruits and berries
+  + potatoes_area: Hectares used for harvesting potatoes
+  + watermelon_area: Hectares used for harvesting watermelons
+  + grapes_area: Hectares used for harvesting grapes
+* Tons per hectare (1000kg / 10000km2)
+  + output_per_field_grains: Grains harvested divided by area
+  + output_per_field_vegetables: Vegetables harvested divided by area
+  + output_per_field_fruits: Fruits harvested divided by area
+  + output_per_field_potatoes: Potatoes harvested divided by area
+  + output_per_field_grapes: Grapes harvested divided by area
 
 ```{r, echo=FALSE, results='asis'}
 cat("\\clearpage")
@@ -108,7 +155,7 @@ plot_list_by_metric <- map(all_metrics, function(met) {
     facet_wrap(~ district, scales = "free_y", ncol = 3) + 
     labs(title = paste("Evolution of:", met),x = "Year",y = "Value") +
     theme_light() + 
-    theme(plot.title = element_text(face = "bold", size = 16, hjust = 0.5), 
+    theme(plot.title = element_text(face = "bold", size = 14, hjust = 0.5), 
           plot.subtitle = element_text(size = 12, hjust = 0.5), 
           plot.caption = element_text(color = "grey50", face = "italic"),
           strip.text = element_text(face = "bold", color = "black", hjust = 0), 
@@ -126,11 +173,12 @@ plot_list_by_metric <- map(all_metrics, function(met) {
 
 
 ## Graphs with Drought Dummy
-```{r district desc ev agric drought, message=FALSE, warning=FALSE}
 
-# Note: This graph should be interpreted with caution as the number of districts
-#        is very low, meaning that any kind of visible relationship is very 
-#         likely due to confounding effects and between-district variation
+Note: This graph should be interpreted with caution as the number of districts
+        is very low, meaning that any kind of visible relationship is very 
+         likely due to confounding effects and between-district variation.
+
+```{r district desc ev agric drought, message=FALSE, warning=FALSE}
 
 # Compute, for each years, the mean of agricultural output between districts
 #  that experience drought vs no drought
@@ -150,7 +198,7 @@ ggplot(agric_plot, aes(x = year, y = mean_agric,
   theme(legend.position = "top",
     axis.text.x = element_text(size = 5),
     axis.text.y = element_text(size = 5),
-    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    plot.title = element_text(size = 14, face = "bold"),
     strip.text = element_text(size = 4, face = "bold"))
 
 ```
@@ -185,7 +233,11 @@ ggplot(plot1_data_q, aes(x = year, y = avg_income, color = income_quartile, grou
         x = "Year",
         y = "Average Annual Income",
         color = "Income Quartile") +
-  theme_minimal() + theme(legend.position = "bottom")
+  theme_minimal() + theme(legend.position = "bottom",
+    axis.text.x = element_text(size = 5),
+    axis.text.y = element_text(size = 5),
+    plot.title = element_text(size = 14, face = "bold"),
+    strip.text = element_text(size = 4, face = "bold"))
 
 
 # B1. Aggregate data: Mean income by year, quartile, AND drought status
@@ -198,21 +250,22 @@ plot2_data_q <- dataset_prepped_q %>%
 # B2. Create the faceted plot q
 ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group = drought_status)) +
   geom_line(linewidth = 1.1, alpha = 0.9) +
-  
   # Create 4 separate plots, one for each 'income_quartile'
   facet_wrap(~ income_quartile, scales = "free_y") +
   scale_y_continuous(labels = scales::comma) +
   scale_color_manual(values = c("No Drought Event" = "#0072B2", "Drought Event" = "#D55E00")) +
-  labs(
-    title = "Impact of Drought Events on Income, by Income Quartile",
-    subtitle = "Average income trends faceted by income group",
-    x = "Year",
-    y = "Average Annual Income",
-    color = "Drought Status") +
+  labs(title = "Impact of Drought Events on Income, by Income Quartile",
+        subtitle = "Average income trends faceted by income group",
+        x = "Year",
+        y = "Average Annual Income",
+        color = "Drought Status") +
   theme_bw() + 
   theme(legend.position = "top",
-    strip.background = element_rect(fill = "grey90"), 
-    strip.text = element_text(face = "bold") )
+        axis.text.x = element_text(size = 5),
+        axis.text.y = element_text(size = 5),
+        plot.title = element_text(size = 14, face = "bold"),
+        strip.background = element_rect(fill = "grey90"), 
+        strip.text = element_text(face = "bold") )
 
 ```
 
@@ -225,7 +278,7 @@ cat("\\clearpage")
 
 ## Data
 
-### Variables Units
+### Variable Units
 
 * Armenian Dram (currency):
   + Income
@@ -243,7 +296,7 @@ cat("\\clearpage")
   + Fruits output per field
   + Potatoes output per field
 
-### Data Choice Selection
+## Data Choice Selection
 ```{r tfwedata selection, message=FALSE, warning=FALSE, echo=TRUE}
 
 # Select TRUE for having dependent variables in logs
@@ -279,22 +332,22 @@ dependent_vars <- c("income", "agric_income", "agric_output", "fdcons",
 if (dependent_in_logs) {
   for (col in dependent_vars) {
     twfe_data[[col]] <- log(twfe_data[[col]]) }
-  print("Dependent variables are in logs.") } 
+  cat("Dependent variables are in logs.") } 
 
 # Excluding Yerevan implementation
 if (exclude_yerevan) {
   twfe_data = subset(twfe_data, district != "Yerevan") 
-  print("Excluding Yerevan district from sample.") }
+  cat("Excluding Yerevan district from sample.") }
 
 # Selecting majority-rural districts implementation
 if (more_rural) {
   twfe_data = subset(twfe_data, urban < 0.5) 
-  print("Focusing on districts with higher rural population, on average.")}
+  cat("Focusing on districts with higher rural population, on average.")}
 
 # Selecting poorer regions implementation
 if (more_poverty) {
   twfe_data = subset(twfe_data, poverty > 0.3) 
-  print("Focusing on districts with higher rates of poverty, on average.") }
+  cat("Focusing on districts with higher rates of poverty, on average.") }
 
 # Selecting a certain timeframe
 #twfe_data = subset(twfe_data, year > 2015)
