@@ -84,14 +84,14 @@ variable represents the average level in a particular year in a particular distr
   + potatoes_harvest: Tons of potatoes harvested
   + watermelon_harvest: Tons of watermelons harvested
   + grapes_harvest: Tons of grapes harvested
-* Hectare (10000km2)
+* Hectare (1000km2)
   + grains_area: Hectares used for harvesting grains and leguminous plants
   + vegetables_area: Hectares used for harvesting vegetables
   + fruits_area: Hectares used for harvesting fruits and berries
   + potatoes_area: Hectares used for harvesting potatoes
   + watermelon_area: Hectares used for harvesting watermelons
   + grapes_area: Hectares used for harvesting grapes
-* Tons per hectare (1000kg / 10000km2)
+* Tons per hectare (1000kg / 1000km2)
   + output_per_field_grains: Grains harvested divided by area
   + output_per_field_vegetables: Vegetables harvested divided by area
   + output_per_field_fruits: Fruits harvested divided by area
@@ -290,7 +290,7 @@ cat("\\clearpage")
   + Vegetables harvest
   + Fruits harvest
   + Potatoes harvest
-* Tons per hectare (1000kg / 10000km2)
+* Tons per hectare (1000kg / 1000km2)
   + Grains output per field
   + Vegetables output per field
   + Fruits output per field
