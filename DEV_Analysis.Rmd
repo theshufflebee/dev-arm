@@ -33,7 +33,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = T
+latex_format = FALSE
 
 getwd()
 setwd("...") 
@@ -394,7 +394,7 @@ for (dv in dependent_vars) {
     print(etable(
       models_list,
       fixef_sizes = TRUE,    
-      fitstat = c("n", "r2"), 
+      fitstat = c("n", "r2", "wr2"), 
       tex = latex_format)) } }
 
 ```
