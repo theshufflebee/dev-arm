@@ -33,7 +33,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = FALSE
+latex_format = F
 
 getwd()
 setwd("...") 
@@ -67,14 +67,18 @@ variable represents the average level in a particular year in a particular distr
   + fdcons: Household food consumption
   + fdpurch: Household food purchases
   + exp: Household expenditures 
-  + agric_output: Agriculture output \textcolor{red}{real?}
+  + agric_output: Gross Agriculture output \textcolor{red}{real?}
 * In Percentage:
   + poverty: Rate of households in poverty
   + urban: Rate of households living in an urban area
-  + share: 
+  + spei: SPEI measures deviation of the water balance from the long term mean.
+          A value of 0 means we are at the long term mean, while +1 is a moderate
+          drought that happens once or twice in 10 years. Note that we took the 
+          official SPEI and multiplied it by (-1) in order to adjust the coefficient
+          sign interpretation in the regressions. Positive values indicate harsher conditions.
+  + share: Share of observations of SPEI above +1
   + agric_stress: Percentage of arable areas with a VHI (Vegetable Health Index) 
                   value below 35\%
-  + spei: SPEI index something
 * Dummies:
   + drought_dummy1: 
   + drought_dummy2: 
@@ -99,7 +103,7 @@ variable represents the average level in a particular year in a particular distr
   + output_per_field_potatoes: Potatoes harvested divided by area
   + output_per_field_grapes: Grapes harvested divided by area
 
-```{r, echo=FALSE, results='asis'}
+```{r clearpage1, echo=FALSE, results='asis'}
 cat("\\clearpage")
 ```
 
@@ -126,10 +130,12 @@ summary_stats_metric <- summary_stats_data %>%
 
 if (latex_format) { format <- "latex"} else { format <- "html" }
 summary_stats_metric %>%
-  kableExtra::kable(format = format, digits = 2, caption = "Summary Statistics") %>%
+  kableExtra::kable(format = format, digits = 2, 
+              caption = "Summary Statistics", booktabs = TRUE) %>%
   kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    full_width = FALSE  )
+    latex_options = c("striped", "condensed", "hold_position", "scaled_down"),
+    full_width = FALSE,
+    position = "center")
 
 ```
 
@@ -270,7 +276,7 @@ ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group
 
 ```
 
-```{r, echo=FALSE, results='asis'}
+```{r clearpage2, echo=FALSE, results='asis'}
 cat("\\clearpage")
 ```
 
