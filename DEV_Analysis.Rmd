@@ -33,7 +33,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = F
+latex_format = FALSE
 
 getwd()
 setwd("...") 
@@ -71,11 +71,6 @@ variable represents the average level in a particular year in a particular distr
 * In Percentage:
   + poverty: Rate of households in poverty
   + urban: Rate of households living in an urban area
-  + spei: SPEI measures deviation of the water balance from the long term mean.
-          A value of 0 means we are at the long term mean, while +1 is a moderate
-          drought that happens once or twice in 10 years. Note that we took the 
-          official SPEI and multiplied it by (-1) in order to adjust the coefficient
-          sign interpretation in the regressions. Positive values indicate harsher conditions.
   + share: Share of observations of SPEI above +1
   + agric_stress: Percentage of arable areas with a VHI (Vegetable Health Index) 
                   value below 35\%
@@ -102,6 +97,13 @@ variable represents the average level in a particular year in a particular distr
   + output_per_field_fruits: Fruits harvested divided by area
   + output_per_field_potatoes: Potatoes harvested divided by area
   + output_per_field_grapes: Grapes harvested divided by area
+* Other:
+  + spei: SPEI measures deviation of the water balance from the long term mean.
+          A value of 0 means we are at the long term mean, while +1 is a moderate
+          drought that happens once or twice in 10 years. Note that we took the 
+          official SPEI and multiplied it by (-1) in order to adjust the coefficient
+          sign interpretation in the regressions. Positive values indicate harsher conditions.
+  + temperature: CRU land-based measure of average surface temperature in celsius
 
 ```{r clearpage1, echo=FALSE, results='asis'}
 cat("\\clearpage")
@@ -426,7 +428,18 @@ if (more_lags) {
       "agric_stress + agric_stress_lag1 + agric_stress_lag2 + agric_stress_lag3 +
         agric_stress_lag4 + agric_stress_lag5",
       "agric_stress + agric_stress_lag1 + agric_stress_lag2 + agric_stress_lag3 +
-        agric_stress_lag4 + agric_stress_lag5 + agric_stress_lag6") ) 
+        agric_stress_lag4 + agric_stress_lag5 + agric_stress_lag6"),
+     "Temperature" = c(
+       "temperature",
+       "temperature + temperature_lag1",
+       "temperature + temperature_lag1 + temperature_lag2",
+       "temperature + temperature_lag1 + temperature_lag2 + temperature_lag3",
+       "temperature + temperature_lag1 + temperature_lag2 + temperature_lag3 +
+         temperature_lag4",
+       "temperature + temperature_lag1 + temperature_lag2 + temperature_lag3 +
+         temperature_lag4 + temperature_lag5",
+       "temperature + temperature_lag1 + temperature_lag2 + temperature_lag3 +
+         temperature_lag4 + temperature_lag5 + temperature_lag6") ) 
   model_names <- c(
   "Model 1: 0 Lags",
   "Model 2: 1 Lag",
@@ -448,7 +461,11 @@ if (more_lags) {
     "AgricStress" = c(
       "agric_stress",
       "agric_stress + agric_stress_lag1",
-      "agric_stress + agric_stress_lag1 + agric_stress_lag2") ) 
+      "agric_stress + agric_stress_lag1 + agric_stress_lag2"),
+    "Temperature" = c(
+       "temperature",
+       "temperature + temperature_lag1",
+       "temperature + temperature_lag1 + temperature_lag2") ) 
   model_names <- c(
   "Model 1: 0 Lags",
   "Model 2: 1 Lag",

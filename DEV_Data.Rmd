@@ -54,6 +54,10 @@ colnames(droughtdata2)[which(names(droughtdata2) == "DATA")] <- "agric_stress"
 
 droughtdata = left_join(droughtdata1, droughtdata2, by=c("year","district"))
 
+# Load temperature data (world bank)
+tempdata = read_xlsx("rain_data/cru-x0.5_timeseries_tas_timeseries_annual_1901-2024_mean_historical_cru_ts4.09_mean.xlsx")
+colnames(tempdata)[which(names(tempdata) == "name")] <- "district"
+
 # Load raw agriculture data
 raw_agri_data = as.data.frame(read_xlsx("agriculture data/agri.xlsx"))
 
@@ -273,6 +277,19 @@ agric_data = agric_data %>%
 agric_data[agric_data == ".."] <- NA
 agric_data[agric_data == "-"] <- NA
 
+# For Temperature data
+tempdata = subset(tempdata, select = -code )
+tempdata_long <- tempdata %>%
+    pivot_longer(
+    cols = -district,         
+    names_to = "year",         
+    values_to = "temperature"  ) %>%
+  mutate(district = recode(district,
+      "Gergharkunik" = "Gegharkunik",
+      "Lori"         = "Lor",
+      "Vayots Dzor"  = "Vayots dzor"),
+      year = str_extract(year, "\\d{4}"))
+tempdata_long = subset(tempdata_long, year >= 2000)
 
 ```
 
@@ -323,8 +340,12 @@ hh_dataset <- left_join(hh_dataset, droughtdata, by = c("year", "district"))
 agric_data$year = as.integer(agric_data$year)
 dataset = left_join(dataset, agric_data, by = c("year", "district"))
 
+# Add temperature data
+tempdata_long$year = as.integer(tempdata_long$year)
+dataset = left_join(dataset, tempdata_long, by = c("year", "district"))
+
 # Clean useless datasets
-rm(cleaned_data_list, household_data, name_map, yearly_data, droughtdata, raw_agri_data, stacked_data, temp_df, data_only, agric_data)
+rm(cleaned_data_list, household_data, name_map, yearly_data, droughtdata, raw_agri_data, stacked_data, temp_df, data_only, agric_data, tempdata, tempdata_long)
 
 # Replace Yerevan NA with 0
 dataset <- dataset %>% mutate(agric_income = case_when(district == "Yerevan" & year == "2016" & is.na(agric_income) ~ 0, TRUE ~ agric_income))
@@ -480,7 +501,13 @@ dataset <- dataset %>%
     share_lag5 = lag(share, n = 5, default = 0),
     share_lag6 = lag(share, n = 6, default = 0),
     agric_stress_lag5 = lag(agric_stress, n = 5, default = 0),
-    agric_stress_lag6 = lag(agric_stress, n = 6, default = 0)) %>%
+    agric_stress_lag6 = lag(agric_stress, n = 6, default = 0),
+    temperature_lag1 = lag(temperature, n = 1, default = 0),
+    temperature_lag2 = lag(temperature, n = 2, default = 0),
+    temperature_lag3 = lag(temperature, n = 3, default = 0),
+    temperature_lag4 = lag(temperature, n = 4, default = 0),
+    temperature_lag5 = lag(temperature, n = 5, default = 0),
+    temperature_lag6 = lag(temperature, n = 6, default = 0)) %>%
     ungroup()
 
 dataset_deciles <- dataset_deciles %>%
