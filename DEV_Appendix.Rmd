@@ -1,5 +1,5 @@
 ---
-title: "Development Economics: Project Analysis"
+title: "Appendix"
 output: 
   pdf_document:
     toc: true
@@ -12,8 +12,8 @@ header-includes:
 ---
 \newpage
 
-# Setup
-```{r library_setup, results=FALSE, warning=FALSE, message=FALSE, echo=TRUE}
+
+```{r library_setup, message=FALSE, warning=FALSE, include=FALSE, results=FALSE}
 rm(list=ls())
 require(tinytex) #LaTeX
 require(ggplot2) #plots
@@ -33,7 +33,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = FALSE
+latex_format = TRUE
 
 getwd()
 setwd("...") 
@@ -43,8 +43,7 @@ set.seed(123)
 
 # Data 
 
-## Loading 
-```{r data}
+```{r data, include=FALSE}
 
 load("final_data.Rdata")
 load("final_data_quartiles.Rdata")
@@ -112,7 +111,7 @@ cat("\\clearpage")
 # Descriptive Evidence
 
 ## Summary Statistics
-```{r summarystats, message=FALSE,warning=FALSE}
+```{r summarystats, echo=FALSE, message=FALSE, warning=FALSE}
 
 summary_stats_data <- dataset %>%
   pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
@@ -139,13 +138,12 @@ summary_stats <- summary_stats_metric %>%
     full_width = FALSE,
     position = "center")
 summary_stats
-if (latex_format){kableExtra::save_kable(summary_stats, "figures/summary_stats.tex")}
 
 ```
 
 
 ## Raw Data Graphs
-```{r district desc ev, message=FALSE, warning=FALSE}
+```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE}
 
 var_names <- c(
   "income"                  = "Household Income",
@@ -198,9 +196,6 @@ plot_list_by_metric <- map(all_metrics, function(met) {
           axis.text.y = element_text(size = 9),
           panel.grid.minor = element_blank() )
     print(p)
-  if (latex_format) {
-    ggsave(filename = paste0("plot_", met, ".png"), path = "figures/",
-         plot = p, width = 12, height = 10) }
   return(p) } )
 
 ```
@@ -213,7 +208,7 @@ Note: This graph should be interpreted with caution as the number of districts
         is very low, meaning that any kind of visible relationship is very 
          likely due to confounding effects and between-district variation.
 
-```{r district desc ev agric drought, message=FALSE, warning=FALSE}
+```{r district desc ev agric drought, echo=FALSE, message=FALSE, warning=FALSE}
 
 # Compute, for each years, the mean of agricultural output between districts
 #  that experience drought vs no drought
@@ -239,7 +234,7 @@ ggplot(agric_plot, aes(x = year, y = mean_agric,
 ```
 
 ## Graphs with Drought Dummy and Quartiles
-```{r district desc ev w/ quartiles, message=FALSE, warning=FALSE}
+```{r district desc ev w/ quartiles, echo=FALSE, message=FALSE, warning=FALSE}
 
 # Data Prep
 dataset_prepped_q <- dataset_quartiles %>%
@@ -331,8 +326,8 @@ cat("\\clearpage")
   + Fruits output per field
   + Potatoes output per field
 
-### Data Choice Selection
-```{r tfwedata selection, message=FALSE, warning=FALSE, echo=TRUE}
+
+```{r tfwedata selection, echo=FALSE, message=FALSE, warning=FALSE}
 
 # Select TRUE for having dependent variables in logs
 dependent_in_logs <- TRUE
@@ -351,7 +346,7 @@ more_lags <- FALSE
 
 ```
 
-```{r selection implementation, warning=FALSE, message=FALSE, echo=TRUE}
+```{r selection implementation, echo=FALSE, message=FALSE, warning=FALSE}
 
 # Base case
 twfe_data = dataset
@@ -396,7 +391,7 @@ if (more_poverty) {
 ```
 
 
-## Regression
+## Regressions
 
 ### Equation
 All our regressions resemble the following equations, where $Y_{dt}$ represents
@@ -422,8 +417,7 @@ $$
 $$
 
 
-### Estimation Loop
-```{r reg_loop, message=FALSE,warning=FALSE,results='asis', echo=TRUE}
+```{r reg_loop, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 
 # Define independent variables as a list of groups
 if (more_lags) {
@@ -537,15 +531,6 @@ for (dv in dependent_vars) {
       
       clean_group <- gsub(" ", "", group_name)
     file_path <- paste0("figures/reg_", dv, "_", clean_group, ".tex")
-    
-    if (latex_format) {
-    etable(models_list,
-      fixef_sizes = TRUE,     
-      fitstat = c("n", "r2", "wr2"), 
-      tex = latex_format, 
-      file = file_path,
-      dict = var_dict,
-      replace = TRUE) }
     
     print(etable(
       models_list,
