@@ -21,7 +21,9 @@ It then saves it as 4 key datasets:
 Find and run "DEV_Analysis.rmd". Note that you will have to set the directory.
 Alternatively, you can find "DEV_Analysis.rmd" which is just the knitted-to-pdf
 version of this code. In it is all our relevant analyses, and is the code file
-which creates all our figures.
+which creates all our figures. Set "latex_format" = TRUE in the setup chunk
+and run the code to save the figures. Set "latex_format" = FALSE in the setup 
+chunk in order to just run the code in the console.
 Note that there is an "Data Choice Selection" chunk, where by simply setting 
 certain settings to "TRUE", you can run all the regressions according to certain 
 criterions such as: dependent variables in logs, excluding Yerevan city, restricting 
@@ -32,6 +34,7 @@ poverty rates, and including up to 6 lags.
 
 -------------- Appendix --------------
 The "DEV_appendix.rmd" file essentially is a cleaned-up, shortened version
-of the full analysis file with the figures and tables not present in the
+of the full analysis file with the plots and tables not present in the
 actual paper. It also includes more detailed explanations of the data.
+
 
