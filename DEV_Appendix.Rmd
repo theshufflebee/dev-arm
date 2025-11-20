@@ -9,6 +9,8 @@ output:
 header-includes:
    - \usepackage{booktabs}
    - \setcounter{secnumdepth}{3}
+   - \usepackage{float}
+   - \usepackage{placeins}
 ---
 \newpage
 
@@ -104,14 +106,12 @@ variable represents the average level in a particular year in a particular distr
           sign interpretation in the regressions. Positive values indicate harsher conditions.
   + temperature: CRU land-based measure of average surface temperature in celsius
 
-```{r clearpage1, echo=FALSE, results='asis'}
-cat("\\clearpage")
-```
+\newpage
 
 # Descriptive Evidence
 
 ## Summary Statistics
-```{r summarystats, echo=FALSE, message=FALSE, warning=FALSE}
+```{r summarystats, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H"}
 
 summary_stats_data <- dataset %>%
   pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
@@ -134,16 +134,17 @@ summary_stats <- summary_stats_metric %>%
   kableExtra::kable(format = format, digits = 2, 
               caption = "Summary Statistics", booktabs = TRUE) %>%
   kableExtra::kable_styling(
-    latex_options = c("striped", "condensed", "hold_position", "scaled_down"),
+    latex_options = c("striped", "condensed", "hold_position"),
     full_width = FALSE,
     position = "center")
 summary_stats
 
 ```
 
+\FloatBarrier
 
 ## Raw Data Graphs
-```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE}
+```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4.32}
 
 var_names <- c(
   "income"                  = "Household Income",
@@ -186,7 +187,7 @@ plot_list_by_metric <- map(all_metrics, function(met) {
     facet_wrap(~ district, scales = "free_y", ncol = 3) + 
     labs(title = paste("Evolution of:", pretty_name),x = "Year",y = "Value") +
     theme_light() + 
-    theme(plot.title = element_text(face = "bold", size = 14, hjust = 0.5), 
+    theme(plot.title = element_text(face = "bold", size = 12, hjust = 0.5), 
           plot.subtitle = element_text(size = 12, hjust = 0.5), 
           plot.caption = element_text(color = "grey50", face = "italic"),
           strip.text = element_text(face = "bold", color = "black", hjust = 0), 
@@ -299,10 +300,7 @@ ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group
 
 ```
 
-```{r clearpage2, echo=FALSE, results='asis'}
-cat("\\clearpage")
-```
-
+\newpage
 
 # TWFE Regressions
 
