@@ -17,7 +17,7 @@ It then saves it as 4 key datasets:
 
 
 
--------------- Analysis --------------
+-------------- Full Analysis --------------
 Find and run "DEV_Analysis.rmd". Note that you will have to set the directory.
 Alternatively, you can find "DEV_Analysis.rmd" which is just the knitted-to-pdf
 version of this code. In it is all our relevant analyses.
@@ -28,3 +28,7 @@ the sample to more rural districts, restricting the sample to districts with hig
 poverty rates, and including up to 6 lags.
 
 
+
+-------------- Appendix --------------
+The "DEV_appendix.rmd" file essentially is a cleaned-up, shortened version
+of the full analysis file.
