@@ -1,0 +1,31 @@
+
+\begingroup
+\centering
+\begin{tabular}{lccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{3}{c}{fruits\_harvest}\\
+   Model:             & (1)      & (2)      & (3)\\  
+   \midrule
+   \emph{Variables}\\
+   temperature        & 0.1117   & 0.1123   & 0.1934\\   
+                      & (0.3286) & (0.3298) & (0.3155)\\   
+   temperature\_lag1  &          & 0.0076   & 0.0458\\   
+                      &          & (0.1958) & (0.2025)\\   
+   temperature\_lag2  &          &          & 0.3225$^{*}$\\   
+                      &          &          & (0.1467)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   district (11)      & Yes      & Yes      & Yes\\  
+   year (18)          & Yes      & Yes      & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations       & 194      & 194      & 194\\  
+   R$^2$              & 0.91306  & 0.91306  & 0.91352\\  
+   Within R$^2$       & 0.00066  & 0.00067  & 0.00591\\  
+   \midrule \midrule
+   \multicolumn{4}{l}{\emph{Clustered (district) standard-errors in parentheses}}\\
+   \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

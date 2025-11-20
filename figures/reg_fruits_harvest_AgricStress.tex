@@ -1,0 +1,31 @@
+
+\begingroup
+\centering
+\begin{tabular}{lccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{3}{c}{fruits\_harvest}\\
+   Model:                & (1)           & (2)            & (3)\\  
+   \midrule
+   \emph{Variables}\\
+   agric\_stress         & 0.6220$^{**}$ & 0.5760$^{***}$ & 0.5885$^{**}$\\   
+                         & (0.2250)      & (0.1782)       & (0.1992)\\   
+   agric\_stress\_lag1   &               & 0.6142$^{*}$   & 0.5907$^{*}$\\   
+                         &               & (0.3383)       & (0.3034)\\   
+   agric\_stress\_lag2   &               &                & 0.4338\\   
+                         &               &                & (0.3242)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   district (11)         & Yes           & Yes            & Yes\\  
+   year (18)             & Yes           & Yes            & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations          & 194           & 194            & 194\\  
+   R$^2$                 & 0.91457       & 0.91610        & 0.91670\\  
+   Within R$^2$          & 0.01802       & 0.03561        & 0.04253\\  
+   \midrule \midrule
+   \multicolumn{4}{l}{\emph{Clustered (district) standard-errors in parentheses}}\\
+   \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

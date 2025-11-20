@@ -33,7 +33,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = FALSE
+latex_format = T
 
 getwd()
 setwd("...") 
@@ -131,19 +131,34 @@ summary_stats_metric <- summary_stats_data %>%
   ungroup()
 
 if (latex_format) { format <- "latex"} else { format <- "html" }
-summary_stats_metric %>%
+summary_stats <- summary_stats_metric %>%
   kableExtra::kable(format = format, digits = 2, 
               caption = "Summary Statistics", booktabs = TRUE) %>%
   kableExtra::kable_styling(
     latex_options = c("striped", "condensed", "hold_position", "scaled_down"),
     full_width = FALSE,
     position = "center")
+summary_stats
+if (latex_format){kableExtra::save_kable(summary_stats, "figures/summary_stats.tex")}
 
 ```
 
 
 ## Raw Data Graphs
 ```{r district desc ev, message=FALSE, warning=FALSE}
+
+var_names <- c(
+  "income"                  = "Household Income",
+  "agric_income"            = "Household Agricultural Income",
+  "agric_output"            = "Gross Agricultural Output",
+  "fdcons"                  = "Household food Consumption",
+  "poverty"                 = "Rate of households in poverty",
+  "spei"                    = "SPEI (Drought Index)",
+  "share"                   = "Share of observations of SPEI above +1",
+  "agric_stress"            = "Agricultural Stress",
+  "Total_Rainfall"          = "Total Rainfall",
+  "output_per_field_fruits" = "Fruits Yield",
+  "output_per_field_grains" = "Grains Yield")
 
 plot_data <- dataset %>%
   pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
@@ -155,14 +170,14 @@ plot_data <- dataset %>%
 all_metrics <- unique(plot_data$metric)
 
 plot_list_by_metric <- map(all_metrics, function(met) {
-  
+  pretty_name <- var_names[met]
   plot_data <- plot_data %>%
     filter(metric == met)
   p <- ggplot(plot_data, aes(x = year, y = value)) +
     geom_line() +
     geom_point(size = 0.5) +
     facet_wrap(~ district, scales = "free_y", ncol = 3) + 
-    labs(title = paste("Evolution of:", met),x = "Year",y = "Value") +
+    labs(title = paste("Evolution of:", pretty_name),x = "Year",y = "Value") +
     theme_light() + 
     theme(plot.title = element_text(face = "bold", size = 14, hjust = 0.5), 
           plot.subtitle = element_text(size = 12, hjust = 0.5), 
@@ -174,7 +189,9 @@ plot_list_by_metric <- map(all_metrics, function(met) {
           axis.text.y = element_text(size = 9),
           panel.grid.minor = element_blank() )
     print(p)
-  #ggsave(filename = paste0("plot_", met, ".png"), plot = p, width = 12, height = 10)
+  if (latex_format) {
+    ggsave(filename = paste0("plot_", met, ".png"), path = "figures/",
+         plot = p, width = 12, height = 10) }
   return(p) } )
 
 ```
@@ -494,11 +511,23 @@ for (dv in dependent_vars) {
         data = twfe_data,
         cluster = ~ district) }
       names(models_list) <- model_names
+      
+      clean_group <- gsub(" ", "", group_name)
+    file_path <- paste0("figures/reg_", dv, "_", clean_group, ".tex")
+    
+    if (latex_format) {
+    etable(models_list,
+      fixef_sizes = TRUE,     
+      fitstat = c("n", "r2", "wr2"), 
+      tex = latex_format, 
+      file = file_path, 
+      replace = TRUE) }
+    
     print(etable(
       models_list,
-      fixef_sizes = TRUE,    
+      fixef_sizes = TRUE,     
       fitstat = c("n", "r2", "wr2"), 
-      tex = latex_format)) } }
+      tex = latex_format))} }
 
 ```
 

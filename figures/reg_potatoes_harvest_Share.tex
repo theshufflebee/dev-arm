@@ -1,0 +1,31 @@
+
+\begingroup
+\centering
+\begin{tabular}{lccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{3}{c}{potatoes\_harvest}\\
+   Model:        & (1)      & (2)            & (3)\\  
+   \midrule
+   \emph{Variables}\\
+   share         & -0.3500  & -0.5348$^{*}$  & -0.5406$^{*}$\\   
+                 & (0.2041) & (0.2540)       & (0.2604)\\   
+   share\_lag1   &          & -0.8109$^{**}$ & -0.8300$^{**}$\\   
+                 &          & (0.3189)       & (0.3329)\\   
+   share\_lag2   &          &                & -0.0928\\   
+                 &          &                & (0.2677)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   district (11) & Yes      & Yes            & Yes\\  
+   year (18)     & Yes      & Yes            & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations  & 194      & 194            & 194\\  
+   R$^2$         & 0.97369  & 0.97481        & 0.97482\\  
+   Within R$^2$  & 0.00872  & 0.05073        & 0.05126\\  
+   \midrule \midrule
+   \multicolumn{4}{l}{\emph{Clustered (district) standard-errors in parentheses}}\\
+   \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+
