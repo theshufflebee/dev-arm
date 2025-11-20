@@ -53,57 +53,6 @@ load("final_data_household.Rdata")
 
 ```
 
-## Explanation
-
-We have district-level panel data for the 11 districts (Merz) of Armenia from the
-years 2004 to 2023. It consists of variables from aggregated household surveys,
-variables on detailed agricultural output and drought-related variables. Every
-variable represents the average level in a particular year in a particular district.
-
-### Variable Names \& Units
-* In Armenian Dram (currency):
-  + income: Household income
-  + agric_income: Household agriculture income
-  + fdcons: Household food consumption
-  + fdpurch: Household food purchases
-  + exp: Household expenditures 
-  + agric_output: Gross Agriculture output \textcolor{red}{real?}
-* In Percentage:
-  + poverty: Rate of households in poverty
-  + urban: Rate of households living in an urban area
-  + share: Share of observations of SPEI above +1
-  + agric_stress: Percentage of arable areas with a VHI (Vegetable Health Index) 
-                  value below 35\%
-* Dummies:
-  + drought_dummy1: 
-  + drought_dummy2: 
-* Tons (1000kg)
-  + grains_harvest: Tons of grains and leguminous plants harvested
-  + vegetables_harvest: Tons of vegetables harvested
-  + fruits_harvest: Tons of fruits and berries harvested
-  + potatoes_harvest: Tons of potatoes harvested
-  + watermelon_harvest: Tons of watermelons harvested
-  + grapes_harvest: Tons of grapes harvested
-* Hectare (1000km2)
-  + grains_area: Hectares used for harvesting grains and leguminous plants
-  + vegetables_area: Hectares used for harvesting vegetables
-  + fruits_area: Hectares used for harvesting fruits and berries
-  + potatoes_area: Hectares used for harvesting potatoes
-  + watermelon_area: Hectares used for harvesting watermelons
-  + grapes_area: Hectares used for harvesting grapes
-* Tons per hectare (1000kg / 1000km2)
-  + output_per_field_grains: Grains harvested divided by area
-  + output_per_field_vegetables: Vegetables harvested divided by area
-  + output_per_field_fruits: Fruits harvested divided by area
-  + output_per_field_potatoes: Potatoes harvested divided by area
-  + output_per_field_grapes: Grapes harvested divided by area
-* Other:
-  + spei: SPEI measures deviation of the water balance from the long term mean.
-          A value of 0 means we are at the long term mean, while +1 is a moderate
-          drought that happens once or twice in 10 years. Note that we took the 
-          official SPEI and multiplied it by (-1) in order to adjust the coefficient
-          sign interpretation in the regressions. Positive values indicate harsher conditions.
-  + temperature: CRU land-based measure of average surface temperature in celsius
 
 ```{r clearpage1, echo=FALSE, results='asis'}
 cat("\\clearpage")
@@ -209,10 +158,6 @@ plot_list_by_metric <- map(all_metrics, function(met) {
 
 ## Graphs with Drought Dummy
 
-Note: This graph should be interpreted with caution as the number of districts
-        is very low, meaning that any kind of visible relationship is very 
-         likely due to confounding effects and between-district variation.
-
 ```{r district desc ev agric drought, message=FALSE, warning=FALSE}
 
 # Compute, for each years, the mean of agricultural output between districts
@@ -313,24 +258,6 @@ cat("\\clearpage")
 
 ## Data
 
-### Variable Units
-
-* Armenian Dram (currency):
-  + Income
-  + Agriculture income
-  + Agriculture output
-  + Food consumption
-* Tons (1000kg)
-  + Grains harvest
-  + Vegetables harvest
-  + Fruits harvest
-  + Potatoes harvest
-* Tons per hectare (1000kg / 1000km2)
-  + Grains output per field
-  + Vegetables output per field
-  + Fruits output per field
-  + Potatoes output per field
-
 ### Data Choice Selection
 ```{r tfwedata selection, message=FALSE, warning=FALSE, echo=TRUE}
 
@@ -397,29 +324,6 @@ if (more_poverty) {
 
 
 ## Regression
-
-### Equation
-All our regressions resemble the following equations, where $Y_{dt}$ represents
-the chosen outcome variable for district $d$ at time $t$, $\lambda_d$ represents
-the district-specific fixed effect, $\gamma_t$ represents the time-specific 
-fixed effect, $X_{dt}$ is the chosen explanatory variable, $\beta$ is the effect
-of said variable on the outcome, and $\epsilon_{dt}$ is the error.
-$$
-\begin{aligned}
-  Y_{dt} &= \alpha + \lambda_d + \gamma_t + \beta X_{dt} + \epsilon_{dt}
-\end{aligned}
-$$
-$$
-\begin{aligned}
-  Y_{dt} &= \alpha + \lambda_d + \gamma_t + \beta_1 X_{dt} + \beta_2 X_{d,t-1} + \epsilon_{dt}
-\end{aligned}
-$$
-$$
-\begin{aligned}
-  Y_{dt} &= \alpha + \lambda_d + \gamma_t + \beta_1 X_{dt} + \beta_2 X_{d,t-1} 
-  + \beta_3 X_{d,t-2}  + \epsilon_{dt}
-\end{aligned}
-$$
 
 
 ### Estimation Loop
