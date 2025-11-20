@@ -66,7 +66,6 @@ variable represents the average level in a particular year in a particular distr
   + fdcons: Household food consumption
   + fdpurch: Household food purchases
   + exp: Household expenditures 
-  + agric_output: Gross Agriculture output \textcolor{red}{real?}
 * In Percentage:
   + poverty: Rate of households in poverty
   + urban: Rate of households living in an urban area
@@ -77,6 +76,7 @@ variable represents the average level in a particular year in a particular distr
   + drought_dummy1: 
   + drought_dummy2: 
 * Tons (1000kg)
+  + agric_output: Gross Agriculture output
   + grains_harvest: Tons of grains and leguminous plants harvested
   + vegetables_harvest: Tons of vegetables harvested
   + fruits_harvest: Tons of fruits and berries harvested
@@ -313,9 +313,9 @@ cat("\\clearpage")
 * Armenian Dram (currency):
   + Income
   + Agriculture income
-  + Agriculture output
   + Food consumption
 * Tons (1000kg)
+  + Agriculture output
   + Grains harvest
   + Vegetables harvest
   + Fruits harvest
