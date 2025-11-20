@@ -502,6 +502,10 @@ create_lag_labels <- function(base_code, base_pretty, n_lags = 6) {
 
 var_dict <- c(
   var_names, 
+  "AgricStress" = "Agricultural Stress",
+  "Share"       = "Share of Agriculture",
+  "SPEI"        = "Drought Index (SPEI)",
+  "Temperature" = "Temperature",
   create_lag_labels("spei", "SPEI"),
   create_lag_labels("share", "Agric. Share"),
   create_lag_labels("agric_stress", "Agric. Stress"),
@@ -511,11 +515,14 @@ var_dict <- c(
 for (dv in dependent_vars) {
   
   # Create a latex version of the dv name 
-  dv_safe <- gsub("_", "\\\\_", dv)
-  cat(paste0("\n\n\\subsection{Dependent Variable: ", dv_safe, "}\n\n"))
+  pretty_dv <- var_dict[dv]
+  if (is.na(pretty_dv)) pretty_dv <- dv
+  cat(paste0("\n\n\\subsection{Dependent Variable: ", pretty_dv, "}\n\n"))
 
   for (group_name in names(iv_groups)) {
-    cat(paste0("\n\n\\subsubsection{Regressed on: ", group_name, "}\n\n"))
+    pretty_group <- var_dict[group_name]
+    if (is.na(pretty_group)) pretty_group <- group_name
+    cat(paste0("\n\n\\subsubsection{Regressed on: ", pretty_group, "}\n\n"))
     models_list <- list() 
     current_iv_formulas <- iv_groups[[group_name]] 
     
