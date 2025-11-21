@@ -499,7 +499,7 @@ create_lag_labels <- function(base_code, base_pretty, n_lags = 6) {
 var_dict <- c(
   var_names, 
   "AgricStress" = "Agricultural Stress",
-  "Share"       = "SPEI Intense Share",
+  "Share"       = "Share of observations of SPEI above +1",
   "SPEI"        = "Drought Index (SPEI)",
   "Temperature" = "Temperature",
   create_lag_labels("spei", "SPEI"),
