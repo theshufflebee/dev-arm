@@ -366,6 +366,7 @@ colnames(dataset)[colnames(dataset) == "Planting areas of fruits and berries"] <
 colnames(dataset)[colnames(dataset) == "Planting areas of grape"] <- 'grapes_area'
 
 # Adjust unit (before: 1 = 1000 tons -> after: 1 = 1 ton)
+dataset$agric_output = dataset$agric_output * 1000
 dataset$potatoes_harvest = dataset$potatoes_harvest * 1000
 dataset$fruits_harvest = dataset$fruits_harvest * 1000
 dataset$grains_harvest = dataset$grains_harvest * 1000
