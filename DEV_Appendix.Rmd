@@ -109,17 +109,17 @@ variable represents the average level in a particular year in a particular distr
 
 ## Detailed Explaination for SPEI & Stress
 
-The Standardised Precipitation-Evapotranspiration Index is a multiscalar drought index that allows a comparison with respect to normal long term conditions. It's value is a Standard Normal Distribution with sd =1. A value of -0.8 to -1.2 should occure arround once or twice in 10 years. It can be claculated over multiple durations. Here we use the SPEI-3 which represents the waterbalance over the last 3 months.
+The Standardized Precipitation-Evapotranspiration Index is a multiscalar drought index that allows a comparison with respect to normal long term conditions. It's value is a Standard Normal Distribution with sd =1. A value of -0.8 to -1.2 should occur arround once or twice in 10 years. It can be calculated over multiple durations. Here we use the SPEI-3 which represents the water balance over the last 3 months.
 
-We use data from the Global Drought Observatory to calculate our values. The standart way of expressing it is geospatial data with pixels correspponding to certain coordinates. Then we use the District poligons of armenias Merz to select all SPEI pixels touched by the district and average them out to calculate the value of the district. As the SPEI is recalculated every 10 days we then transform these values into different indicators.
+We use data from the Global Drought Observatory to calculate our values. The standard way of expressing it is geospatial data with pixels corresponding to certain coordinates. Then we use the District polygons of Armenias Merz to select all SPEI pixels touched by the district and average them out to calculate the value of the district. As the SPEI is recalculated every 10 days we then transform these values into different indicators.
 
-First we average out per year and district to get the value mean SPEI. This tellls us the average deviation from the long term 3 month waterbalance per year.
+First we average out per year and district to get the value mean SPEI. This tells us the average deviation from the long term 3 month waterbalance per year.
 
-Further we create two dummies. SPEI consec is equal to 1 if there were at least 10 observations in a row with an SPEI value below -1. which would correspont to a 90 day period where the water balance was in moderate drought conditions.
+Further we create two dummies. SPEI consec is equal to 1 if there were at least 10 observations in a row with an SPEI value below -1. which would correspond to a 90 day period where the water balance was in moderate drought conditions.
 
-A second dummy is euqal to 1 if there are 15 observations below -1 in a year. They do not have to be consecutive. 
+A second dummy is equal to 1 if there are 15 observations below -1 in a year. They do not have to be consecutive. 
 
-Agricultural Stress is based on the VHI index. It is based on meterological sattelite data. It can detect plants that wilt or show unusual colors and drops the index if it is the case. The VHI gives the percentage of observation that have a VHI below 35%.
+Agricultural Stress is based on the VHI index. It is based on meteorological satellite data. It can detect plants that wilt or show unusual colors and drops the index if it is the case. The VHI gives the percentage of observation that have a VHI below 35%.
 
 ## Descriptive Evidence
 
