@@ -57,7 +57,7 @@ load("final_data_household.Rdata")
 ## Detailed Explanation
 
 We have district-level panel data for the 11 districts (Merz) of Armenia from the
-years 2004 to 2023. It consists of variables from aggregated household surveys,
+years 2004 to 2023. It consists of variables from aggregated n national household surveys,
 variables on detailed agricultural output and drought-related variables. Every
 variable represents the average level in a particular year in a particular district.
 
