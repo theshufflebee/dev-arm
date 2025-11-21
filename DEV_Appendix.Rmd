@@ -75,8 +75,8 @@ variable represents the average level in a particular year in a particular distr
   + agric_stress: Percentage of arable areas with a VHI (Vegetable Health Index) 
                   value below 35\%
 * Dummies:
-  + drought_dummy1: 
-  + drought_dummy2: 
+  + drought_dummy1: Equals 1 if there are at least 10 SPEI observations above +1
+  + drought_dummy2: Equals 1 if there are at least 15 SPEI observations above +1
 * Tons (1000kg)
   + agric_output: Gross Agriculture output
   + grains_harvest: Tons of grains and leguminous plants harvested
@@ -93,11 +93,11 @@ variable represents the average level in a particular year in a particular distr
   + watermelon_area: Hectares used for harvesting watermelons
   + grapes_area: Hectares used for harvesting grapes
 * Tons per hectare (1000kg / 1000km2)
-  + output_per_field_grains: Grains harvested divided by area
-  + output_per_field_vegetables: Vegetables harvested divided by area
-  + output_per_field_fruits: Fruits harvested divided by area
-  + output_per_field_potatoes: Potatoes harvested divided by area
-  + output_per_field_grapes: Grapes harvested divided by area
+  + output_per_field_grains: Grains harvested divided by area (yield)
+  + output_per_field_vegetables: Vegetables harvested divided by area (yield)
+  + output_per_field_fruits: Fruits harvested divided by area (yield)
+  + output_per_field_potatoes: Potatoes harvested divided by area (yield)
+  + output_per_field_grapes: Grapes harvested divided by area (yield)
 * Other:
   + spei: SPEI measures deviation of the water balance from the long term mean.
           A value of 0 means we are at the long term mean, while +1 is a moderate
@@ -112,6 +112,29 @@ variable represents the average level in a particular year in a particular distr
 
 ## Raw Data Graphs
 ```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4.32}
+
+var_names <- c(
+  "income"                  = "Household Income",
+  "agric_income"            = "Household Agricultural Income",
+  "agric_output"            = "Gross Agricultural Output",
+  "fdcons"                  = "Household food Consumption",
+  "poverty"                 = "Rate of households in poverty",
+  "urban"                   = "Rate of households in urban areas",
+  "spei"                    = "SPEI (Drought Index)",
+  "share"                   = "Share of observations of SPEI above +1",
+  "agric_stress"            = "Agricultural Stress",
+  "Total_Rainfall"          = "Total Rainfall",
+  "output_per_field_fruits" = "Fruits Yield",
+  "output_per_field_grains" = "Grains Yield",
+  "output_per_field_vegetables" = "Vegetables Yield",
+  "output_per_field_potatoes"   = "Potatoes Yield",
+  "grains_harvest"          = "Grains Harvest",
+  "vegetables_harvest"      = "Vegetables Harvest",
+  "fruits_harvest"          = "Fruits Harvest",
+  "potatoes_harvest"        = "Potatoes Harvest",
+  "temperature" = "Temperature (C)",
+  "district" = "District",
+  "year" = "Year")
 
 plot_data <- dataset %>%
   pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
