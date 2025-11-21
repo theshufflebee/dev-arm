@@ -336,6 +336,10 @@ if (more_poverty) {
 ### Estimation Loop
 ```{r reg_loop, message=FALSE,warning=FALSE,results='asis', echo=TRUE}
 
+# For numbering of captions to make it easier to find ourselves in latex
+section_base <- 4 
+dv_counter <- 2
+
 # Define independent variables as a list of groups
 if (more_lags) {
   iv_groups <- list(
@@ -426,12 +430,15 @@ var_dict <- c(
 
 # Loop for each dependent variable for each group of independent variables
 for (dv in dependent_vars) {
-  
+  dv_counter <- dv_counter + 1
   # Create a latex version of the dv name 
   dv_safe <- gsub("_", "\\\\_", dv)
   cat(paste0("\n\n\\subsection{Dependent Variable: ", dv_safe, "}\n\n"))
-
+  iv_counter <- 0
+  
   for (group_name in names(iv_groups)) {
+    iv_counter <- iv_counter + 1
+    section_str <- paste(section_base, dv_counter, iv_counter, sep = ".")
     cat(paste0("\n\n\\subsubsection{Regressed on: ", group_name, "}\n\n"))
     models_list <- list() 
     current_iv_formulas <- iv_groups[[group_name]] 
@@ -451,6 +458,7 @@ for (dv in dependent_vars) {
     
     if (latex_format) {
     etable(models_list,
+      label = section_str,
       fixef_sizes = TRUE,     
       fitstat = c("n", "r2", "wr2"), 
       tex = latex_format, 
