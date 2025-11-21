@@ -35,7 +35,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = TRUE
+latex_format = F
 
 getwd()
 setwd("...") 
@@ -110,63 +110,8 @@ variable represents the average level in a particular year in a particular distr
 
 # Descriptive Evidence
 
-## Summary Statistics
-```{r summarystats, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H"}
-
-summary_stats_data <- dataset %>%
-  pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
-                       urban, spei, share, agric_stress, 
-                       output_per_field_fruits, output_per_field_grains), 
-               names_to = "Variable", 
-               values_to = "value")
-
-summary_stats_metric <- summary_stats_data %>%
-  group_by(Variable) %>%  
-  summarize(Mean = mean(value, na.rm = TRUE),
-            SD = sd(value, na.rm = TRUE),
-            Median = median(value, na.rm = TRUE),
-            Min = min(value, na.rm = TRUE),
-            Max = max(value, na.rm = TRUE)) %>%
-  ungroup()
-
-if (latex_format) { format <- "latex"} else { format <- "html" }
-summary_stats <- summary_stats_metric %>%
-  kableExtra::kable(format = format, digits = 2, 
-              caption = "Summary Statistics", booktabs = TRUE) %>%
-  kableExtra::kable_styling(
-    latex_options = c("striped", "condensed", "hold_position"),
-    full_width = FALSE,
-    position = "center")
-summary_stats
-
-```
-
-\FloatBarrier
-
 ## Raw Data Graphs
 ```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4.32}
-
-var_names <- c(
-  "income"                  = "Household Income",
-  "agric_income"            = "Household Agricultural Income",
-  "agric_output"            = "Gross Agricultural Output",
-  "fdcons"                  = "Household food Consumption",
-  "poverty"                 = "Rate of households in poverty",
-  "spei"                    = "SPEI (Drought Index)",
-  "share"                   = "Share of observations of SPEI above +1",
-  "agric_stress"            = "Agricultural Stress",
-  "Total_Rainfall"          = "Total Rainfall",
-  "output_per_field_fruits" = "Fruits Yield",
-  "output_per_field_grains" = "Grains Yield",
-  "output_per_field_vegetables" = "Vegetables Yield",
-  "output_per_field_potatoes"   = "Potatoes Yield",
-  "grains_harvest"          = "Grains Harvest",
-  "vegetables_harvest"      = "Vegetables Harvest",
-  "fruits_harvest"          = "Fruits Harvest",
-  "potatoes_harvest"        = "Potatoes Harvest",
-  "temperature" = "Temperature (C)",
-  "district" = "District",
-  "year" = "Year")
 
 plot_data <- dataset %>%
   pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,

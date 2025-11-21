@@ -31,6 +31,7 @@ require(tidyr) #data
 require(tidyverse) #data
 require(fixest) #TWFE regression
 require(purrr) #for looping plots
+require(kableExtra) #for nice tables
 options(scipen=999)
 
 latex_format = FALSE
@@ -63,45 +64,13 @@ cat("\\clearpage")
 ## Summary Statistics
 ```{r summarystats, message=FALSE,warning=FALSE}
 
-summary_stats_data <- dataset %>%
-  pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
-                       urban, spei, share, agric_stress, 
-                       output_per_field_fruits, output_per_field_grains), 
-               names_to = "Variable", 
-               values_to = "value")
-
-summary_stats_metric <- summary_stats_data %>%
-  group_by(Variable) %>%  
-  summarize(Mean = mean(value, na.rm = TRUE),
-            SD = sd(value, na.rm = TRUE),
-            Median = median(value, na.rm = TRUE),
-            Min = min(value, na.rm = TRUE),
-            Max = max(value, na.rm = TRUE)) %>%
-  ungroup()
-
-if (latex_format) { format <- "latex"} else { format <- "html" }
-summary_stats <- summary_stats_metric %>%
-  kableExtra::kable(format = format, digits = 2, 
-              caption = "Summary Statistics", booktabs = TRUE) %>%
-  kableExtra::kable_styling(
-    latex_options = c("striped", "condensed", "hold_position", "scaled_down"),
-    full_width = FALSE,
-    position = "center")
-summary_stats
-if (latex_format){kableExtra::save_kable(summary_stats, "figures/summary_stats.tex")}
-
-```
-
-
-## Raw Data Graphs
-```{r district desc ev, message=FALSE, warning=FALSE}
-
 var_names <- c(
   "income"                  = "Household Income",
   "agric_income"            = "Household Agricultural Income",
   "agric_output"            = "Gross Agricultural Output",
   "fdcons"                  = "Household food Consumption",
   "poverty"                 = "Rate of households in poverty",
+  "urban"                   = "Rate of households in urban areas",
   "spei"                    = "SPEI (Drought Index)",
   "share"                   = "Share of observations of SPEI above +1",
   "agric_stress"            = "Agricultural Stress",
@@ -117,6 +86,44 @@ var_names <- c(
   "temperature" = "Temperature (C)",
   "district" = "District",
   "year" = "Year")
+
+summary_stats_data <- dataset %>%
+  pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
+                       urban, spei, share, 
+                       fruits_harvest, grains_harvest, potatoes_harvest,
+                       output_per_field_fruits, output_per_field_grains, output_per_field_potatoes), 
+               names_to = "Variable", 
+               values_to = "value")
+
+summary_stats_metric <- summary_stats_data %>%
+  group_by(Variable) %>%  
+  summarize(Mean = mean(value, na.rm = TRUE),
+            SD = sd(value, na.rm = TRUE),
+            Median = median(value, na.rm = TRUE),
+            Min = min(value, na.rm = TRUE),
+            Max = max(value, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(Variable = factor(Variable, 
+                             levels = names(var_names), 
+                             labels = var_names)) %>%
+    arrange(Variable)
+
+if (latex_format) { format <- "latex"} else { format <- "html" }
+summary_stats <- summary_stats_metric %>%
+  kable(format = format, digits = 2, 
+              caption = "Summary Statistics", booktabs = TRUE) %>%
+  kable_styling(
+    latex_options = c("striped", "condensed", "hold_position"),
+    full_width = FALSE,
+    position = "center")
+if (latex_format) {save_kable(summary_stats, file = "figures/summary_stats.tex")}
+summary_stats
+
+```
+
+
+## Raw Data Graphs
+```{r district desc ev, message=FALSE, warning=FALSE}
 
 plot_data <- dataset %>%
   pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
