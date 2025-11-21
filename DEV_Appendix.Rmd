@@ -57,9 +57,17 @@ load("final_data_household.Rdata")
 ## Detailed Explanation
 
 We have district-level panel data for the 11 districts (Merz) of Armenia from the
-years 2004 to 2023. It consists of variables from aggregated household surveys,
+years 2004 to 2023. It consists of variables from aggregated n national household surveys,
 variables on detailed agricultural output and drought-related variables. Every
 variable represents the average level in a particular year in a particular district.
+
+Our main drought measuring tool is the Standardized Precipitation Evapotranspiration Index, which is a multi-scalar drought index that allows a comparison with respect to normal long term conditions.
+We then multiply it by (-1) in order to make interpretation of the regression coefficients easier. 
+It follows a Standard Normal Distribution with sd = 1. A value of +0.8 to +1.2 should occur around once or twice in 10 years. It can be calculated over multiple durations. Here we use the SPEI-3 which represents the water balance over the last 3 months. 
+
+We use data from the Global Drought Observatory to calculate our values. The standard way of expressing it is geo-spatial data with pixels corresponding to certain coordinates. Then we use the District polygons of Armenia's Merz to select all SPEI pixels touched by the district and average them out to calculate the value of the district. As the SPEI is recalculated every 10 days we then transform these values into different indicators. First we average out per year and district to get the value mean SPEI. This tells us the average deviation from the long term 3 month water balance per year and is the main SPEI variable we use in our regressions.Furthermore, we create two dummies based on this index. Dummy drought 1 is equal to 1 if there were at least 10 observations in a row with an SPEI value above +1. which would correspond to a 90 day period where the water balance was in moderate drought conditions. A second dummy is equal to 1 if there are 15 observations below -1 in a year. They do not have to be consecutive. 
+
+Our measure for agricultural stress is based on the VHI index, which is computed from meteorological satellite data. It can detect plants that wilt or show unusual colors and drops the index if it is the case. 
 
 ### Variable Names \& Units
 * In Armenian Dram (currency):
@@ -104,22 +112,11 @@ variable represents the average level in a particular year in a particular distr
           drought that happens once or twice in 10 years. Note that we took the 
           official SPEI and multiplied it by (-1) in order to adjust the coefficient
           sign interpretation in the regressions. Positive values indicate harsher conditions.
-  + temperature: CRU land-based measure of average surface temperature in celsius
+  + temperature: CRU land-based measure of average surface temperature in Celsius
   
 
-## Detailed Explaination for SPEI & Stress
 
-The Standardized Precipitation-Evapotranspiration Index is a multiscalar drought index that allows a comparison with respect to normal long term conditions. It's value is a Standard Normal Distribution with sd =1. A value of -0.8 to -1.2 should occur arround once or twice in 10 years. It can be calculated over multiple durations. Here we use the SPEI-3 which represents the water balance over the last 3 months.
 
-We use data from the Global Drought Observatory to calculate our values. The standard way of expressing it is geospatial data with pixels corresponding to certain coordinates. Then we use the District polygons of Armenias Merz to select all SPEI pixels touched by the district and average them out to calculate the value of the district. As the SPEI is recalculated every 10 days we then transform these values into different indicators.
-
-First we average out per year and district to get the value mean SPEI. This tells us the average deviation from the long term 3 month waterbalance per year.
-
-Further we create two dummies. SPEI consec is equal to 1 if there were at least 10 observations in a row with an SPEI value below -1. which would correspond to a 90 day period where the water balance was in moderate drought conditions.
-
-A second dummy is equal to 1 if there are 15 observations below -1 in a year. They do not have to be consecutive. 
-
-Agricultural Stress is based on the VHI index. It is based on meteorological satellite data. It can detect plants that wilt or show unusual colors and drops the index if it is the case. The VHI gives the percentage of observation that have a VHI below 35%.
 
 ## Descriptive Evidence
 
