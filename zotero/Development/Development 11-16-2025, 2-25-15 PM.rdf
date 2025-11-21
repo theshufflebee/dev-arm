@@ -1,0 +1,2080 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#">
+    <bib:Article rdf:about="https://journals.ametsoc.org/view/journals/clim/23/7/2009jcli2909.1.xml">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0894-8755,%201520-0442"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Vicente-Serrano</foaf:surname>
+                        <foaf:givenName>Sergio M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Beguería</foaf:surname>
+                        <foaf:givenName>Santiago</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>López-Moreno</foaf:surname>
+                        <foaf:givenName>Juan I.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_1841"/>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Drought</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Evapotranspiration</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Indices</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Precipitation</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Temperature</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:title>A Multiscalar Drought Index Sensitive to Global Warming: The Standardized Precipitation Evapotranspiration Index</dc:title>
+        <dcterms:abstract>The authors propose a new climatic drought index: the standardized precipitation evapotranspiration index (SPEI). The SPEI is based on precipitation and temperature data, and it has the advantage of combining multiscalar character with the capacity to include the effects of temperature variability on drought assessment. The procedure to calculate the index is detailed and involves a climatic water balance, the accumulation of deficit/surplus at different time scales, and adjustment to a log-logistic probability distribution. Mathematically, the SPEI is similar to the standardized precipitation index (SPI), but it includes the role of temperature. Because the SPEI is based on a water balance, it can be compared to the self-calibrated Palmer drought severity index (sc-PDSI). Time series of the three indices were compared for a set of observatories with different climate characteristics, located in different parts of the world. Under global warming conditions, only the sc-PDSI and SPEI identified an increase in drought severity associated with higher water demand as a result of evapotranspiration. Relative to the sc-PDSI, the SPEI has the advantage of being multiscalar, which is crucial for drought analysis and monitoring.</dcterms:abstract>
+        <dc:date>2010/04/01</dc:date>
+        <z:language>EN</z:language>
+        <z:shortTitle>A Multiscalar Drought Index Sensitive to Global Warming</z:shortTitle>
+        <z:libraryCatalog>journals.ametsoc.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://journals.ametsoc.org/view/journals/clim/23/7/2009jcli2909.1.xml</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:07:08</dcterms:dateSubmitted>
+        <dc:description>Publisher: American Meteorological Society
+Section: Journal of Climate</dc:description>
+        <bib:pages>1696-1718</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0894-8755,%201520-0442">
+        <prism:volume>23</prism:volume>
+        <dc:title>Journal of Climate</dc:title>
+        <dc:identifier>DOI 10.1175/2009JCLI2909.1</dc:identifier>
+        <prism:number>7</prism:number>
+        <dc:identifier>ISSN 0894-8755, 1520-0442</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_1841">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/1841/Vicente-Serrano et al. - 2010 - A Multiscalar Drought Index Sensitive to Global Warming The Standardized Precipitation Evapotranspi.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://journals.ametsoc.org/downloadpdf/view/journals/clim/23/7/2009jcli2909.1.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:07:14</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291099-1255%28199611%2911%3A6%3C619%3A%3AAID-JAE418%3E3.0.CO%3B2-1">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1099-1255"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Papke</foaf:surname>
+                        <foaf:givenName>Leslie E.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wooldridge</foaf:surname>
+                        <foaf:givenName>Jeffrey M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_1843"/>
+        <link:link rdf:resource="#item_1844"/>
+        <dc:title>Econometric methods for fractional response variables with an application to 401(k) plan participation rates</dc:title>
+        <dcterms:abstract>We develop attractive functional forms and simple quasi-likelihood estimation methods for regression models with a fractional dependent variable. Compared with log-odds type procedures, there is no difficulty in recovering the regression function for the fractional variable, and there is no need to use ad hoc transformations to handle data at the extreme values of zero and one. We also offer some new, robust specification tests by nesting the logit or probit function in a more general functional form. We apply these methods to a data set of employee participation rates in 401(k) pension plans.</dcterms:abstract>
+        <dc:date>1996</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Wiley Online Library</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291099-1255%28199611%2911%3A6%3C619%3A%3AAID-JAE418%3E3.0.CO%3B2-1</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:07:14</dcterms:dateSubmitted>
+        <dc:rights>Copyright © 1996 John Wiley &amp; Sons, Ltd.</dc:rights>
+        <dc:description>_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/%28SICI%291099-1255%28199611%2911%3A6%3C619%3A%3AAID-JAE418%3E3.0.CO%3B2-1</dc:description>
+        <bib:pages>619-632</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1099-1255">
+        <prism:volume>11</prism:volume>
+        <dc:title>Journal of Applied Econometrics</dc:title>
+        <dc:identifier>DOI 10.1002/(SICI)1099-1255(199611)11:6&lt;619::AID-JAE418&gt;3.0.CO;2-1</dc:identifier>
+        <prism:number>6</prism:number>
+        <dc:identifier>ISSN 1099-1255</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_1843">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/1843/Papke and Wooldridge - 1996 - Econometric methods for fractional response variables with an application to 401(k) plan participati.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/%28SICI%291099-1255%28199611%2911%3A6%3C619%3A%3AAID-JAE418%3E3.0.CO%3B2-1</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:07:17</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_1844">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/1844/(SICI)1099-1255(199611)116619AID-JAE4183.0.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291099-1255%28199611%2911%3A6%3C619%3A%3AAID-JAE418%3E3.0.CO%3B2-1</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:07:24</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://hdl.handle.net/10986/41209">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+               <dc:identifier>DOI 10.1596/1813-9450-10724</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_1846"/>
+        <dc:title>Climate Immobility Traps: A Household-Level Test</dc:title>
+        <dc:date>2024-03-19</dc:date>
+        <z:language>en_US</z:language>
+        <z:shortTitle>Climate Immobility Traps</z:shortTitle>
+        <z:libraryCatalog>openknowledge.worldbank.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://hdl.handle.net/10986/41209</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:08:20</dcterms:dateSubmitted>
+        <dc:description>Publisher: Washington, DC: World Bank</dc:description>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_1846">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/1846/2024 - Climate Immobility Traps A Household-Level Test.pdf"/>
+        <dc:title>Submitted Version</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://arxiv.org/pdf/2403.09470</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:08:22</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://www.aeaweb.org/articles?id=10.1257/mac.20200149">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1945-7707"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Adamopoulos</foaf:surname>
+                        <foaf:givenName>Tasso</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_1848"/>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Agribusiness, Transportation Economics: Government and Private Investment Analysis</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Agricultural Markets and Marketing; Cooperatives; Agribusiness</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Agriculture: Aggregate Supply and Demand Analysis; Prices</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Cooperatives</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Economic Development: Agriculture; Natural Resources; Energy; Environment; Other Primary Products</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Economic Development: Urban, Rural, Regional, and Transportation Analysis; Housing; Infrastructure</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Energy</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Environment</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Housing</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Infrastructure, Agriculture: Aggregate Supply and Demand Analysis</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>National Government Expenditures and Related Policies: Infrastructures</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>National Government Expenditures and Related Policies: Infrastructures; Other Public Investment and Capital Stock</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Natural Resources</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Other Primary Products, Economic Development: Urban, Rural, Regional, and Transportation Analysis</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Other Public Investment and Capital Stock, Economic Development: Agriculture</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Prices, Agricultural Markets and Marketing</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Public Facility Location Analysis; Public Investment and Capital Stock</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Public Investment and Capital Stock</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Road Maintenance, Transportation Planning, Public Facility Location Analysis</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Transportation Economics: Government and Private Investment Analysis; Road Maintenance, Transportation Planning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Spatial Integration and Agricultural Productivity: Quantifying the Impact of New Roads</dc:title>
+        <dcterms:abstract>I study the effects of Ethiopia's 1997–2014 road expansion program on agricultural productivity and structural change by combining a quantitative spatial sectoral framework with novel district-level panel data on agricultural production and geocoded transport costs. In the model, the spatial heterogeneity of transport costs affects the distribution of production and mobile inputs across locations and sectors, and the allocation of land across crops within locations. Varying transport costs to their new actual levels, the model delivers substantial structural change, a rise in agricultural productivity one-tenth of the data, and a pattern of productivity gains across districts consistent with the data.</dcterms:abstract>
+        <dc:date>2025/01</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Spatial Integration and Agricultural Productivity</z:shortTitle>
+        <z:libraryCatalog>www.aeaweb.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.aeaweb.org/articles?id=10.1257/mac.20200149</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:08:46</dcterms:dateSubmitted>
+        <bib:pages>343-378</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1945-7707">
+        <prism:volume>17</prism:volume>
+        <dc:title>American Economic Journal: Macroeconomics</dc:title>
+        <dc:identifier>DOI 10.1257/mac.20200149</dc:identifier>
+        <prism:number>1</prism:number>
+        <dc:identifier>ISSN 1945-7707</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_1848">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/1848/Adamopoulos - 2025 - Spatial Integration and Agricultural Productivity Quantifying the Impact of New Roads.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.aeaweb.org/articles/pdf/doi/10.1257/mac.20200149</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-04 14:08:52</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.meteosuisse.admin.ch/climat/changement-climatique/etes-plus-secs/indices-de-secheresse.html">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2035"/>
+        <dc:title>Indices de sécheresse - MétéoSuisse</dc:title>
+        <dcterms:abstract>MétéoSuisse met à disposition différents indices sur la sécheresse et l'humidité au cours des 365 derniers jours.</dcterms:abstract>
+        <z:language>fr</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.meteosuisse.admin.ch/climat/changement-climatique/etes-plus-secs/indices-de-secheresse.html</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 10:55:17</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2035">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2035/indices-de-secheresse.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.meteosuisse.admin.ch/climat/changement-climatique/etes-plus-secs/indices-de-secheresse.html</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 10:55:27</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://drought.emergency.copernicus.eu/">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2037"/>
+        <dc:title>Drought Observatories</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://drought.emergency.copernicus.eu/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 10:58:52</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2037">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2037/drought.emergency.copernicus.eu.html"/>
+        <dc:title>Drought Observatories</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://drought.emergency.copernicus.eu/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 10:59:02</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&amp;type=1141&amp;code=ARM#">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2039"/>
+        <dc:title>FAO,GIEWS, Earth Observation, Armenia, Country Indicators,METOP, NDVI, ASIS, VHI, VCI,ECWMF, Agricultural Stress Index, NDVI Anomaly, Vegetation Condition Index, Vegetation Health Index,Estimated Precipitation, Precipitation Anomaly, Map</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&amp;type=1141&amp;code=ARM#</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 11:08:46</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2039">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2039/index.html"/>
+        <dc:title>FAO,GIEWS, Earth Observation, Armenia, Country Indicators,METOP, NDVI, ASIS, VHI, VCI,ECWMF, Agricultural Stress Index, NDVI Anomaly, Vegetation Condition Index, Vegetation Health Index,Estimated Precipitation, Precipitation Anomaly, Map</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&amp;type=1141&amp;code=ARM#</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 11:08:54</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.trockenheit.admin.ch/en/factors/vegetation/vegetation-health-index-vhi">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2041"/>
+        <dc:title>Vegetation Health Index (VHI) - National drought platform</dc:title>
+        <dcterms:abstract>The map shows the current status of vegetation health as observed by satellites (Vegetation Health Index, &quot;swissEO VHI&quot;). This index also evaluates the...</dcterms:abstract>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.trockenheit.admin.ch/en/factors/vegetation/vegetation-health-index-vhi</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 11:14:26</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2041">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2041/vegetation-health-index-vhi.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.trockenheit.admin.ch/en/factors/vegetation/vegetation-health-index-vhi</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 11:14:33</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://statbank.armstat.am/pxweb/en/ArmStatBank/ArmStatBank__6%20Agriculture,%20forestry%20and%20fishing/AF-3-2023.px/table/tableViewLayout1/?rxid=9ba7b0d1-2ff8-40fa-a309-fae01ea885bb">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2043"/>
+        <dc:title>Main Indicators of Agriculture by marzes, indicators and years. PxWeb</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://statbank.armstat.am/pxweb/en/ArmStatBank/ArmStatBank__6%20Agriculture,%20forestry%20and%20fishing/AF-3-2023.px/table/tableViewLayout1/?rxid=9ba7b0d1-2ff8-40fa-a309-fae01ea885bb</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:42:58</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2043">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2043/tableViewLayout1.html"/>
+        <dc:title>Main Indicators of Agriculture by marzes, indicators and years. PxWeb</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://statbank.armstat.am/pxweb/en/ArmStatBank/ArmStatBank__6%20Agriculture,%20forestry%20and%20fishing/AF-3-2023.px/table/tableViewLayout1/?rxid=9ba7b0d1-2ff8-40fa-a309-fae01ea885bb</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:43:12</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://climateknowledgeportal.worldbank.org/country/armenia/climate-data-historical">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2045"/>
+        <dc:title>Armenia - Climatology (CRU) | Climate Change Knowledge Portal</dc:title>
+        <dcterms:abstract>Armenia - Climatology (CRU) -</dcterms:abstract>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://climateknowledgeportal.worldbank.org/country/armenia/climate-data-historical</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:43:39</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2045">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2045/climate-data-historical.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://climateknowledgeportal.worldbank.org/country/armenia/climate-data-historical</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:43:53</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://drought.emergency.copernicus.eu/tumbo/gdo/download/">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2047"/>
+        <dc:title>Download indicator data</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://drought.emergency.copernicus.eu/tumbo/gdo/download/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:44:48</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2047">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2047/download.html"/>
+        <dc:title>Download indicator data</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://drought.emergency.copernicus.eu/tumbo/gdo/download/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:44:50</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2050">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2050/Carleton et al. - VALUING THE GLOBAL MORTALITY CONSEQUENCES OF CLIMATE CHANGE ACCOUNTING FOR ADAPTATION COSTS AND BENE.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://watermark02.silverchair.com/qjac020.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAA7YwggOyBgkqhkiG9w0BBwagggOjMIIDnwIBADCCA5gGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMP_u-GNse7N63XGisAgEQgIIDaScYgf02nxXVln4gkCFbuQGjPvHBvaFPAEqdJL1wDgLGgT4z8Py8LWqjQ9lzAIUxwRlhJTkyich7rksTAeeTe1Ud1zaYZH_rdGc26zJK9YfSlr4tz_nf9-zMi1VULWamTp_JsInwC86MoKghsn41oz8Wzo5J2Hyp9OfwpPFBXOt1nmUrKI8ACFft9oJ1Nahggw_YLQEQuSeD6S0ij9ChwoK0fi4-uQv0Adfoq9Iw5gNDXvtyCv3YvDGHtcB8DGiL8IG2exbM4ARjfLmrdbep7LTimqBckEY5itbY29afqaYHWXOFh5A6aYjI12ISJAZb-FhIWlttg96hhvZJFnqxL4hib5NZ793PcICxCwBu72LF13NzJD22r29s-5K5lsSdWeA91HU_Im93whnere0dVRhGQDvpzaIa56KnLXv2-a67kewRgUulOyvvL3NmHGR-uIDNyskwJdCdGJf48d80EE8EausGCAtuGWa7RkTq-E03wEhlX7ISbqHgNpsixrFmhC_hl1mLtQVSxLuKMdpEbRMI71BKDsdsHWxuDI06vGxHuXqk50hNYoxR0ShaNSPDU-7z_c9P-f1ehIG7TSNwPWlhQTmjcFOOvYz8m3FojBnkYiDJ4J3n2JlczonPhyynX4K4Rsk0Rn0yqihgJn7_c5xC7_ghFCSBCdIiDMOHGVLxfuxFVN2owQnvVtqDlh5S83_FCOq2-fTvk8-wzK97AxqfyF-bbSTtkISPemAZpMoPeqaOuBU6fdlJlnBgDo1it-zbRgz_qnBrGyvkxAZeYW_WFXbbJNwUVPr0X0o3yX1OLjKfZqbB8xrCbEGOW6igfBF0vnJf-gepoUmv40Ql0vQWX59LbwWJcc0YWjp_t-AU35eDvyfnzkjgWHRsCvOAuiG8fvi4ywWXpiSfmb5RHP6tJ0qbjhVzxqX5sg3sPZaENv8-RJnfDZSIXBcEFIn07ME2MwORQRf8otagI7x-Xhh39XDHsGb263BCR6ft0dNxT1akVm9poF1LjQUs22WU4L2Jlf9hm1F6vLlHrG6MW9lpp6Fua9asEZXunSVfxbLIm_4HGV39zP8O8K8ZBKnWgQn8zvzYGQDABeU3OcU6bEjjPM9cv0b5J4_uRkhyT-oKKvdTCURy9wG-B8J4qszyqp4TsLaiOqxHvA</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:46:54</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_2051">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Carleton</foaf:surname>
+                        <foaf:givenName>Tamma</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jina</foaf:surname>
+                        <foaf:givenName>Amir</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Delgado</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Greenstone</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Houser</foaf:surname>
+                        <foaf:givenName>Trevor</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hsiang</foaf:surname>
+                        <foaf:givenName>Solomon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hultgren</foaf:surname>
+                        <foaf:givenName>Andrew</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kopp</foaf:surname>
+                        <foaf:givenName>Robert E</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mccusker</foaf:surname>
+                        <foaf:givenName>Kelly E</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Nath</foaf:surname>
+                        <foaf:givenName>Ishan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rising</foaf:surname>
+                        <foaf:givenName>James</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rode</foaf:surname>
+                        <foaf:givenName>Ashwin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Seo</foaf:surname>
+                        <foaf:givenName>Hee Kwon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Viaene</foaf:surname>
+                        <foaf:givenName>Arvid</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yuan</foaf:surname>
+                        <foaf:givenName>Jiacan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhang</foaf:surname>
+                        <foaf:givenName>Alice Tianbo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:title>Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits</dc:title>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+    </bib:Article>
+    <rdf:Description rdf:about="https://www.semanticscholar.org/paper/Weather-%2C-Climate-Change-and-Death-in-India-Burgess-Deschenes/bdeacf5b32674127fdd0f5b70a105ba49340b29e">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Burgess</foaf:surname>
+                        <foaf:givenName>R.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Deschenes</foaf:surname>
+                        <foaf:givenName>O.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Donaldson</foaf:surname>
+                        <foaf:givenName>D.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Greenstone</foaf:surname>
+                        <foaf:givenName>M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2058"/>
+        <link:link rdf:resource="#item_2057"/>
+        <dc:title>Weather , Climate Change and Death in India</dc:title>
+        <dcterms:abstract>This paper reveals a stark inequality in the effect of ambient temperatures on death in human populations. Using district-level daily weather and annual mortality data from 1957 to 2000, we find that hot days lead to substantial increases in mortality in rural but not urban India. Despite being far poorer, the mortality response in urban India is not dissimilar to that in the US over the same period. Looking into potential mechanisms we find that the rural death effects are driven by hot days in the growing season which reduce productivity and wages in agriculture. Consistent with a model of endogenous survival in the face of credit constraints, we also find that the expansion of bank branches into rural India helped to mitigate these effects. When coupled with a climatological model that predicts many more hot days in a typical year by the end of this century, these estimates imply considerable reductions in rural Indian, but not urban Indian or US, life expectancy ceteris paribus.</dcterms:abstract>
+        <dc:date>2017</dc:date>
+        <z:libraryCatalog>Semantic Scholar</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.semanticscholar.org/paper/Weather-%2C-Climate-Change-and-Death-in-India-Burgess-Deschenes/bdeacf5b32674127fdd0f5b70a105ba49340b29e</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:49:28</dcterms:dateSubmitted>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_2058">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2058/Burgess et al. - 2017 - Weather , Climate Change and Death in India.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.lse.ac.uk/economics/Assets/Documents/personal-pages/robin-burgess/weather-climate-change-and-death.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:49:30</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2057">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Semantic Scholar Link</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.semanticscholar.org/paper/Weather-%2C-Climate-Change-and-Death-in-India-Burgess-Deschenes/bdeacf5b32674127fdd0f5b70a105ba49340b29e</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:49:29</dcterms:dateSubmitted>
+        <z:linkMode>3</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://www.jstor.org/stable/10.1086/503579">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0022-3808"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jayachandran</foaf:surname>
+                        <foaf:givenName>Seema</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2060"/>
+        <dc:title>Selling Labor Low: Wage Responses to Productivity Shocks in Developing Countries</dc:title>
+        <dcterms:abstract>Productivity risk is pervasive in underdeveloped countries. This paper highlights a way in which underdevelopment exacerbates productivity risk. Productivity shocks cause larger changes in the wage when workers are poorer, less able to migrate, and more credit‐constrained because of such workers’ inelastic labor supply. This equilibrium wage effect hurts workers. In contrast, it acts as insurance for landowners. Agricultural wage data for 257 districts in India for 1956–87 are used to test the predictions, with rainfall as an instrument for agricultural productivity. In districts with fewer banks or higher migration costs, the wage is much more responsive to fluctuations in productivity.</dcterms:abstract>
+        <dc:date>2006</dc:date>
+        <z:shortTitle>Selling Labor Low</z:shortTitle>
+        <z:libraryCatalog>JSTOR</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.jstor.org/stable/10.1086/503579</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:50:21</dcterms:dateSubmitted>
+        <dc:description>Publisher: The University of Chicago Press</dc:description>
+        <bib:pages>538-575</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0022-3808">
+        <prism:volume>114</prism:volume>
+        <dc:title>Journal of Political Economy</dc:title>
+        <dc:identifier>DOI 10.1086/503579</dc:identifier>
+        <prism:number>3</prism:number>
+        <dc:identifier>ISSN 0022-3808</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_2060">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2060/Jayachandran - 2006 - Selling Labor Low Wage Responses to Productivity Shocks in Developing Countries.pdf"/>
+        <dc:title>JSTOR Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.jstor.org/stable/pdfplus/10.1086/503579.pdf?acceptTC=true</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:50:26</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://www.aeaweb.org/articles?id=10.1257/mac.4.3.66">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>4</prism:volume>
+                <dc:title>American Economic Journal: Macroeconomics</dc:title>
+                <dc:identifier>DOI 10.1257/mac.4.3.66</dc:identifier>
+                <prism:number>3</prism:number>
+                <dc:identifier>ISSN 1945-7707</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dell</foaf:surname>
+                        <foaf:givenName>Melissa</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jones</foaf:surname>
+                        <foaf:givenName>Benjamin F.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Olken</foaf:surname>
+                        <foaf:givenName>Benjamin A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2062"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Climate; Natural Disasters; Global Warming</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Economic Development: Agriculture; Natural Resources; Energy; Environment; Other Primary Products</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Energy</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Environment</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Environment and Development; Environment and Trade; Sustainability; Environmental Accounts and Accounting; Environmental Equity; Population Growth</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Environment and Trade</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Environmental Accounts and Accounting</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Environmental Equity</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Global Warming, Environment and Development</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Macroeconomics: Production</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Macroeconomics: Production, Economic Development: Agriculture</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Natural Disasters</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Natural Resources</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Other Primary Products, Climate</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Population Growth</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Sustainability</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Temperature Shocks and Economic Growth: Evidence from the Last Half Century</dc:title>
+        <dcterms:abstract>This paper uses historical fluctuations in temperature within countries to identify its effects on aggregate economic outcomes. We find three primary results. First, higher temperatures substantially reduce
+economic growth in poor countries. Second, higher temperatures may reduce growth rates, not just the level of output. Third, higher temperatures have wide-ranging effects, reducing agricultural output, industrial output, and political stability. These findings inform debates over climate's role in economic development and suggest the
+possibility of substantial negative impacts of higher temperatures on poor countries. (JEL E23, O13, Q54, Q56)</dcterms:abstract>
+        <dc:date>2012/07</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Temperature Shocks and Economic Growth</z:shortTitle>
+        <z:libraryCatalog>www.aeaweb.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.aeaweb.org/articles?id=10.1257/mac.4.3.66</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:50:45</dcterms:dateSubmitted>
+        <bib:pages>66-95</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_2062">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2062/Dell et al. - 2012 - Temperature Shocks and Economic Growth Evidence from the Last Half Century.pdf"/>
+        <dc:title>Submitted Version</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.kellogg.northwestern.edu/faculty/jones-ben/htm/ClimateChange.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:50:49</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.un.org/en/academic-impact/worlds-food-supply-made-insecure-climate-change">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website><dc:title>United Nations</dc:title></z:Website>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Nations</foaf:surname>
+                        <foaf:givenName>United</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2064"/>
+        <dc:title>The World's Food Supply is Made Insecure by Climate Change</dc:title>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.un.org/en/academic-impact/worlds-food-supply-made-insecure-climate-change</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:51:12</dcterms:dateSubmitted>
+        <dc:description>Publisher: United Nations</dc:description>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2064">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2064/worlds-food-supply-made-insecure-climate-change.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.un.org/en/academic-impact/worlds-food-supply-made-insecure-climate-change</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:51:26</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.oxfamamerica.org/explore/stories/how-will-climate-change-affect-agriculture/">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <dc:title>How will climate change affect agriculture? | Oxfam America | Learn more</dc:title>
+        <dcterms:abstract>Climate change is affecting agriculture, but we can reduce climate-warming emissions and help farmers adapt to ensure we have nutritious food in the future.</dcterms:abstract>
+        <dc:date>2025-11-17</dc:date>
+        <z:language>en-US</z:language>
+        <z:shortTitle>How will climate change affect agriculture?</z:shortTitle>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.oxfamamerica.org/explore/stories/how-will-climate-change-affect-agriculture/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:51:30</dcterms:dateSubmitted>
+    </bib:Document>
+    <bib:Document rdf:about="https://www.worldbank.org/en/news/feature/2022/10/17/what-you-need-to-know-about-food-security-and-climate-change">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website><dc:title>World Bank</dc:title></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2067"/>
+        <dc:title>Climate Explainer: Food Security and Climate Change</dc:title>
+        <dcterms:abstract>Learn how climate change is affecting global food security today and what can we expect in the future.</dcterms:abstract>
+        <z:language>en</z:language>
+        <z:shortTitle>Climate Explainer</z:shortTitle>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.worldbank.org/en/news/feature/2022/10/17/what-you-need-to-know-about-food-security-and-climate-change</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:52:01</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2067">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2067/what-you-need-to-know-about-food-security-and-climate-change.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.worldbank.org/en/news/feature/2022/10/17/what-you-need-to-know-about-food-security-and-climate-change</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:52:13</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://reliefweb.int/report/armenia/armenia-wfp-vam-market-price-and-climate-monitoring-market-price-bulletin-issue-no-5-july-2022">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2069"/>
+        <dc:title>Armenia: WFP VAM | Market Price and Climate Monitoring Market Price Bulletin Issue No. 5: July 2022 - Armenia | ReliefWeb</dc:title>
+        <dcterms:abstract>Analysis in English on Armenia about Agriculture and Food and Nutrition; published on 5 Aug 2022 by WFP</dcterms:abstract>
+        <dc:date>2022-08-05</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Armenia</z:shortTitle>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://reliefweb.int/report/armenia/armenia-wfp-vam-market-price-and-climate-monitoring-market-price-bulletin-issue-no-5-july-2022</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:52:15</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2069">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2069/armenia-wfp-vam-market-price-and-climate-monitoring-market-price-bulletin-issue-no-5-july-2022.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://reliefweb.int/report/armenia/armenia-wfp-vam-market-price-and-climate-monitoring-market-price-bulletin-issue-no-5-july-2022</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:52:23</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2070">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2070/Economic-Report-Armenia-2024_EN.pdf"/>
+        <dc:title>Economic-Report-Armenia-2024_EN</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2071">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2071/Armenia_National-Pathway_2021_En.pdf"/>
+        <dc:title>Armenia_National-Pathway_2021_En.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://summitdialogues.org/wp-content/uploads/2021/09/Armenia_National-Pathway_2021_En.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:53:49</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-92-5-135789-7">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Budapest, Hungary</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>FAO</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                   <foaf:Person><foaf:surname>FAO</foaf:surname></foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2073"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>agricultural sector</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>agrometeorology</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Armenia</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>climate change</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>disaster risk reduction</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>early warning systems</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>food security</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>impact assessment</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>legal frameworks</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>natural disasters</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Comprehensive analysis of the disaster risk reduction system for the agricultural sector in Armenia</dc:title>
+        <dcterms:abstract>This report aims to highlight the current strengths of the institutional DRR system for agriculture in Armenia as well as indicate existing gaps and capacity needs to further enhance it. A comprehensive assessment is conducted, which includes a general overview of the country’s agricultural sector and outlines the most frequent natural hazards that are impacting the sector. It is followed by an analysis of the existing legal, policy and institutional structure and discusses various components of the system, including e.g. the functioning of early warning systems, assessments of disaster risks, post-disaster needs assessments, including damages and losses assessments and the availability of agricultural insurance for farmers. It concludes by providing recommendations for capacity building interventions to strengthen the current system to reduce the adverse impacts of natural hazards, in particular, floods, landslides and droughts, and climate change on agriculture in Armenia.</dcterms:abstract>
+        <dc:date>2022</dc:date>
+        <z:language>English</z:language>
+        <z:libraryCatalog>FAO Knowledge Repository</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://openknowledge.fao.org/handle/20.500.14283/cb8677en</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:55:32</dcterms:dateSubmitted>
+        <dc:rights>FAO</dc:rights>
+        <dc:description>DOI: 10.4060/cb8677en</dc:description>
+        <dc:identifier>ISBN 978-92-5-135789-7</dc:identifier>
+        <z:numPages>89</z:numPages>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_2073">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2073/FAO - 2022 - Comprehensive analysis of the disaster risk reduction system for the agricultural sector in Armenia.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://openknowledge.fao.org/server/api/core/bitstreams/b199083e-f750-4230-a61a-630ea52e64f9/content</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:55:37</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2074">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2074/armenia_agriculture.pdf"/>
+        <dc:title>C:\temp\notes6D1288\~4008070.jpg</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://unfccc.int/sites/default/files/armenia_agriculture.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:55:59</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://ndcpartnership.org/knowledge-portal/good-practice-database/impact-climate-change-livelihoods-and-food-security-armenia-clear-consolidated">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <dc:title>Impact of climate change on livelihoods and food security in Armenia (CLEAR- Consolidated Livelihood Exercise for Analyzing Resilience) | NDC Partnership</dc:title>
+        <dcterms:abstract>Climate change is a complex issue that poses a worldwide threat to human development and requires ambitious and bold collective actions. Numerous assessments indicate that there will be significant change in Armenia’s climate over the next century: temperatures will rise; precipitation, river flow and lake levels will fall; and heat waves, droughts, landslides, mudflows, and floods will become more common.</dcterms:abstract>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ndcpartnership.org/knowledge-portal/good-practice-database/impact-climate-change-livelihoods-and-food-security-armenia-clear-consolidated</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:56:25</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2076">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2076/TR_Armenia.pdf"/>
+        <dc:title>TR_Armenia.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://lsg.iamo.de/microsites/lsg.iamo.de/fileadmin/Dokumente/TR_Armenia.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 13:56:54</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://arka.am/en/news/economy/drought_may_damage_crops_in_armenia_berberyan/">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                   <foaf:Person><foaf:surname>ARKA.am</foaf:surname></foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2078"/>
+        <dc:title>Drought may damage crops in Armenia - Berberyan</dc:title>
+        <dcterms:abstract>Dry weather in Armenia may damage potato, wheat and cabbage crops, Hrachya Berberyan, the head of Armenia's Farmers' Union, told journalists on Tuesday.  &lt;br /&gt;</dcterms:abstract>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://arka.am/en/news/economy/drought_may_damage_crops_in_armenia_berberyan/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:03:41</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2078">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2078/drought_may_damage_crops_in_armenia_berberyan.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://arka.am/en/news/economy/drought_may_damage_crops_in_armenia_berberyan/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:03:51</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://pubs.aeaweb.org/doi/10.1257/jep.32.4.33">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0895-3309"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Auffhammer</foaf:surname>
+                        <foaf:givenName>Maximilian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2080"/>
+        <dc:title>Quantifying Economic Damages from Climate Change</dc:title>
+        <dcterms:abstract>Climate scientists have spent billions of dollars and eons of supercomputer time studying how increased concentrations of greenhouse gases and changes in the reflectivity of the earth’s surface affect dimensions of the climate system relevant to human society: surface temperature, precipitation, humidity, and sea levels. Recent incarnations of physical climate models have become sophisticated enough to be able to simulate intensities and frequencies of some extreme events, like tropical storms, under different warming scenarios. In a stark juxtaposition, the efforts involved in and the public resources targeted at understanding how these physical changes translate into economic impacts are disproportionately smaller, with most of the major models being developed and maintained with little to no public funding support. The goal of this paper is first to shed light on how (mostly) economists have gone about calculating the “social cost of carbon” for regulatory purposes and to provide an overview of the past and currently used estimates. In the second part, I will focus on where empirical economists may have the highest value added in this enterprise: specifically, the calibration and estimation of economic damage functions, which map weather patterns transformed by climate change into economic benefits and damages. A broad variety of econometric methods have recently been used to parameterize the dose (climate) response (economic outcome) functions. The paper seeks to provide an accessible and comprehensive overview of how economists think about parameterizing damage functions and quantifying the economic damages of climate change.</dcterms:abstract>
+        <dc:date>2018-11-01</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://pubs.aeaweb.org/doi/10.1257/jep.32.4.33</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:03:56</dcterms:dateSubmitted>
+        <bib:pages>33-52</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0895-3309">
+        <prism:volume>32</prism:volume>
+        <dc:title>Journal of Economic Perspectives</dc:title>
+        <dc:identifier>DOI 10.1257/jep.32.4.33</dc:identifier>
+        <prism:number>4</prism:number>
+        <dcterms:alternative>Journal of Economic Perspectives</dcterms:alternative>
+        <dc:identifier>ISSN 0895-3309</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_2080">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2080/Auffhammer - 2018 - Quantifying Economic Damages from Climate Change.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.32.4.33</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:04:00</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_2082">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Christensen</foaf:surname>
+                        <foaf:givenName>Garry</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2081"/>
+        <dc:title>Background Report for World Bank Systematic Country Diagnostic for Armenia</dc:title>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_2081">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2081/Christensen - Background Report for World Bank Systematic Country Diagnostic for Armenia.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://documents1.worldbank.org/curated/en/701491522220670956/pdf/124666-WP-PUBLIC-FINAL-Armenia-SCD-publication-of-technical-background-papers-on-agriculture-final-040518.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:04:13</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://belonging.berkeley.edu/climatedisplacement/climate-displacement-and-resilience-database">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <dc:title>Climate Displacement and Resilience Database | Othering &amp; Belonging Institute</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://belonging.berkeley.edu/climatedisplacement/climate-displacement-and-resilience-database</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:04:40</dcterms:dateSubmitted>
+    </bib:Document>
+    <bib:Article rdf:about="https://pubs.aeaweb.org/doi/10.1257/mac.4.3.66">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1945-7707,%201945-7715"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dell</foaf:surname>
+                        <foaf:givenName>Melissa</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jones</foaf:surname>
+                        <foaf:givenName>Benjamin F</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Olken</foaf:surname>
+                        <foaf:givenName>Benjamin A</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2085"/>
+        <dc:title>Temperature Shocks and Economic Growth: Evidence from the Last Half Century</dc:title>
+        <dcterms:abstract>This paper uses historical fluctuations in temperature within countries to identify its effects on aggregate economic outcomes. We find three primary results. First, higher temperatures substantially reduce economic growth in poor countries. Second, higher temperatures may reduce growth rates, not just the level of output. Third, higher temperatures have wide-ranging effects, reducing agricultural output, industrial output, and political stability. These findings inform debates over climate's role in economic development and suggest the possibility of substantial negative impacts of higher temperatures on poor countries. (JEL E23, O13, Q54, Q56)</dcterms:abstract>
+        <dc:date>2012-07-01</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Temperature Shocks and Economic Growth</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://pubs.aeaweb.org/doi/10.1257/mac.4.3.66</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:05:15</dcterms:dateSubmitted>
+        <bib:pages>66-95</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1945-7707,%201945-7715">
+        <prism:volume>4</prism:volume>
+        <dc:title>American Economic Journal: Macroeconomics</dc:title>
+        <dc:identifier>DOI 10.1257/mac.4.3.66</dc:identifier>
+        <prism:number>3</prism:number>
+        <dcterms:alternative>American Economic Journal: Macroeconomics</dcterms:alternative>
+        <dc:identifier>ISSN 1945-7707, 1945-7715</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_2085">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2085/Dell et al. - 2012 - Temperature Shocks and Economic Growth Evidence from the Last Half Century.pdf"/>
+        <dc:title>Submitted Version</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.kellogg.northwestern.edu/faculty/jones-ben/htm/ClimateChange.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:05:16</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2086">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2086/Draft_Sevan_RBDMP_Final_Report_ENG_final_161020.pdf"/>
+        <dc:title>Draft_Sevan_RBDMP_Final_Report_ENG_final_161020.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.euwipluseast.eu/images/2020/11/PDF/Draft_Sevan_RBDMP_Final_Report_ENG_final_161020.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:05:32</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.fao.org/4/x8408e/x8408e00.htm">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2088"/>
+        <dc:title>Special Report: Armenia - 5 October 2000</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.fao.org/4/x8408e/x8408e00.htm</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:05:36</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2088">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2088/x8408e00.html"/>
+        <dc:title>Special Report: Armenia - 5 October 2000</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.fao.org/4/x8408e/x8408e00.htm</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:05:43</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2089">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2089/al773e00.pdf"/>
+        <dc:title>al773e00.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.fao.org/4/al773e/al773e00.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:05:47</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-92-5-133718-9">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>FAO</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <link:link rdf:resource="#item_2090"/>
+        <dc:title>The impact of climate variability and extremes on agriculture and food security - An analysis of the evidence and case studies</dc:title>
+        <dc:date>2020</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.fao.org/documents/card/en/c/cb2415en</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:06:23</dcterms:dateSubmitted>
+        <dc:description>DOI: 10.4060/cb2415en</dc:description>
+        <dc:identifier>ISBN 978-92-5-133718-9</dc:identifier>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_2090">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2090/2020 - The impact of climate variability and extremes on agriculture and food security - An analysis of the.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://openknowledge.fao.org/server/api/core/bitstreams/3aeb986f-18a1-461a-a445-fdcf200b87a8/content</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:06:16</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="http://www.fao.org/documents/card/en/c/cb8677en">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>FAO</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <link:link rdf:resource="#item_2091"/>
+        <dc:title>Comprehensive analysis of the disaster risk reduction system for the agricultural sector in Armenia</dc:title>
+        <dc:date>2022-4-29</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.fao.org/documents/card/en/c/cb8677en</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:06:28</dcterms:dateSubmitted>
+        <dc:description>DOI: 10.4060/cb8677en</dc:description>
+        <dc:identifier>ISBN 978-92-5-135789-7</dc:identifier>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_2091">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2091/2022 - Comprehensive analysis of the disaster risk reduction system for the agricultural sector in Armenia.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://openknowledge.fao.org/server/api/core/bitstreams/b199083e-f750-4230-a61a-630ea52e64f9/content</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:06:20</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.grida.no/publications/138">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2095"/>
+        <dc:title>Case Lake Sevan: Integrated Environmental Assessment of Lake Sevan (Armenia) | GRID-Arendal</dc:title>
+        <dcterms:abstract>Lake Sevan, located in the central part of the Republic of Armenia (altitude: 1 900 m above sea level, surface area: ~1 200 sq.km, volume ~34 bln cub. m. Inflow: 28 rivers, outflow: river Hrazdan) is the largest lake in Armenia and the Caucasus region. It is one of the largest high-altitude lakes in the world. The lake is the part of the 150.1 th. ha Sevan National Park, which consists of 4 protected reserve zones (in total 3514 ha), recreational and economic zones.  Environmental challengesThe lake faces environmental challenges, caused by overexploitation of its water resources in the Soviet period for Sevan- Hrazdan hydro-power cascade and irri...</dcterms:abstract>
+        <z:shortTitle>Case Lake Sevan</z:shortTitle>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.grida.no/publications/138</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:14:04</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2095">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2095/138.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.grida.no/publications/138</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:14:13</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2096">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2096/Armenia-IDMP-Final-Report-June-2022.pdf"/>
+        <dc:title>Armenia-IDMP-Final-Report-June-2022.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.droughtmanagement.info/portal/wp-content/uploads/2022/08/Armenia-IDMP-Final-Report-June-2022.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:14:21</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.iea.org/reports/armenia-2022">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website><dc:title>IEA</dc:title></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2098"/>
+        <dc:title>Armenia 2022 – Analysis</dc:title>
+        <dcterms:abstract>Armenia 2022 - Analysis and key findings. A report by the International Energy Agency.</dcterms:abstract>
+        <dc:date>2022-03-08</dc:date>
+        <z:language>en-GB</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.iea.org/reports/armenia-2022</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:14:46</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2098">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2098/Armenia2022EnergyPolicyReview.pdf"/>
+        <dc:title>Armenia 2022 Energy Policy Review</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://iea.blob.core.windows.net/assets/8328cc7c-e65e-4df1-a96f-514fdd0ac31e/Armenia2022EnergyPolicyReview.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:14:57</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://publications.jrc.ec.europa.eu/repository/handle/JRC144234">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website><dc:title>JRC Publications Repository</dc:title></z:Website>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Toreti</foaf:surname>
+                        <foaf:givenName>Andrea</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bavera</foaf:surname>
+                        <foaf:givenName>Davide</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Acosta</foaf:surname>
+                        <foaf:givenName>NAVARRO Juan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Barbosa</foaf:surname>
+                        <foaf:givenName>Paulo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>De</foaf:surname>
+                        <foaf:givenName>JAGER Alfred</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ben</foaf:surname>
+                        <foaf:givenName>AOUN Wassim</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Biavetti</foaf:surname>
+                        <foaf:givenName>Irene</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bussay</foaf:surname>
+                        <foaf:givenName>Attila</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Claverie</foaf:surname>
+                        <foaf:givenName>Martin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ficchi</foaf:surname>
+                        <foaf:givenName>Andrea</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fioravanti</foaf:surname>
+                        <foaf:givenName>Guido</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Grimaldi</foaf:surname>
+                        <foaf:givenName>Stefania</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hrast</foaf:surname>
+                        <foaf:givenName>ESSENFELDER Arthur</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kerdiles</foaf:surname>
+                        <foaf:givenName>Herve</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Magni</foaf:surname>
+                        <foaf:givenName>Diego</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Maianti</foaf:surname>
+                        <foaf:givenName>Pieralberto</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mazzeschi</foaf:surname>
+                        <foaf:givenName>Marco</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mccormick</foaf:surname>
+                        <foaf:givenName>Niall</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Niemeyer</foaf:surname>
+                        <foaf:givenName>Stefan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rembold</foaf:surname>
+                        <foaf:givenName>Felix</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Salamon</foaf:surname>
+                        <foaf:givenName>Peter</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Santos</foaf:surname>
+                        <foaf:givenName>NUNES Sergio</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sedano</foaf:surname>
+                        <foaf:givenName>Fernando</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Seguini</foaf:surname>
+                        <foaf:givenName>Lorenzo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Thiemig</foaf:surname>
+                        <foaf:givenName>Vera</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Volpi</foaf:surname>
+                        <foaf:givenName>Danila</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2100"/>
+        <dc:title>Drought in South-Eastern Europe October 2025</dc:title>
+        <dcterms:abstract>Drought conditions have affected large parts of south-eastern Europe, the eastern Mediterranean, and the Black Sea since early 2025, with a partial and temporary recovery in late spring and another worsening in early summer, with concern for the coming months. Above-average temperatures in January 2025, coinciding with the beginning of rainfall deficits, sped up the onset of the drought, leading to dry soil moisture anomaly in the region. The Low-Flow Index (LFI) increased progressively from December 2024 to August 2025, affecting central and eastern Europe, Türkiye, and the Middle East. Impacts on vegetation were limited in spring when the warmer temperatures accelerated and anticipated vegetation grow, while in early summer adverse vegetation conditions emerged, peaking in July 2025, and continued into the autumn. The statistics on wildfires mirror the impacts of the aforementioned conditions on vegetation. Most of the countries in the area of interest recorded values of burnt area above the previous 18-year average. Seasonal forecasts point to a warmer-than-usual and severely dryer-than-usual 2025 autumn. The drought affected water resources and already caused significant yield losses of summer crops in Hungary, Romania, Bulgaria, Greece, Ukraine, and Türkiye, particularly for grain maize and sunflower.</dcterms:abstract>
+        <dc:date>2025</dc:date>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://publications.jrc.ec.europa.eu/repository/handle/JRC144234</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:16:18</dcterms:dateSubmitted>
+        <dc:description>ISBN: 9789268330036
+ISSN: 1831-9424
+DOI: 10.2760/7855749</dc:description>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2100">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2100/Toreti et al. - 2025 - Drought in South-Eastern Europe October 2025.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://publications.jrc.ec.europa.eu/repository/bitstream/JRC144234/JRC144234_01.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:16:21</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://link.springer.com/10.1007/s10668-013-9483-8">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1387-585X,%201573-2975"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Melkonyan</foaf:surname>
+                        <foaf:givenName>Ani</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Asadoorian</foaf:surname>
+                        <foaf:givenName>Malcolm O.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2101"/>
+        <dc:title>Climate impact on agroeconomy in semiarid region of Armenia</dc:title>
+        <dcterms:abstract>With 21 % of gross domestic product (GDP) in agricultural sector and having consistently experienced natural disasters (e.g., drought, ﬂood), Armenia is very vulnerable to climate and its change. Given the fact that 63 % of the entire land is planted with grains, this study primarily focuses on the market for wheat ﬂour and bread. Economic welfare loss due to drought episodes is calculated using the economic data integrated with climate measures. Economic data are utilized for the period 1995–2011 (obtained from Statistical Ofﬁce of Armenia) and speciﬁcally include the quantity produced and consumed of wheat ﬂour and bread combined with mean prices, population income, GDP in the agricultural sector, GDP in the planting sector, and governmental expenditure on subsidies. Climate data include temperature and precipitation during the period 1966–2011 (obtained from National Hydrometeorological Service of Armenia). The analysis includes three main components. The ﬁrst utilizes a market framework that analyzes the impact of climate on equilibrium prices and quantities as well as trade and tax effects. The second employs a logarithmic utility function to estimate the effective insurance policy for the agricultural sector using risk management strategies. Lastly, a macroeconomic model has been developed to assess the efﬁcient sum of governmental expenditure on subsidies and irrigation during the drought episodes and during the mean climatic conditions. All three parts of the study are developed for the ﬁrst time.</dcterms:abstract>
+        <dc:date>4/2014</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://link.springer.com/10.1007/s10668-013-9483-8</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:11</dcterms:dateSubmitted>
+        <dc:rights>http://www.springer.com/tdm</dc:rights>
+        <bib:pages>393-414</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1387-585X,%201573-2975">
+        <prism:volume>16</prism:volume>
+        <dc:title>Environment, Development and Sustainability</dc:title>
+        <dc:identifier>DOI 10.1007/s10668-013-9483-8</dc:identifier>
+        <prism:number>2</prism:number>
+        <dcterms:alternative>Environ Dev Sustain</dcterms:alternative>
+        <dc:identifier>ISSN 1387-585X, 1573-2975</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_2101">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2101/Melkonyan and Asadoorian - 2014 - Climate impact on agroeconomy in semiarid region of Armenia.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.uni-due.de/imperia/md/content/geographie/klimatologie/environment_______sustainable_development.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:07</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Report rdf:about="https://www.oecd.org/en/publications/assessing-the-enabling-conditions-for-investment-in-armenia-s-water-security_be989b9c-en.html">
+        <z:itemType>report</z:itemType>
+        <link:link rdf:resource="#item_2103"/>
+        <dc:title>Assessing the enabling conditions for investment in Armenia's water security: Scorecard pilot test</dc:title>
+        <dcterms:abstract>This paper is part of a subset of working papers within the Environment Working Paper series, presenting research on the enabling environment for investment in water security. The subset includes country and regional projects aimed at pilot testing the Scorecard, designed to assess the enabling environment for investment in water security. The paper “Assessing the Enabling Conditions for Investment in Water Security: Scorecard Pilot Test in Asian Countries” delineates the findings from the initial phase.</dcterms:abstract>
+        <dc:date>2024-05-29</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Assessing the enabling conditions for investment in Armenia's water security</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.oecd.org/en/publications/assessing-the-enabling-conditions-for-investment-in-armenia-s-water-security_be989b9c-en.html</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:26</dcterms:dateSubmitted>
+        <dc:description>Series: OECD Environment Working Papers
+Volume: 241
+DOI: 10.1787/be989b9c-en</dc:description>
+        <prism:number>241</prism:number>
+        <z:type>OECD Environment Working Papers</z:type>
+    </bib:Report>
+    <z:Attachment rdf:about="#item_2103">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2103/2024 - Assessing the enabling conditions for investment in Armenia's water security Scorecard pilot test.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/05/assessing-the-enabling-conditions-for-investment-in-armenia-s-water-security_f008a57a/be989b9c-en.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:23</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://www.researchgate.net/publication/354699817_Age_and_origin_of_groundwater_resources_in_the_Ararat_Valley_Armenia_a_baseline_study_applying_hydrogeochemistry_and_environmental_tracers">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>ResearchGate</dc:title>
+                <dc:identifier>DOI 10.1007/s10040-021-02390-4</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_2106"/>
+        <link:link rdf:resource="#item_2107"/>
+        <dc:title>(PDF) Age and origin of groundwater resources in the Ararat Valley, Armenia: a baseline study applying hydrogeochemistry and environmental tracers</dc:title>
+        <dcterms:abstract>PDF | Within the Ararat Valley (Armenia), a continuously growing water demand (for irrigation and fish farming) and a simultaneous decline in... | Find, read and cite all the research you need on ResearchGate</dcterms:abstract>
+        <z:language>en</z:language>
+        <z:shortTitle>(PDF) Age and origin of groundwater resources in the Ararat Valley, Armenia</z:shortTitle>
+        <z:libraryCatalog>www.researchgate.net</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.researchgate.net/publication/354699817_Age_and_origin_of_groundwater_resources_in_the_Ararat_Valley_Armenia_a_baseline_study_applying_hydrogeochemistry_and_environmental_tracers</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:37</dcterms:dateSubmitted>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_2106">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2106/(PDF) Age and origin of groundwater resources in the Ararat Valley, Armenia a baseline study applyi.pdf"/>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://link.springer.com/content/pdf/10.1007/s10040-021-02390-4.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:40</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2107">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2107/354699817_Age_and_origin_of_groundwater_resources_in_the_Ararat_Valley_Armenia_a_baseline_study.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.researchgate.net/publication/354699817_Age_and_origin_of_groundwater_resources_in_the_Ararat_Valley_Armenia_a_baseline_study_applying_hydrogeochemistry_and_environmental_tracers</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:50</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://limnology.org/news/what-happened-to-lake-sevant-silnews-23/">
+        <z:itemType>blogPost</z:itemType>
+        <dcterms:isPartOf>
+           <z:Blog></z:Blog>
+        </dcterms:isPartOf>
+        <dc:title>WHAT HAPPENED TO LAKE SEVANT? / SILNEWS 23 – SIL-International Society of Limnology</dc:title>
+        <z:language>en-US</z:language>
+        <z:shortTitle>WHAT HAPPENED TO LAKE SEVANT?</z:shortTitle>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://limnology.org/news/what-happened-to-lake-sevant-silnews-23/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:17:53</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2109">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2109/UNDP_Country_report_Climate_Risk_Management_in_Armenia.pdf"/>
+        <dc:title>ARMENIA COUNTRY REPORT</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://unece.org/sites/default/files/datastore/fileadmin/DAM/hlm/prgm/cph/experts/armenia/01_general_info/UNDP_Country_report_Climate_Risk_Management_in_Armenia.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:18:19</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2110">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2110/Drought COP Armenia - April 2024 ENG.pdf"/>
+        <dc:title>Drought COP Armenia - April 2024 ENG.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://waterknowledgehub.org/system/files/2024-08/Drought%20COP%20Armenia%20-%20April%202024%20ENG.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:18:33</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-1-4648-0335-2%20978-1-4648-0338-3">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>The World Bank</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yu</foaf:surname>
+                        <foaf:givenName>Winston</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Cestti</foaf:surname>
+                        <foaf:givenName>Rita E.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lee</foaf:surname>
+                        <foaf:givenName>Ju Young</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2111"/>
+        <dc:title>Toward Integrated Water Resources Management in Armenia</dc:title>
+        <dc:date>2014-10-20</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://documents.worldbank.org/en/publication/documents-reports/documentdetail/433731468218409267/toward-integrated-water-resources-management-in-armenia</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:18:51</dcterms:dateSubmitted>
+        <dc:description>DOI: 10.1596/978-1-4648-0335-2</dc:description>
+        <dc:identifier>ISBN 978-1-4648-0335-2 978-1-4648-0338-3</dc:identifier>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_2111">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2111/Yu et al. - 2014 - Toward Integrated Water Resources Management in Armenia.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://documents1.worldbank.org/curated/en/433731468218409267/pdf/Toward-integrated-water-resources-management-in-Armenia.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:18:49</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://www.worldbank.org/en/news/feature/2018/08/08/armenia-takes-important-steps-toward-a-disaster-resilient-future">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website><dc:title>World Bank</dc:title></z:Website>
+        </dcterms:isPartOf>
+        <dc:title>Armenia Takes Important Steps Toward a Disaster Resilient Future</dc:title>
+        <dcterms:abstract>Over the last few decades, urbanization and changing climactic conditions have quadrupled economic losses in Armenia, putting the country’s sustainable socioeconomic progress at risk.</dcterms:abstract>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.worldbank.org/en/news/feature/2018/08/08/armenia-takes-important-steps-toward-a-disaster-resilient-future</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:19:04</dcterms:dateSubmitted>
+        <z:type>Text/HTML</z:type>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_2114">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2114/P170030-619bb5f5-65c2-47c7-8c6b-c554e0879f1e.pdf"/>
+        <dc:title>World Bank Document</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://documents1.worldbank.org/curated/en/099062424121038546/pdf/P170030-619bb5f5-65c2-47c7-8c6b-c554e0879f1e.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:19:16</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="https://hdl.handle.net/10986/39840">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>World Bank, Washington, DC</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zaveri</foaf:surname>
+                        <foaf:givenName>Esha</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Damania</foaf:surname>
+                        <foaf:givenName>RIchard</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Engle</foaf:surname>
+                        <foaf:givenName>Nathan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_2115"/>
+        <dc:title>Droughts and Deficits: The Global Impact of Droughts on Economic Growth</dc:title>
+        <dcterms:abstract>The Policy Research Working Paper Series disseminates the findings of work in progress to encourage the exchange of ideas about development issues. An objective of the series is to get the findings out quickly, even if the presentations are less than fully polished. The papers carry the names of the authors and should be cited accordingly. The findings, interpretations, and conclusions expressed in this paper are entirely those of the authors. They do not necessarily represent the views of the International Bank for Reconstruction and Development/World Bank and its affiliated organizations, or those of the Executive Directors of the World Bank or the governments they represent.</dcterms:abstract>
+        <dc:date>2023-05-24</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Droughts and Deficits</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://hdl.handle.net/10986/39840</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:19:34</dcterms:dateSubmitted>
+        <dc:description>DOI: 10.1596/1813-9450-10453</dc:description>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_2115">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2115/Zaveri et al. - 2023 - Droughts and Deficits The Global Impact of Droughts on Economic Growth.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://documents1.worldbank.org/curated/en/099520405232341146/pdf/IDU0632cb14400e73047a8085e00ed605cb82b53.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:19:28</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_2117">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/2117/wfp0000147613.pdf"/>
+        <dc:title>wfp0000147613.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://api.knack.com/v1/applications/5b23f04fd240aa37e01fa362/download/asset/65fdc9b4f28536002690f26c/wfp0000147613.pdf?utm_source=chatgpt.com</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-11-21 14:19:38</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+</rdf:RDF>
