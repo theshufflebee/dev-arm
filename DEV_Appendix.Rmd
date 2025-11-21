@@ -35,7 +35,7 @@ require(fixest) #TWFE regression
 require(purrr) #for looping plots
 options(scipen=999)
 
-latex_format = F
+latex_format = TRUE
 
 getwd()
 setwd("...") 
@@ -54,7 +54,7 @@ load("final_data_household.Rdata")
 
 ```
 
-## Explanation
+## Detailed Explanation
 
 We have district-level panel data for the 11 districts (Merz) of Armenia from the
 years 2004 to 2023. It consists of variables from aggregated household surveys,
@@ -106,13 +106,13 @@ variable represents the average level in a particular year in a particular distr
           sign interpretation in the regressions. Positive values indicate harsher conditions.
   + temperature: CRU land-based measure of average surface temperature in celsius
 
-\newpage
 
-# Descriptive Evidence
+
+## Descriptive Evidence
 
 \FloatBarrier
 
-## Raw Data Graphs
+### Raw Data Graphs
 ```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4.32}
 
 var_names <- c(
@@ -173,7 +173,7 @@ plot_list_by_metric <- map(all_metrics, function(met) {
 
 
 
-## Graphs with Drought Dummy
+### Graphs with Drought Dummy
 
 ```{r district desc ev agric drought, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -202,7 +202,7 @@ ggplot(agric_plot, aes(x = year, y = mean_agric,
 
 ```
 
-## Graphs with Drought Dummy and Quartiles
+### Graphs with Drought Dummy and Quartiles
 ```{r district desc ev w/ quartiles, echo=FALSE, message=FALSE, warning=FALSE}
 
 # Data Prep
