@@ -455,9 +455,12 @@ for (dv in dependent_vars) {
       
       clean_group <- gsub(" ", "", group_name)
     file_path <- paste0("figures/reg_", dv, "_", clean_group, ".tex")
+    dynamic_caption <- sprintf("Regression results for %s on %s", 
+                               dv_safe, group_name)
     
     if (latex_format) {
     etable(models_list,
+      title = dynamic_caption,
       label = paste0("table",section_str),
       fixef_sizes = TRUE,     
       fitstat = c("n", "r2", "wr2"), 
