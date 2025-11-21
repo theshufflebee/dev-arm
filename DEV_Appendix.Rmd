@@ -205,10 +205,6 @@ plot_list_by_metric <- map(all_metrics, function(met) {
 
 ## Graphs with Drought Dummy
 
-Note: This graph should be interpreted with caution as the number of districts
-        is very low, meaning that any kind of visible relationship is very 
-         likely due to confounding effects and between-district variation.
-
 ```{r district desc ev agric drought, echo=FALSE, message=FALSE, warning=FALSE}
 
 # Compute, for each years, the mean of agricultural output between districts
@@ -224,13 +220,15 @@ ggplot(agric_plot, aes(x = year, y = mean_agric,
   scale_color_manual(values = c("0" = "#0072B2", "1" = "#D55E00"),
                      labels = c("No Drought", "Drought")) +
   labs(x = "Year", y = "Mean Agricultural Output", color = "Drought Status",
-       title = "Impact of Drought on Agricultural Output") +
+       title = "Impact of Drought on Agricultural Output",
+       caption= "Note: This graph should be interpreted with caution as the number of districts is very low, meaning that any kind of visible relationship is very likely due to confounding effects and between-district variation.") +
   theme_minimal() +
   theme(legend.position = "top",
     axis.text.x = element_text(size = 5),
     axis.text.y = element_text(size = 5),
     plot.title = element_text(size = 14, face = "bold"),
-    strip.text = element_text(size = 4, face = "bold"))
+    strip.text = element_text(size = 4, face = "bold"),
+    plot.caption = element_text(hjust = 0, face = "italic", size = 6))
 
 ```
 
