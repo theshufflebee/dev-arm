@@ -458,7 +458,7 @@ for (dv in dependent_vars) {
     
     if (latex_format) {
     etable(models_list,
-      label = section_str,
+      label = paste0("table",section_str),
       fixef_sizes = TRUE,     
       fitstat = c("n", "r2", "wr2"), 
       tex = latex_format, 
