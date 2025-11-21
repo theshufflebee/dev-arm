@@ -110,6 +110,8 @@ variable represents the average level in a particular year in a particular distr
 
 # Descriptive Evidence
 
+\FloatBarrier
+
 ## Raw Data Graphs
 ```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4.32}
 
