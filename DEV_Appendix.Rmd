@@ -136,6 +136,7 @@ var_names <- c(
   "share"                   = "Share of observations of SPEI above +1",
   "agric_stress"            = "Agricultural Stress",
   "Total_Rainfall"          = "Total Rainfall",
+  "Total Rainfall (1st differences)" = "Total_Rainfall_Diff",
   "output_per_field_fruits" = "Fruits Yield",
   "output_per_field_grains" = "Grains Yield",
   "output_per_field_vegetables" = "Vegetables Yield",
@@ -149,9 +150,11 @@ var_names <- c(
   "year" = "Year")
 
 plot_data <- dataset %>%
-  pivot_longer(cols = c(income, agric_income, agric_output, fdcons, poverty,
-                        spei, share, agric_stress, Total_Rainfall, 
-                        output_per_field_fruits,output_per_field_grains), 
+  pivot_longer(cols = c(income, agric_income, agric_output, fdcons, #poverty,
+                        spei, share, agric_stress, Total_Rainfall,
+                        fruits_harvest, output_per_field_fruits,
+                        grains_harvest,output_per_field_grains,
+                        output_per_field_vegetables, output_per_field_potatoes), 
     names_to = "metric",    
     values_to = "value" )
 
