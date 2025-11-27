@@ -115,15 +115,13 @@ Our measure for agricultural stress is based on the VHI index, which is computed
   + temperature: CRU land-based measure of average surface temperature in Celsius
   
 
-
+\FloatBarrier
 
 
 ## Descriptive Evidence
 
-\FloatBarrier
-
 ### Raw Data Graphs
-```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4.32}
+```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4.32, results='asis'}
 
 var_names <- c(
   "income"                  = "Household Income",
@@ -160,7 +158,7 @@ plot_data <- dataset %>%
 
 all_metrics <- unique(plot_data$metric)
 
-plot_list_by_metric <- map(all_metrics, function(met) {
+plot_list_by_metric <- imap(all_metrics, function(met, index) {
   pretty_name <- var_names[met]
   plot_data <- plot_data %>%
     filter(metric == met)
@@ -180,6 +178,11 @@ plot_list_by_metric <- map(all_metrics, function(met) {
           axis.text.y = element_text(size = 9),
           panel.grid.minor = element_blank() )
     print(p)
+    cat("\n\n") 
+  
+  if (index %% 4 == 0) {
+    cat("\\clearpage\n") 
+  }
   return(p) } )
 
 ```
@@ -188,7 +191,7 @@ plot_list_by_metric <- map(all_metrics, function(met) {
 
 ### Graphs with Drought Dummy
 
-```{r district desc ev agric drought, echo=FALSE, message=FALSE, warning=FALSE}
+```{r district desc ev agric drought, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4}
 
 # Compute, for each years, the mean of agricultural output between districts
 #  that experience drought vs no drought
@@ -216,7 +219,7 @@ ggplot(agric_plot, aes(x = year, y = mean_agric,
 ```
 
 ### Graphs with Drought Dummy and Quartiles
-```{r district desc ev w/ quartiles, echo=FALSE, message=FALSE, warning=FALSE}
+```{r district desc ev w/ quartiles, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4}
 
 # Data Prep
 dataset_prepped_q <- dataset_quartiles %>%
