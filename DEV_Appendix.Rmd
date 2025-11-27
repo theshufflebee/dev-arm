@@ -187,6 +187,12 @@ plot_list_by_metric <- imap(all_metrics, function(met, index) {
 
 ```
 
+### SPEI Map
+
+To calculate district averages of SPEI, we try to compute an average of all pixels that touch the district polygon. The assumption here is that pixels that only partially touch the district are not distorting the average. Given that they are close and that pixels generally are similar to the ones around them, this should suffice. Especially for small districts this gives us enough data so that a single pixel does not create too much variation. We then average out these pixels for each district, for each dekad (10 days). Then we take all observations by year and district and average those out as well for our final yearly values.
+
+
+![](C:\Users\fries\OneDrive\Desktop\Development Econ\dev-arm\figures\plot_pixel_selection.png)
 
 
 ### Graphs with Drought Dummy
