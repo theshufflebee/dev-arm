@@ -1,13 +1,13 @@
 -------------- Drought Data --------------
 
-All of the Jupyter notebooks run with python. Suggested is to use VSC and open
+All of the drought related data is processed in the Jupyter notebooks which all run with python. Suggested is to use VSC and open
 the replication folder with "open Folder". This should set the wd correctly.
 Then Proceed as follows:
 
 Open the Jupyter Notebook agri_stress_data and run the file to produce the agri_stress variable.
 File is in drought_data_output: agri_stress_long.csv / agri_stress_pivoted.csv
 
-Download the raw SPEI observation from the Global Drought observatory.
+Download the raw SPEI observation from the Global Drought observatory (they are over 5 gigabytes, hence why we did not include them in the repo).
 They are .tif files and very large. They are saved locally and downloadable on request.
 Open the Jupyter Notebook data_extraction.ipynb and run it.
 This aggregates the SPEI observations (Pixels) By District and Dekad
