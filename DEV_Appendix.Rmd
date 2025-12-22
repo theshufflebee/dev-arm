@@ -93,14 +93,14 @@ Our measure for agricultural stress is based on the VHI index, which is computed
   + potatoes_harvest: Tons of potatoes harvested
   + watermelon_harvest: Tons of watermelons harvested
   + grapes_harvest: Tons of grapes harvested
-* Hectare (1000km2)
+* Hectare (10000m2)
   + grains_area: Hectares used for harvesting grains and leguminous plants
   + vegetables_area: Hectares used for harvesting vegetables
   + fruits_area: Hectares used for harvesting fruits and berries
   + potatoes_area: Hectares used for harvesting potatoes
   + watermelon_area: Hectares used for harvesting watermelons
   + grapes_area: Hectares used for harvesting grapes
-* Tons per hectare (1000kg / 1000km2)
+* Tons per hectare (1000kg / 10000m2)
   + output_per_field_grains: Grains harvested divided by area (yield)
   + output_per_field_vegetables: Vegetables harvested divided by area (yield)
   + output_per_field_fruits: Fruits harvested divided by area (yield)
@@ -115,15 +115,13 @@ Our measure for agricultural stress is based on the VHI index, which is computed
   + temperature: CRU land-based measure of average surface temperature in Celsius
   
 
-
+\FloatBarrier
 
 
 ## Descriptive Evidence
 
-\FloatBarrier
-
 ### Raw Data Graphs
-```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4.32}
+```{r district desc ev, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4.32, results='asis'}
 
 var_names <- c(
   "income"                  = "Household Income",
@@ -160,7 +158,7 @@ plot_data <- dataset %>%
 
 all_metrics <- unique(plot_data$metric)
 
-plot_list_by_metric <- map(all_metrics, function(met) {
+plot_list_by_metric <- imap(all_metrics, function(met, index) {
   pretty_name <- var_names[met]
   plot_data <- plot_data %>%
     filter(metric == met)
@@ -180,15 +178,26 @@ plot_list_by_metric <- map(all_metrics, function(met) {
           axis.text.y = element_text(size = 9),
           panel.grid.minor = element_blank() )
     print(p)
+    cat("\n\n") 
+  
+  if (index %% 4 == 0) {
+    cat("\\clearpage\n") 
+  }
   return(p) } )
 
 ```
 
+### SPEI Map
+
+To calculate district averages of SPEI, we try to compute an average of all pixels that touch the district polygon. The assumption here is that pixels that only partially touch the district are not distorting the average. Given that they are close and that pixels generally are similar to the ones around them, this should suffice. Especially for small districts this gives us enough data so that a single pixel does not create too much variation. We then average out these pixels for each district, for each dekad (10 days). Then we take all observations by year and district and average those out as well for our final yearly values.
+
+
+![](C:\Users\fries\OneDrive\Desktop\Development Econ\dev-arm\figures\plot_pixel_selection.png)
 
 
 ### Graphs with Drought Dummy
 
-```{r district desc ev agric drought, echo=FALSE, message=FALSE, warning=FALSE}
+```{r district desc ev agric drought, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4}
 
 # Compute, for each years, the mean of agricultural output between districts
 #  that experience drought vs no drought
@@ -216,7 +225,7 @@ ggplot(agric_plot, aes(x = year, y = mean_agric,
 ```
 
 ### Graphs with Drought Dummy and Quartiles
-```{r district desc ev w/ quartiles, echo=FALSE, message=FALSE, warning=FALSE}
+```{r district desc ev w/ quartiles, echo=FALSE, message=FALSE, warning=FALSE, fig.pos="H", fig.height=4}
 
 # Data Prep
 dataset_prepped_q <- dataset_quartiles %>%
@@ -299,7 +308,7 @@ ggplot(plot2_data_q, aes(x = year, y = avg_income, color = drought_status, group
   + Vegetables harvest
   + Fruits harvest
   + Potatoes harvest
-* Tons per hectare (1000kg / 1000km2)
+* Tons per hectare (1000kg / 10000m2)
   + Grains output per field
   + Vegetables output per field
   + Fruits output per field
